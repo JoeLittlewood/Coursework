@@ -44,8 +44,11 @@ body {
     border: 1px solid rgba(0, 0, 0, 0);
     font-size: 16pt;
     margin-left: 20px;
+    margin-top: 62px;
     width: 87%;
     resize: none;
+    line-height: 33px;
+    overflow: hidden;
 }
 
 .vl {
