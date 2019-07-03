@@ -2,11 +2,11 @@
 
 > Joe L, 40417692
 
-- [Web Technologies](#web-technologies)
-  - [Initial Plan](#initial-plan)
-    - [Features](#features)
-    - [Design](#design)
-  - [Development](#development)
+- [Web Technologies](#Web-Technologies)
+  - [Initial Plan](#Initial-Plan)
+    - [Features](#Features)
+    - [Design](#Design)
+  - [Development](#Development)
 
 ---
 
@@ -20,9 +20,9 @@ With this web page I would like to impliment the following features.
 
 The user should be able to:
 
-- Create and Store new notes.
-- Delete old notes.
-- Download notes.
+- [x] Create and Store new notes.
+- [x] Delete old notes.
+- [ ] Download notes.
 
 Different note styles will be available to cater for different preferences.
 Different fonts will also be available.
@@ -31,3 +31,4 @@ Different fonts will also be available.
 
 
 ## Development
+

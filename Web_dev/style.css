@@ -1,36 +1,38 @@
 body {
     font-family: 'Kalam', cursive;
-    background-color: rgb(255, 237, 204);
+    background-image: url('bg.jpg');
+    margin: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .top_bar {
-    z-index: 2;
     background-image: linear-gradient(to right, rgb(44, 30, 17), rgb(143, 92, 20));
-    margin-top: 0;
-    height: 7%;
     border-radius: 20px 20px 0 0;
+    height: 63.5px;
 }
 
 .text_area {
-    z-index: 5;
     position: absolute;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 920px;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.664);
+    max-width: 1200px;
 }
 
 .title {
     margin: 15px;
-    margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0);
-    font-family: 'Kalam', cursive;    
+    background-color: rgba(0, 0, 0, 0);   
     color: white;
     font-size: 22pt;
+    font-family: Arial, Helvetica, sans-serif;
     border: transparent;
     width: 70%;
     outline: none;
@@ -46,15 +48,13 @@ body {
     font-size: 20pt;
     margin-left: 20px;
     margin-top: 50px;
-    width: 90%;
+    width: 87%;
     resize: none;
     line-height: 33px;
-    overflow: hidden;
     outline: none;
 }
 
 .vl {
-    z-index: 3;
     border-left: 3px solid rgb(160, 16, 16);
     height: 93%;
     float: left;
@@ -63,7 +63,6 @@ body {
 }
 
 .vl2 {
-    z-index: 3;
     border-left: 3px solid rgb(160, 16, 16);
     height: 93%;
     float: left;
@@ -77,7 +76,6 @@ body {
 }
 
 .firstLine {
-    z-index: 3;
     background-color: rgba(78, 76, 109, 0.5);
     height: 3px;
     margin-top: 55px;
@@ -92,66 +90,45 @@ body {
 
 #fa_icon {
     font-size:30px;
-    color: white;
-    line-height: 60px;
+    line-height: 65px;
     float: right;
     margin-right: 3%;
-    margin-top: 5px;
-    text-decoration: none;
 }
 
-#fa_a {
-    color: white;
-}
+#fa_a {color: white;}
+#fa_spacing {margin-left: 10px;}
+#fa_a:hover {color: rgb(197, 158, 31);}
+input::placeholder {color: rgba(255, 255, 255, 0.50);}
+textarea::placeholder {color: rgba(0, 0, 0, 0.50);}
 
-#fa_spacing {
-    margin-left: 10px;
-}
-
-#fa_a:hover {
-    color: rgb(197, 158, 31);
-}
-
-input::placeholder {
-    color: rgba(255, 255, 255, 0.50);
-}
-
-textarea::placeholder {
-    color: rgba(0, 0, 0, 0.50);
-}
-
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-  }
-  
-  .dropdown {
-    position: relative;
+.dropdown {
+    position: relative; 
     display: inline-block;
-  }
+}
   
-  .dropdown-content {
+.dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #f8edd7;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 0 0 10px 10px;
     z-index: 4;
-  }
+}
   
-  .dropdown-content a {
+.dropdown-content a {
     color: black;
     font-size: 16pt;
-    padding: 12px 16px;
+    padding: 0 16px 0 16px;
     text-decoration: none;
     display: block;
-  }
+    border-bottom: 1px solid black;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+    border-radius: 0 0 10px 10px;
+}
   
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown-content a:hover {background-color: rgb(202, 179, 143);}
+.dropdown:hover .dropdown-content {display: block;}
