@@ -70,9 +70,56 @@ def hyperlink(htmltext, f):
 
 **4. Parse the webpage content to extract the filenames of all image files, docx and pdf files linked on the webpage. This should output separate lists of all the image files and documents found and a summary stating how many were found. Both absolute and relative links should be extracted.**
 
+I was able to download the images fairly efficiently and effectively but struggled when it came to the documents. This was mainly due to the varied range of popular file formats used in HTML 5.
 
+```python
+def images(htmltext, url, f):
+
+    img = re.compile(r'<img src="([\$-_\.\+!\*\'(),\w]*)"', re.I)
+    images = img.findall(htmltext)
+
+    if images:
+        print(f'[+] {len(images)} images found.')
+        f.write("\n[Images] %s images found.\n" % len(images))
+        for img_extract in images:
+            f.write("[+] %s\n" % img_extract)
+        imageDownload(images, url)
+    else:
+        print(f'[+] {len(images)} images found.')
+
+def files(htmltext, f, url):
+
+    fi = re.compile(r'href="(.+[.docx|.pdf|.php|.doc|.txt]+)"', re.I)
+    files = fi.findall(htmltext)
+
+    if files:
+        print(f'[+] {len(files)} file links found')
+        f.write("\n[Files] %s file links found:\n" % len(files))
+        for files_extract in files:
+            f.write("[+] %s\n" % files_extract)
+        fileDownload(files, url)
+    else:
+        print(f'[+] {len(files)} file links found.')
+```
 
 **5. Parse the webpage content to extract all email addresses included on the page. This should output a nicely formatted list of all the unique email addresses found and a summary that states "x email addresses found". Ideally, you should distinguish addresses found in "mailto:" fields from those included in free text.**
+
+The email addresses are fairly easy to extract so long as they follow the '__@\__.com/.co.uk' format.
+
+```python
+def emails(htmltext, f):
+
+    e = re.compile(r'([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)', re.I)
+    emails = e.findall(htmltext)
+
+    if emails:
+        print(f'[+] {len(emails)} emails found.')
+        f.write("\n[Email] %s emails found:\n" % len(emails))
+        for emails_extract in emails:
+            f.write("[+] %s\n" % emails_extract)
+    else:
+        print(f'[+] {len(emails)} emails found.')
+```
 
 **6. Parse the webpage content to extract all phone numbers shown on the page. This should output a list of all the unique numbers found and a summary that states "x phone numbers found". Phone numbers of all common formats should be extracted.**
 
