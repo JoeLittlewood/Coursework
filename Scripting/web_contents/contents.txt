@@ -1,0 +1,61 @@
+[Title] ['Python Scripting CW Test Page']
+
+[Email] 5 emails found:
+[+] p.leimich@napier.ac.uk
+[+] mitcho@mitcho.com.
+[+] bill@napier-mail.ac.uk
+[+] webteam@mail.napier.ac.uk
+[+] webteam@mail.napier.ac.uk
+
+[Tel] 4 phone numbers found:
+[+] +44-131-4552706
+[+] +44-131-4552706
+[+] +44 (0)333 900 6040
+[+] +44(0)1314552759
+
+[Hyperlink] 12 hyperlinks found:
+[+] https://www.rottentomatoes.com/m/star_wars_the_last_jedi/
+[+] https://www.rottentomatoes.com/m/star_wars_the_last_jedi/trailers/11304078
+[+] https://www.rottentomatoes.com/m/1000085_2001_a_space_odyssey
+[+] http://www.rottentomatoes.com/m/1000085_2001_a_space_odyssey/pictures
+[+] https://www.rottentomatoes.com/m/the_martian
+[+] https://www.rottentomatoes.com/m/the_martian
+[+] https://link.theplatform.com/s/NGweTC/media/rZP5nY5nkQ9s?format=redirect
+[+] http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf
+[+] http://cwe.mitre.org/top25/
+[+] http://www.napier.ac.uk/en/Courses/MSc-Advanced-Security-and-Digital-Forensics-Postgraduate-FullTime
+[+] http://asecuritysite.com
+[+] http://php.net/manual/en/intro-whatis.php
+
+[Files] 7 file links found:
+[+] nothingtoseehere.pdf
+[+] https://link.theplatform.com/s/NGweTC/media/rZP5nY5nkQ9s?format=redirect
+[+] subfolder/Martian.docx
+[+] http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf
+[+] Doc100.docx
+[+] http://php.net/manual/en/intro-whatis.php
+[+] broken.docx
+
+[Hashes] 5 images found:
+[+] fea0f1f6fede90bd0a925b4194deac11
+[+] Password recovered: cheese
+[+] fea0f1f6fede90bd0a925b4194deac11
+[+] Password recovered: cheese
+[+] d1133275ee2118be63a577af759fc052
+[-] Password not recovered
+[+] 5badcaf789d3d1d09794d8f021f40f0e
+[+] Password recovered: starwars
+[+] 5fcfd41e547a12215b173ff47fdd3739
+[+] Password recovered: trustno1
+
+[Images] 10 images found.
+[+] https://resizing.flixster.com/rLAoq_aX1ZYgon9StZ9358ikwnY=/300x300/v1.bjsxNzQ3MTg4O2o7MTc5MzA7MTIwMDs1NzYwOzM4NDA
+[+] https://resizing.flixster.com/00zPNKDlHUNtYCEEAx3V47qxtw4=/fit-in/1152x864/v1.bjsxNzQ3MTg4O2o7MTgwMjA7MTIwMDs1NzYwOzM4NDA
+[+] 2001-a-space-odyssey.JPG
+[+] msc_asdf_logo.jpeg
+[+] gchq-certified.jpg
+[+] http://www.asecuritysite.com/content/icon_clown.gif
+[+] icon_clown.gif
+[+] subfolder/icon_clown.gif
+[+] big.jpg
+[+] monty-python-(1).bmp
