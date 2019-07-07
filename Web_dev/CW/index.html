@@ -1,6 +1,12 @@
+<!-- 
+This is the HTML document for a note-taking web application created by Joseph L - 40417692.
+CSS = style.css
+JS = scripts.js 
+-->
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Header - defining title of page, favicon and scripts used including a link to font-awesome - where the icons are taken from. -->
 <head>
     <title>Notes</title>
     <script src="https://kit.fontawesome.com/f1e8cb77c0.js"></script>
@@ -10,30 +16,33 @@
     <script src="scripts.js"></script>
 </head>
 
+<!-- Body contains the note taking application. -->
 <body>
-    <div class="text_area">
-        <div class="top_bar">
-            <input id="delTitle" type="text" placeholder="Click to add title..." class="title">
-            <div id="fa_icon">
-                <div class="dropdown">
-                    <a id="fa_a" href="#"><i class="fas fa-bars" id="fa_spacing"></i></a>
-                    <div class="dropdown-content">
+     <div class="container">  <!-- Container is the white box in which everything is contained. -->
+        <div class="topBar">  <!-- The top bar is where the title and buttons are located -->
+            <input id="deleteTitle" type="text" placeholder="Click to add title..." class="title">  <!-- Title input box -->
+            <div id="faIconGroup">  <!-- The group of icons are used from an online repository called Font Awesome -->
+                <div class="dropdown">  <!-- This will be where the notes from the user are stored -->
+                    <a id="faIcon" href="#"><i class="fas fa-bars" id="iconSpacing"></i></a>
+                    <div class="dropdownContent">  <!-- Each new note will be added to the list below with it's title added appropriately -->
                         <a href="#">Note 1</a>
                         <a href="#">Note 2</a>
                         <a href="#">Note 3</a>
                     </div>
                 </div>
-                <a id="fa_a" href="#"><i class="fas fa-pencil-alt" id="fa_spacing"></i></a>
-                <a id="fa_a" href="#"><i class="fas fa-bookmark" id="fa_spacing"></i></a>
-                <a id="fa_a" href="#" onclick="deleteNotes()"><i class="fas fa-trash" id="fa_spacing"></i></a>
+                <a id="faIcon" href="#"><i class="fas fa-bold" id="iconSpacing"></i></a>
+                <a id="faIcon" href="#"><i class="fas fa-italic" id="iconSpacing"></i></a>
+                <a id="faUnderline" href="#"><i class="fas fa-underline" id="iconSpacing"></i></a> <!-- Underline has different ID due to it's size being different -->
+                <a id="faIcon" href="#"><i class="fas fa-pencil-alt" id="iconSpacing"></i></a>
+                <a id="faIcon" href="#"><i class="fas fa-bookmark" id="iconSpacing"></i></a>
+                <a id="faIcon" href="#" onclick="delNotes()"><i class="fas fa-trash" id="iconSpacing"></i></a>
             </div>
         </div>
-        <div class="vl"></div>
-        <div class="vl2"></div>
-        <textarea id ="delNotes" class="text" name="moreinfo" rows="23" placeholder="Note..."></textarea><br />
-        <div class="firstLine"></div>
-        <div class="hl"></div>
-        <script>lineRepeat(document.querySelector('.hl'), 22, true);</script>
+        <div class="verticalLine"></div>  <!-- Vertical Red Margin Line -->
+        <textarea id ="deleteNotes" class="text" rows="23" placeholder="Note..."></textarea><br/>  <!-- Where the note can be added to a text area -->
+        <div class="firstLine"></div>  <!-- First line is defined so that I can have the appropriate margin above it -->
+        <div class="horizontalLine"></div> <!-- The next horizontal line is defined before being repeated 22 times on the next line of code -->
+        <script>lineRepeat(document.querySelector('.horizontalLine'), 22, true);</script> <!-- This is the script that repeats the line down the page 22 times -->
     </div>
 </body>
 

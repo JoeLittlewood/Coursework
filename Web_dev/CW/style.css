@@ -1,3 +1,4 @@
+/* Body style */
 body {
     font-family: 'Kalam', cursive;
     background-image: url('bg.jpg');
@@ -8,13 +9,8 @@ body {
     background-attachment: fixed;
 }
 
-.top_bar {
-    background-image: linear-gradient(to right, rgb(44, 30, 17), rgb(143, 92, 20));
-    border-radius: 20px 20px 0 0;
-    height: 63.5px;
-}
-
-.text_area {
+/* White box - centred */
+.container {
     position: absolute;
     width: 100%;
     height: 920px;
@@ -27,6 +23,14 @@ body {
     max-width: 1200px;
 }
 
+/* Bar containing title and buttons */
+.topBar {
+    background-image: linear-gradient(to right, rgb(44, 30, 17), rgb(143, 92, 20));
+    border-radius: 20px 20px 0 0;
+    height: 63.5px;
+}
+
+/* Title input box */
 .title {
     margin: 15px;
     background-color: rgba(0, 0, 0, 0);   
@@ -34,10 +38,11 @@ body {
     font-size: 22pt;
     font-family: Arial, Helvetica, sans-serif;
     border: transparent;
-    width: 70%;
+    width: 60%;
     outline: none;
 }
 
+/* Text input box */
 .text {
     position: absolute;
     z-index: 3;
@@ -54,59 +59,56 @@ body {
     outline: none;
 }
 
-.vl {
+/* Red vertical margin line */
+.verticalLine {
     border-left: 3px solid rgb(160, 16, 16);
     height: 93%;
     float: left;
-    padding-right: 2px;
     margin-left: 100px;
 }
 
-.vl2 {
-    border-left: 3px solid rgb(160, 16, 16);
-    height: 93%;
-    float: left;
-}
-
-.hl {
+/* Lined paper effect */
+.horizontalLine {
     z-index: 3;
     background-color: rgba(78, 76, 109, 0.5);
     height: 3px;
     margin-top: 30px;
 }
 
+/* Defines the first line on the lined paper */
 .firstLine {
     background-color: rgba(78, 76, 109, 0.5);
     height: 3px;
     margin-top: 55px;
 }
 
-#title_text {
-    color: white;
-    line-height: 60px;
-    display: inline;
-    outline: none;
-}
-
-#fa_icon {
+/* Font-awesome icon group (buttons) */
+#faIconGroup {
     font-size:30px;
     line-height: 65px;
     float: right;
     margin-right: 3%;
 }
 
-#fa_a {color: white;}
-#fa_spacing {margin-left: 10px;}
-#fa_a:hover {color: rgb(197, 158, 31);}
+/* Individual icon properties */
+#faIcon {color: white;}
+#faUnderline {color: white; font-size: 27px;}
+#iconSpacing {margin-left: 10px;}
+#faIcon:hover {color: rgb(197, 158, 31);}
+#faUnderline:hover {color: rgb(197, 158, 31);}
+
+/* Placeholder font color */
 input::placeholder {color: rgba(255, 255, 255, 0.50);}
 textarea::placeholder {color: rgba(0, 0, 0, 0.50);}
 
+/* Dropdown menu style */
 .dropdown {
     position: relative; 
     display: inline-block;
 }
-  
-.dropdown-content {
+
+/* Dropdown menu content */
+.dropdownContent {
     display: none;
     position: absolute;
     background-color: #f8edd7;
@@ -115,8 +117,9 @@ textarea::placeholder {color: rgba(0, 0, 0, 0.50);}
     border-radius: 0 0 10px 10px;
     z-index: 4;
 }
-  
-.dropdown-content a {
+
+/* Dropdown menu individual items (Titles of notes) */
+.dropdownContent a {
     color: black;
     font-size: 16pt;
     padding: 0 16px 0 16px;
@@ -125,10 +128,12 @@ textarea::placeholder {color: rgba(0, 0, 0, 0.50);}
     border-bottom: 1px solid black;
 }
 
-.dropdown-content a:last-child {
+/* Last dropdown menu content item */
+.dropdownContent a:last-child {
     border-bottom: none;
     border-radius: 0 0 10px 10px;
 }
-  
-.dropdown-content a:hover {background-color: rgb(202, 179, 143);}
-.dropdown:hover .dropdown-content {display: block;}
+
+/* Dropdown menu hover effect */
+.dropdownContent a:hover {background-color: rgb(202, 179, 143);}
+.dropdown:hover .dropdownContent {display: block;}
