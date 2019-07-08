@@ -45,7 +45,7 @@ body {
 /* Text input box */
 .text {
     position: absolute;
-    z-index: 3;
+    z-index: 1;
     color: black;
     font-family: 'Kalam', cursive;    
     background-color: rgba(0, 0, 0, 0);
@@ -69,7 +69,7 @@ body {
 
 /* Lined paper effect */
 .horizontalLine {
-    z-index: 3;
+    z-index: 1;
     background-color: rgba(78, 76, 109, 0.5);
     height: 3px;
     margin-top: 30px;
@@ -83,17 +83,17 @@ body {
 }
 
 /* Font-awesome icon group (buttons) */
-#faIconGroup {
+.faIconGroup {
     font-size:30px;
     line-height: 65px;
     float: right;
     margin-right: 3%;
+    color: white;
 }
 
 /* Individual icon properties */
-#faIcon {color: white;}
+.faIconGroup i {color: white;}
 #faUnderline {color: white; font-size: 27px;}
-#iconSpacing {margin-left: 10px;}
 #faIcon:hover {color: rgb(197, 158, 31);}
 #faUnderline:hover {color: rgb(197, 158, 31);}
 
@@ -115,7 +115,7 @@ textarea::placeholder {color: rgba(0, 0, 0, 0.50);}
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 0 0 10px 10px;
-    z-index: 4;
+    z-index: 2;
 }
 
 /* Dropdown menu individual items (Titles of notes) */

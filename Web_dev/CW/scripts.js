@@ -5,8 +5,20 @@ function lineRepeat(line, count) {
     }
 }
 
+// function to delete delNotes.
 function delNotes() {
     var x = confirm("Are you sure you want to delete this note?");
+    if (x == true){
+        document.getElementById('deleteNotes').value = ''
+        document.getElementById('deleteTitle').value = ''
+    } else {
+        txt = "Canceled."
+    }
+}
+
+// function to save notes.
+function saveNotes() {
+    var x = confirm("Would you like to save this note?");
     if (x == true){
         document.getElementById('deleteNotes').value = ''
         document.getElementById('deleteTitle').value = ''

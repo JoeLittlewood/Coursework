@@ -8,6 +8,7 @@ JS = scripts.js
 
 <!-- Header - defining title of page, favicon and scripts used including a link to font-awesome - where the icons are taken from. -->
 <head>
+    <meta charset="utf-8"/>
     <title>Notes</title>
     <script src="https://kit.fontawesome.com/f1e8cb77c0.js"></script>
     <link rel=" stylesheet" href="style.css">
@@ -21,21 +22,21 @@ JS = scripts.js
      <div class="container">  <!-- Container is the white box in which everything is contained. -->
         <div class="topBar">  <!-- The top bar is where the title and buttons are located -->
             <input id="deleteTitle" type="text" placeholder="Click to add title..." class="title">  <!-- Title input box -->
-            <div id="faIconGroup">  <!-- The group of icons are used from an online repository called Font Awesome -->
+            <div class="faIconGroup faIconGroup.i">  <!-- The group of icons are used from an online repository called Font Awesome -->
                 <div class="dropdown">  <!-- This will be where the notes from the user are stored -->
-                    <a id="faIcon" href="#"><i class="fas fa-bars" id="iconSpacing"></i></a>
+                    <a href="#"><i class="fas fa-bars"></i></a>
                     <div class="dropdownContent">  <!-- Each new note will be added to the list below with it's title added appropriately -->
                         <a href="#">Note 1</a>
                         <a href="#">Note 2</a>
                         <a href="#">Note 3</a>
                     </div>
                 </div>
-                <a id="faIcon" href="#"><i class="fas fa-bold" id="iconSpacing"></i></a>
-                <a id="faIcon" href="#"><i class="fas fa-italic" id="iconSpacing"></i></a>
-                <a id="faUnderline" href="#"><i class="fas fa-underline" id="iconSpacing"></i></a> <!-- Underline has different ID due to it's size being different -->
-                <a id="faIcon" href="#"><i class="fas fa-pencil-alt" id="iconSpacing"></i></a>
-                <a id="faIcon" href="#"><i class="fas fa-bookmark" id="iconSpacing"></i></a>
-                <a id="faIcon" href="#" onclick="delNotes()"><i class="fas fa-trash" id="iconSpacing"></i></a>
+                <a href="#"><i class="fas fa-bold"></i></a>
+                <a href="#"><i class="fas fa-italic"></i></a>
+                <a id="faUnderline" href="#"><i class="fas fa-underline"></i></a> <!-- Underline has different ID due to it's size being different -->
+                <a href="#"><i class="fas fa-pencil-alt"></i></a>
+                <a href="#" onclick="saveNotes()"><i class="fas fa-bookmark"></i></a>
+                <a href="#" onclick="delNotes()"><i class="fas fa-trash"></i></a>
             </div>
         </div>
         <div class="verticalLine"></div>  <!-- Vertical Red Margin Line -->
