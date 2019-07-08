@@ -94,7 +94,7 @@ body {
 /* Individual icon properties */
 .faIconGroup i {color: white;}
 #faUnderline {color: white; font-size: 27px;}
-#faIcon:hover {color: rgb(197, 158, 31);}
+.faIconGroup i:hover {color: rgb(197, 158, 31);}
 #faUnderline:hover {color: rgb(197, 158, 31);}
 
 /* Placeholder font color */
