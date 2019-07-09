@@ -1,50 +1,45 @@
-<!-- 
-This is the HTML document for a note-taking web application created by Joseph L - 40417692.
-CSS = style.css
-JS = scripts.js 
--->
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Header - defining title of page, favicon and scripts used including a link to font-awesome - where the icons are taken from. -->
-<head>
-    <meta charset="utf-8"/>
-    <title>Notes</title>
-    <script src="https://kit.fontawesome.com/f1e8cb77c0.js"></script>
-    <link rel=" stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
-    <script src="scripts.js"></script>
-</head>
-
-<!-- Body contains the note taking application. -->
-<body>
-     <div class="container">  <!-- Container is the white box in which everything is contained. -->
-        <div class="topBar">  <!-- The top bar is where the title and buttons are located -->
-            <input id="deleteTitle" type="text" placeholder="Click to add title..." class="title">  <!-- Title input box -->
-            <div class="faIconGroup faIconGroup.i">  <!-- The group of icons are used from an online repository called Font Awesome -->
+<html lang= en>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <script src="https://kit.fontawesome.com/f1e8cb77c0.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+        <title>Notes V2</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="title" placeholder="Notes..." contenteditable="true" spellcheck="true"></div>
+            <div class="faIconGroup">
                 <div class="dropdown">  <!-- This will be where the notes from the user are stored -->
-                    <a href="#"><i class="fas fa-bars"></i></a>
+                    <i class="fas fa-bars"></i>
                     <div class="dropdownContent">  <!-- Each new note will be added to the list below with it's title added appropriately -->
                         <a href="#">Note 1</a>
                         <a href="#">Note 2</a>
                         <a href="#">Note 3</a>
                     </div>
                 </div>
-                <a href="#"><i class="fas fa-bold"></i></a>
-                <a href="#"><i class="fas fa-italic"></i></a>
-                <a id="faUnderline" href="#"><i class="fas fa-underline"></i></a> <!-- Underline has different ID due to it's size being different -->
-                <a href="#"><i class="fas fa-pencil-alt"></i></a>
-                <a href="#" onclick="saveNotes()"><i class="fas fa-bookmark"></i></a>
-                <a href="#" onclick="delNotes()"><i class="fas fa-trash"></i></a>
+                <div class="dropdown">  <!-- This will be where the notes from the user are stored -->
+                    <i class="fas fa-caret-square-down"></i>
+                    <div class="dropdownContent">  <!-- Each new note will be added to the list below with it's title added appropriately -->
+                        <a href="#">Bold</a>
+                        <a href="#">Italics</a>
+                        <a href="#">Underline</a>
+                    </div>
+                </div>
+                <i class="fas fa-pencil-alt"></i>
+                <i class="fas fa-bookmark"></i>
+                <i class="fas fa-trash"></i>
+            </div>
+            <div class="pad">
+                <div class="verticalLine"></div>
+                <div class="textArea" contenteditable="true" placeholder="Write your note here!" id="test" spellcheck="true"></div>
+                <div class="spacer"></div>
+                <div class="horizontalLine"></div>
+                <script>lineRepeat(document.querySelector('.horizontalLine'), 60, true);</script>
             </div>
         </div>
-        <div class="verticalLine"></div>  <!-- Vertical Red Margin Line -->
-        <textarea id ="deleteNotes" class="text" rows="23" placeholder="Note..."></textarea><br/>  <!-- Where the note can be added to a text area -->
-        <div class="firstLine"></div>  <!-- First line is defined so that I can have the appropriate margin above it -->
-        <div class="horizontalLine"></div> <!-- The next horizontal line is defined before being repeated 22 times on the next line of code -->
-        <script>lineRepeat(document.querySelector('.horizontalLine'), 22, true);</script> <!-- This is the script that repeats the line down the page 22 times -->
-    </div>
-</body>
-
+    </body>
 </html>

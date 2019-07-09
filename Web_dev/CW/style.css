@@ -1,110 +1,117 @@
-/* Body style */
 body {
-    font-family: 'Kalam', cursive;
-    background-image: url('bg.jpg');
+    background-image: url('Notes/bg.jpg');
     margin: 0;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
+    font-family: 'Kalam', cursive;
 }
 
-/* White box - centred */
 .container {
     position: absolute;
-    width: 100%;
-    height: 920px;
-    background-color: rgb(255, 255, 255);
+    background: linear-gradient(to right,rgb(65, 40, 4), rgb(175, 107, 5));
+    width: 75%;
+    height: 80%;
     border-radius: 20px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.664);
-    max-width: 1200px;
+    transform: translate(50%, 50%);
+    top: -30%;
+    left: -25%;
+    overflow: hidden;
 }
 
-/* Bar containing title and buttons */
-.topBar {
-    background-image: linear-gradient(to right, rgb(44, 30, 17), rgb(143, 92, 20));
-    border-radius: 20px 20px 0 0;
-    height: 63.5px;
-}
-
-/* Title input box */
-.title {
-    margin: 15px;
-    background-color: rgba(0, 0, 0, 0);   
-    color: white;
-    font-size: 22pt;
-    font-family: Arial, Helvetica, sans-serif;
-    border: transparent;
-    width: 60%;
-    outline: none;
-}
-
-/* Text input box */
-.text {
+.pad {
     position: absolute;
-    z-index: 1;
-    color: black;
-    font-family: 'Kalam', cursive;    
-    background-color: rgba(0, 0, 0, 0);
-    border: 1px solid rgba(0, 0, 0, 0);
-    font-size: 20pt;
-    margin-left: 20px;
-    margin-top: 50px;
-    width: 87%;
-    resize: none;
-    line-height: 33px;
-    outline: none;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 90%;
+    top: 10%;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    z-index: -1;
 }
 
-/* Red vertical margin line */
 .verticalLine {
-    border-left: 3px solid rgb(160, 16, 16);
-    height: 93%;
-    float: left;
-    margin-left: 100px;
+    position: absolute;
+    min-height: 100%;
+    border-left: 3px solid rgb(155, 0, 0);
+    margin-left: 10%;
 }
 
-/* Lined paper effect */
 .horizontalLine {
-    z-index: 1;
-    background-color: rgba(78, 76, 109, 0.5);
-    height: 3px;
-    margin-top: 30px;
+    width: 100%;
+    border-top: 3px solid rgba(0, 0, 83, 0.527);
+    margin-top: 25px;
 }
 
-/* Defines the first line on the lined paper */
-.firstLine {
-    background-color: rgba(78, 76, 109, 0.5);
-    height: 3px;
-    margin-top: 55px;
+.spacer {
+    position: relative;
+    height: 50px;
+    width: 100%;
 }
 
-/* Font-awesome icon group (buttons) */
 .faIconGroup {
-    font-size:30px;
-    line-height: 65px;
+    font-size: 24pt;
+    height: 8%;
+    width: 300px;
     float: right;
-    margin-right: 3%;
-    color: white;
+    transform: translate(-10%, 12%);
+    text-align: center;
 }
 
-/* Individual icon properties */
-.faIconGroup i {color: white;}
-#faUnderline {color: white; font-size: 27px;}
-.faIconGroup i:hover {color: rgb(197, 158, 31);}
-#faUnderline:hover {color: rgb(197, 158, 31);}
+.faIconGroup i {
+    color: white;
+    transform: translate(0, 50%);
+}
 
-/* Placeholder font color */
-input::placeholder {color: rgba(255, 255, 255, 0.50);}
-textarea::placeholder {color: rgba(0, 0, 0, 0.50);}
+.faIconGroup i:first-child { margin-left: 20px; }
+.faIconGroup i:hover { color: rgb(68, 41, 6); }
+
+.textArea {
+    font-size: 16pt;
+    line-height: 28px;
+    margin-left: 11%;
+    margin-top: 4%;
+    width: 88%;
+    height: 91%;
+    outline: none;
+    position: absolute;
+    scroll-behavior: auto;
+    overflow-y: auto;
+}
+
+div.textArea:empty:before{
+    content: attr(placeholder);
+    color: rgba(0, 0, 0, 0.486);
+  }
+
+.title {
+    position: absolute;
+    transform: translate(2%, 12%);
+    color: white;
+    font-size: 26pt;
+    line-height: 2em;
+    width: 50%;
+    height: 8%;
+    outline: none;
+    overflow-y: hidden;
+    z-index: 1;
+}
+
+div.title:empty:before{
+    content: attr(placeholder);
+    color: rgba(255, 255, 255, 0.486);
+  }
 
 /* Dropdown menu style */
 .dropdown {
     position: relative; 
     display: inline-block;
+    height: 120%;
+}
+
+.dropdown i {
+    position: relative;
 }
 
 /* Dropdown menu content */
@@ -112,6 +119,7 @@ textarea::placeholder {color: rgba(0, 0, 0, 0.50);}
     display: none;
     position: absolute;
     background-color: #f8edd7;
+    margin-top: 21px;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 0 0 10px 10px;
@@ -137,3 +145,42 @@ textarea::placeholder {color: rgba(0, 0, 0, 0.50);}
 /* Dropdown menu hover effect */
 .dropdownContent a:hover {background-color: rgb(202, 179, 143);}
 .dropdown:hover .dropdownContent {display: block;}
+
+@media only screen and (max-height: 800px) {
+    .faIconGroup {
+        font-size: 20pt;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .faIconGroup {
+        font-size: 20pt;
+    }
+
+    .verticalLine {
+        margin-left: 20%;
+        border-left: 1px solid rgb(155, 0, 0);
+    }
+
+    .horizontalLine {
+        margin-top: 15px;
+        border-top: 1px solid rgba(0, 0, 83, 0.527);
+    }
+
+    .spacer {
+        height: 25px;
+    }
+
+    .textArea {
+        margin-left: 21%;
+        font-size: 11pt;
+        margin-top: 10%;
+        width: 78%;
+        line-height: 16px;
+    }
+
+    .title {
+        font-size: 20pt;
+        transform: translate(3%, 12%);
+    }
+}

@@ -36,7 +36,7 @@ The user should be able to:
 
 My design was inspired by the Apple Inc. Notes application. I wanted to have a friendly design that was easy to use and attractive to look at. I tried to make my web application look like a classic notepad, implementing icons in the top right corner that actions will be attatched to. The icons are hopefully easy to understand with the bin which will delete the note, bookmark to save a note, pencil to create a note and file to search through saved notes.
 
-![Design](../Screenshots/Web_dev_design.jpg)
+![Design](../../Screenshots/Web_dev_design.jpg)
 
 ## Development
 
@@ -62,7 +62,7 @@ And choose the icons I want and put them into my HTML as:
 <i class="fas fa-(ICON NAME)"><i>
 ```
 
-![Screenshot One](../Screenshots/1.png)
+![Screenshot One](../../Screenshots/1.png)
 
 One Issue I had when writing my HTML and CSS was with the text boxes. I couldn't get the text area used to write the note located in the position I desired. I fixed this using the z-index, bringing the text box forward.
 
@@ -70,24 +70,24 @@ To finalise the design I changed the background to a more appealing cork-board i
 
 ### Final Design
 
-![Screenshot Twelve](../Screenshots/7.png)
+![Screenshot Twelve](../../Screenshots/7.png)
 
 As you can see, the final design is representative of the initial design but with some additional features such as the text formatting features.
 
 ### Save Feature
 
-![Screenshot Thirteen](../Screenshots/7.2.png)
+![Screenshot Thirteen](../../Screenshots/7.2.png)
 
 The save feature will be implemented in the second part of this assignment.
 
 ### Delete Feature
 
-![Screenshot Thirteen](../Screenshots/7.3.png)
+![Screenshot Thirteen](../../Screenshots/7.3.png)
 
 The delete feature will be implemented in the second part of this assignment.
 
 ### Saved Notes - Drop-down
 
-![Screenshot Thirteen](../Screenshots/7.4.png)
+![Screenshot Thirteen](../../Screenshots/7.4.png)
 
 The titles that the user inputs will be shown in the drop-down. Once clicked the note will show and can be edited.
