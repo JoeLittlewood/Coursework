@@ -1,93 +1,103 @@
-# Web Technologies
+# SET08702 - Web Technologies
+
+## Coursework part one
 
 > Joe L, 40417692
 
-- [Web Technologies](#Web-Technologies)
-  - [Initial Plan](#Initial-Plan)
-    - [Features](#Features)
-    - [Design](#Design)
-  - [Development](#Development)
-    - [Final Design](#Final-Design)
-    - [Save Feature](#Save-Feature)
-    - [Delete Feature](#Delete-Feature)
-    - [Saved Notes - Drop-down](#Saved-Notes---Drop-down)
-
 ---
+
+## Introduction
+
+For the first part of this coursework I have designed a note application where notes can be created, saved and edited by a user. The notes will be saved via an integrated server-based database that will be demonstrated in part two of this coursework.
 
 ## Initial Plan
 
-For this assignment we have been asked to create a note taking application with server-side integration in order to save notes. This will have to be a user-friendly application so I will concentrate a lot on the design to make it usable and attractive.
+I began this project by designing my application. I thought of note applications that already exist in the real world and I favoured a simple yet attractive design, taking inspiration from a physical notebook in the real world. I thought about any features I would want in a note application and wrote these down so that i could refer back to them later.
 
 ### Features
 
-With this web page I would like to impliment the following features.
+The features I initially wrote down for this application are as follows:
 
 The user should be able to:
 
-- [ ] Create and Store new notes.
-- [ ] Delete old notes.
-- [ ] Text formatting - Bold, Underlined and Italics.
-  - [ ] Bold
-  - [ ] Underline
-  - [ ] Italics
-- [ ] Download notes.
+- [ ] Create and save new notes
+- [ ] Delete old notes
+- [ ] Edit stored notes
+- [ ] Format text to be bold, underlined and/or italic
+- [ ] Download notes
 
 ### Design
 
-My design was inspired by the Apple Inc. Notes application. I wanted to have a friendly design that was easy to use and attractive to look at. I tried to make my web application look like a classic notepad, implementing icons in the top right corner that actions will be attatched to. The icons are hopefully easy to understand with the bin which will delete the note, bookmark to save a note, pencil to create a note and file to search through saved notes.
+The ultimate aim for my application was to make it easy to use and visually appealing. As I have mentioned, my design has been inspired by a physical notepad. I wanted the lined paper effect to be a predominant feature and have simple yet intuitive buttons to carry out the actions associated with my implemented features.
 
-![Design](../../Screenshots/Web_dev_design.jpg)
+<div style="page-break-after: always;"></div>
+
+Screenshot | Description
+--- | ---
+![Design](../../Screenshots/Web_dev_design.jpg) | This is my initial design fro my notes application. <br/>I wanted a cork-board effect as the background so that the notepad looked like it was attached to it.<br/> The icons are neatly located in the top right corner that carry the actions such as save, delete, new and open.
+
+---
 
 ## Development
 
-Using my initial design as a guide, I began to create my Web application. I began by creating the white container that acts as the background for the notepad itself.
+Using my initial design as a guide, I began to create my web application. I began by creating the white container that acts as the background for the notepad itself.
 
-The next step was to create The top bar that I use to contain the title and options icons. One interesting aspect of this `<div>` is that only 2 corners of four are rounded. I did this by utilising the `border-radius` element in CSS.
+The next step was to create The top bar that I use to contain the title and icons. One interesting aspect of this `<div>` is that only two corners of four are rounded. I did this by utilising the `border-radius` element in CSS.
 
 ```css
 border-radius: 20px 20px 0 0;
 ```
 
-As you can see the first two sizes are reletive to the top corners and the following two numbers are the bottom corners.
+> As you can see the first two sizes are reletive to the top corners and the following two numbers are the bottom corners.
 
-The next step was to add the icons, horizontal lines and vertical lines in order to finish off the aesthetic. The icons are from an online repository called FontAwesome (https://fontawesome.com/). I include the repostiory in my HTML first:
+The next step was to add the icons, horizontal lines and vertical lines in order to finish off the aesthetic. The icons are from an online repository called FontAwesome (https://fontawesome.com/). I include the repository in my HTML first:
 
 ```html
 <script src="https://kit.fontawesome.com/f1e8cb77c0.js"></script>
 ```
 
-And choose the icons I want and put them into my HTML as:
+And choose the icons I wanted to use and put them into my HTML as:
 
 ```html
 <i class="fas fa-(ICON NAME)"><i>
 ```
 
-![Screenshot One](../../Screenshots/1.png)
+One noteworthy aspect of the lined-paper effect is the horizontal lines. I initially created these by just copy and pasting multiple `<div>`'s with he same class. After deciding this looked terribly unclean I wrote a JavaScript function to duplicate the same `<div>` as many times as I desired. I did this with the following code:
 
-One Issue I had when writing my HTML and CSS was with the text boxes. I couldn't get the text area used to write the note located in the position I desired. I fixed this using the z-index, bringing the text box forward.
+<div style="page-break-after: always;"></div>
 
-To finalise the design I changed the background to a more appealing cork-board image, Added the icons I will use for the text formatting features and added pop-up confirmation boxes to the features that will be linked to the back-end server environment (The save and delete feature).
+**HTML**
 
-### Final Design
+```html
+<script>lineRepeat(document.querySelector('.horizontalLine'), 22, true);</script>
+```
 
-![Screenshot Twelve](../../Screenshots/7.png)
+**Javascript**
 
-As you can see, the final design is representative of the initial design but with some additional features such as the text formatting features.
+```js
+function lineRepeat(line, count) {
+    for (var i = 0, copy; i < count - 1; i++) {
+        copy = line.cloneNode(); // Clones the horizontal lines
+        line.parentNode.insertBefore(copy, line);
+    }
+}
+```
 
-### Save Feature
+Screenshot | Description
+--- | ---
+![Screenshot One](../../Screenshots/1.png) | One Issue I had when writing my HTML and CSS was with the text boxes. I couldn't get the text area used to write the note located in the position I desired. I fixed this using the z-index, bringing the text box forward.
 
-![Screenshot Thirteen](../../Screenshots/7.2.png)
+To finalise the design I changed the background to a more appealing cork-board image that was in my initial design, Added the icons I will use for the text formatting features, download function and menu for the saved notes and finally added pop-up confirmation boxes to the features that will be linked to the back-end server environment, this will help the user, at this stage, to navigate the in-complete application.
 
-The save feature will be implemented in the second part of this assignment.
+---
 
-### Delete Feature
+<div style="page-break-after: always;"></div>
 
-![Screenshot Thirteen](../../Screenshots/7.3.png)
+### Screenshots
 
-The delete feature will be implemented in the second part of this assignment.
-
-### Saved Notes - Drop-down
-
-![Screenshot Thirteen](../../Screenshots/7.4.png)
-
-The titles that the user inputs will be shown in the drop-down. Once clicked the note will show and can be edited.
+Screenshot | Description
+--- | ---
+![Screenshot Twelve](../../Screenshots/8.png) | **Final Design**<br/>As you can see, the final design is representative of the initial design but with some additional features such as the text formatting features.
+![Screenshot Thirteen](../../Screenshots/7.2.png) | **Save Feature**<br/>The save feature will be implemented in the second part of this assignment.
+![Screenshot Thirteen](../../Screenshots/7.3.png) | **Delete Feature**<br/>The delete feature will be implemented in the second part of this assignment.
+![Screenshot Thirteen](../../Screenshots/7.4.png) | **Dropdown Menu**<br/>The titles that the user inputs will be shown in the drop-down. Once clicked the note will show and can be edited.

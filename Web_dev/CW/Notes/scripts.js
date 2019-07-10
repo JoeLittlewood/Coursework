@@ -18,11 +18,10 @@ function delNotes() {
 
 // function to save notes.
 function saveNotes() {
-    var x = confirm("Would you like to save this note?");
-    if (x == true){
-        document.getElementById('deleteNotes').value = ''
-        document.getElementById('deleteTitle').value = ''
-    } else {
-        txt = "Canceled."
-    }
+    confirm("Would you like to save this note?");
+}
+
+// function to download the note.
+function downloadNote() {
+    confirm("This button will let you download this note");
 }
