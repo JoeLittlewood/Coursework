@@ -7,7 +7,19 @@ body {
     background-attachment: fixed;
     font-family: 'Kalam', cursive;
 }
-
+button {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 22pt;
+    outline: none;
+}
+button:hover { color: rgb(204, 162, 23); }
+button:focus { color: rgb(204, 162, 23); }
 .container {
     position: absolute;
     background: linear-gradient(to right,rgb(65, 40, 4), rgb(175, 107, 5));
@@ -19,72 +31,6 @@ body {
     left: -25%;
     overflow: hidden;
 }
-
-.pad {
-    position: absolute;
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    height: 90%;
-    top: 10%;
-    border-radius: 0 0 20px 20px;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.verticalLine {
-    position: absolute;
-    min-height: 100%;
-    border-left: 3px solid rgb(155, 0, 0);
-    margin-left: 10%;
-}
-
-.horizontalLine {
-    width: 100%;
-    border-top: 3px solid rgba(0, 0, 83, 0.527);
-    margin-top: 25px;
-}
-
-.spacer {
-    position: relative;
-    height: 50px;
-    width: 100%;
-}
-
-.faIconGroup {
-    font-size: 24pt;
-    height: 8%;
-    width: auto;
-    float: right;
-    transform: translate(-10%, 12%);
-    text-align: center;
-}
-
-.faIconGroup i {
-    color: white;
-    transform: translate(0, 50%);
-}
-
-.faIconGroup i:first-child { margin-left: 20px; }
-.faIconGroup i:hover { color: rgb(68, 41, 6); }
-
-.textArea {
-    font-size: 16pt;
-    line-height: 28px;
-    margin-left: 11%;
-    margin-top: 4%;
-    width: 88%;
-    height: 91%;
-    outline: none;
-    position: absolute;
-    scroll-behavior: auto;
-    overflow-y: auto;
-}
-
-div.textArea:empty:before{
-    content: attr(placeholder);
-    color: rgba(0, 0, 0, 0.486);
-  }
-
 .title {
     position: absolute;
     transform: translate(2%, 12%);
@@ -95,26 +41,73 @@ div.textArea:empty:before{
     height: 8%;
     outline: none;
     overflow-y: hidden;
-    z-index: 1;
 }
-
+.pad {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    top: 10%;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    z-index: -1;
+}
+.makeBold {
+    font-weight: bold;
+}
+.verticalLine {
+    position: absolute;
+    min-height: 100%;
+    border-left: 3px solid rgb(155, 0, 0);
+    margin-left: 10%;
+}
+.horizontalLine {
+    width: 100%;
+    border-top: 3px solid rgba(0, 0, 83, 0.527);
+    margin-top: 25px;
+}
+.spacer {
+    position: relative;
+    height: 7%;
+    width: 100%;
+}
+.faIconGroup {
+    height: 8%;
+    width: auto;
+    float: right;
+    transform: translate(-10%, 30%);
+    text-align: center;
+}
+/* .faIconGroup i {
+    color: white;
+    transform: translate(0, 50%);
+} */
+/* .faIconGroup i:first-child { margin-left: 20px; }
+.faIconGroup i:hover { color: rgb(68, 41, 6); } */
+.textArea {
+    font-size: 16pt;
+    line-height: 28px;
+    margin-left: 11%;
+    margin-top: 4%;
+    width: 88%;
+    height: 93%;
+    outline: none;
+    position: absolute;
+    overflow-y: auto;
+}
+div.textArea:empty:before{
+    content: attr(placeholder);
+    color: rgba(0, 0, 0, 0.486);
+}
 div.title:empty:before{
     content: attr(placeholder);
     color: rgba(255, 255, 255, 0.486);
-  }
-
-/* Dropdown menu style */
+}
 .dropdown {
     position: relative; 
     display: inline-block;
-    height: 120%;
+    height: 100%;
 }
-
-.dropdown i {
-    position: relative;
-}
-
-/* Dropdown menu content */
 .dropdownContent {
     display: none;
     position: absolute;
@@ -123,10 +116,9 @@ div.title:empty:before{
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 0 0 10px 10px;
+    right: 1%;
     z-index: 2;
 }
-
-/* Dropdown menu individual items (Titles of notes) */
 .dropdownContent a {
     color: black;
     font-size: 16pt;
@@ -135,87 +127,54 @@ div.title:empty:before{
     display: block;
     border-bottom: 1px solid black;
 }
-
-/* Last dropdown menu content item */
 .dropdownContent a:last-child {
     border-bottom: none;
     border-radius: 0 0 10px 10px;
 }
-
-/* Dropdown menu hover effect */
 .dropdownContent a:hover {background-color: rgb(202, 179, 143);}
 .dropdown:hover .dropdownContent {display: block;}
-
 .sideBar {
     display: none;
     background-color: rgba(165, 165, 165, 0.856);
-    height: 45%;
+    height: 50%;
     width: 9%;
     position: relative;
     float: left;
     margin-top: 30px;
     border-radius: 0px 10px 10px 0px;
 }
-
 .sideBar i {
     margin: 25%;
     font-size: 16pt;
     color: rgb(255, 255, 255);
 }
-
-.sideBar i:first-child {
-    margin-top: 50%;
-}
-
-.sideBar i:hover {
-    color: rgb(102, 102, 102);
-}
-
+.sideBar i:first-child { margin-top: 50%; }
+.sideBar i:hover { color: rgb(102, 102, 102); }
 @media only screen and (max-height: 800px) {
-    .faIconGroup {
-        font-size: 20pt;
-    }
+    .faIconGroup { font-size: 20pt; }
 }
-
 @media only screen and (max-width: 500px) {
-    .faIconGroup {
-        font-size: 20pt;
-    }
-
-    .verticalLine {
-        margin-left: 10%;
-    }
-
+    .faIconGroup { font-size: 20pt; }
+    .verticalLine { margin-left: 10%; }
     .horizontalLine {
         margin-top: 30px;
         border-top: 1px solid rgba(0, 0, 83, 0.527);
     }
-
-    .spacer {
-        height: 25px;
-    }
-
+    .spacer { height: 28px; }
     .textArea {
         margin-left: 11%;
         font-size: 14pt;
         margin-top: 8%;
         width: 88%;
         line-height: 31px;
+        height: 94%;
     }
-
     .title {
         font-size: 24pt;
         transform: translate(3%, 12%);
     }
-
-    #invisible {
-        display: none;
-    }
-    
-    .faIconGroup i {
-        margin-right: 20px;
-    }
-
+    #invisible { display: none; }
+    .faIconGroup i { margin-right: 20px; }
     .container {
         width: 100%;
         height: 100%;
@@ -224,32 +183,22 @@ div.title:empty:before{
         top: 0;
         left: 0;
     }
-
-    .pad {
-        border-radius: 0px;
+    .pad { 
+        border-radius: 0px; 
     }
-
-    .sideBar {
-        display: inherit;
-    }
-
+    .sideBar { display: inherit; }
     .dropdownContent {
         margin-top: 38%;
         left: -150%; 
     }
-}
-
-@media only screen and (max-width: 361px) {
-    .textArea {
-        margin-top: 9%;
+    button { 
+        font-size: 18pt;
+        margin: 2px; 
     }
+    button:first-child { margin-top: 15px; }
 }
-
+@media only screen and (max-width: 361px) { .textArea { margin-top: 9%; }}
 @media only screen and (max-width: 769px) {
-    .textArea {
-        margin-top: 9%;
-    }
-    .title {
-        width: 200px;
-    }
+    .textArea { margin-top: 9%; }
+    .title { width: 200px; }
 }

@@ -13,33 +13,35 @@
         <div class="container">
             <div class="title" placeholder="Notes..." contenteditable="true" spellcheck="true"></div>
             <div class="faIconGroup">
+                <span id="invisible">
+                    <button class="fas fa-bold" onclick='document.execCommand("bold",false,null)'></button>
+                    <button class="fas fa-italic" onclick='document.execCommand("italic",false,null)'></button>
+                    <button class="fas fa-underline" onclick='document.execCommand("underline",false,null)'></button>
+                    <button class="fas fa-list" onclick='document.execCommand("insertUnorderedList",false,null)'></button>
+                    <button class="fas fa-pencil-alt"></button>
+                    <button class="fas fa-bookmark"></button>
+                    <button class="fas fa-trash"></button>
+                    <button class="fas fa-caret-square-down"></button>
+                </span>
                 <div class="dropdown">
-                    <i class="fas fa-bars"></i>
+                    <button class="fas fa-bars"></button>
                     <div class="dropdownContent">
                         <a href="#">Note 1</a>
                         <a href="#">Note 2</a>
                         <a href="#">Note 3</a>
                     </div>
                 </div>
-                <span id="invisible">
-                    <i class="fas fa-bold"></i>
-                    <i class="fas fa-italic"></i>
-                    <i class="fas fa-underline"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-bookmark"></i>
-                    <i class="fas fa-trash"></i>
-                    <i class="fas fa-caret-square-down"></i>
-                </span>
             </div>
             <div class="pad">
                 <div class="sideBar">
-                        <i class="fas fa-bold"></i>
-                        <i class="fas fa-italic"></i>
-                        <i class="fas fa-underline"></i>
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-bookmark"></i>
-                        <i class="fas fa-trash"></i>
-                        <i class="fas fa-caret-square-down"></i>
+                        <button class="fas fa-bold"></button>
+                        <button class="fas fa-italic"></button>
+                        <button class="fas fa-underline"></button>
+                        <button class="fas fa-list" onclick='document.execCommand("insertUnorderedList",false,null)'></button>
+                        <button class="fas fa-pencil-alt"></button>
+                        <button class="fas fa-bookmark"></button>
+                        <button class="fas fa-trash"></button>
+                        <button class="fas fa-caret-square-down"></button>
                 </div>
                 <div class="verticalLine"></div>
                 <div class="textArea" contenteditable="true" placeholder="Write your note here!" id="test" spellcheck="true"></div>
