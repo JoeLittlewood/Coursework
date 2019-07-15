@@ -13,27 +13,34 @@
         <div class="container">
             <div class="title" placeholder="Notes..." contenteditable="true" spellcheck="true"></div>
             <div class="faIconGroup">
-                <div class="dropdown">  <!-- This will be where the notes from the user are stored -->
+                <div class="dropdown">
                     <i class="fas fa-bars"></i>
-                    <div class="dropdownContent">  <!-- Each new note will be added to the list below with it's title added appropriately -->
+                    <div class="dropdownContent">
                         <a href="#">Note 1</a>
                         <a href="#">Note 2</a>
                         <a href="#">Note 3</a>
                     </div>
                 </div>
-                <div class="dropdown">  <!-- This will be where the notes from the user are stored -->
+                <span id="invisible">
+                    <i class="fas fa-bold"></i>
+                    <i class="fas fa-italic"></i>
+                    <i class="fas fa-underline"></i>
+                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-bookmark"></i>
+                    <i class="fas fa-trash"></i>
                     <i class="fas fa-caret-square-down"></i>
-                    <div class="dropdownContent">  <!-- Each new note will be added to the list below with it's title added appropriately -->
-                        <a href="#">Bold</a>
-                        <a href="#">Italics</a>
-                        <a href="#">Underline</a>
-                    </div>
-                </div>
-                <i class="fas fa-pencil-alt"></i>
-                <i class="fas fa-bookmark"></i>
-                <i class="fas fa-trash"></i>
+                </span>
             </div>
             <div class="pad">
+                <div class="sideBar">
+                        <i class="fas fa-bold"></i>
+                        <i class="fas fa-italic"></i>
+                        <i class="fas fa-underline"></i>
+                        <i class="fas fa-pencil-alt"></i>
+                        <i class="fas fa-bookmark"></i>
+                        <i class="fas fa-trash"></i>
+                        <i class="fas fa-caret-square-down"></i>
+                </div>
                 <div class="verticalLine"></div>
                 <div class="textArea" contenteditable="true" placeholder="Write your note here!" id="test" spellcheck="true"></div>
                 <div class="spacer"></div>
