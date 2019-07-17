@@ -62,12 +62,14 @@ y = 0
 
 function clone() {
     var itm = document.getElementById("cloneNode");
+    var help = document.getElementById("help");
     var cln = itm.cloneNode(true);
     cln.id = "note" + (y += 1);
 
     document.getElementById("newPad").appendChild(cln);
     var newItm = document.getElementById("note" + (y));
     newItm.style.visibility = "visible";
+    help.style.visibility = "hidden";
     console.log(y);
 }
 
@@ -76,8 +78,10 @@ function delNotes() {
     if (x == true){
         if ((y - 1) == 0) {
             var itm = document.getElementById("cloneNode");
+            var help = document.getElementById("help");
             document.getElementById("note" + y).outerHTML = "";
             itm.style.visibility = "hidden";
+            help.style.visibility = "visible";
             y -= 1
         } else  {
             document.getElementById("note" + y).outerHTML = "";

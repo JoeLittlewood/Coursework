@@ -78,12 +78,6 @@ button:hover { color: rgb(204, 162, 23); }
     transform: translate(-10%, 30%);
     text-align: center;
 }
-/* .faIconGroup i {
-    color: white;
-    transform: translate(0, 50%);
-} */
-/* .faIconGroup i:first-child { margin-left: 20px; }
-.faIconGroup i:hover { color: rgb(68, 41, 6); } */
 .textArea {
     font-size: 16pt;
     line-height: 28px;
@@ -150,6 +144,18 @@ div.title:empty:before{
 }
 .sideBar button:first-child { margin-top: 40%; }
 .sideBar button:hover { color: rgb(102, 102, 102); }
+.newNote {
+    position: absolute;
+    height: 7%;
+    width: 50%;
+    color: white;
+    font-size: 22pt;
+    text-align: center;
+    left: 7%;
+    margin-top: 10%;
+}
+
+
 @media only screen and (max-height: 800px) {
     .faIconGroup { font-size: 20pt; }
 }
