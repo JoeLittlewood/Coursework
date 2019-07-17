@@ -58,15 +58,33 @@ function makeList () {
     document.execCommand("insertUnorderedList",false,null)
 }
 
+y = 0
+
 function clone() {
-    console.log("Hello")
     var itm = document.getElementById("cloneNode");
     var cln = itm.cloneNode(true);
+    cln.id = "note" + (y += 1);
 
     document.getElementById("newPad").appendChild(cln);
+    var newItm = document.getElementById("note" + (y));
+    newItm.style.visibility = "visible";
+    console.log(y);
 }
 
-function deleteNote(textArea)
-{
-    document.getElementByClassName("textArea").innerHTML = "";
+function delNotes() {
+    var x = confirm("Are you sure you want to delete this note?");
+    if (x == true){
+        if ((y - 1) == 0) {
+            var itm = document.getElementById("cloneNode");
+            document.getElementById("note" + y).outerHTML = "";
+            itm.style.visibility = "hidden";
+            y -= 1
+        } else  {
+            document.getElementById("note" + y).outerHTML = "";
+            y -= 1
+        }
+    } else {
+        txt = "Canceled."
+    }
+    console.log(y);
 }
