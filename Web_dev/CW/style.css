@@ -19,7 +19,6 @@ button {
     outline: none;
 }
 button:hover { color: rgb(204, 162, 23); }
-button:focus { color: rgb(204, 162, 23); }
 .container {
     position: absolute;
     background: linear-gradient(to right,rgb(65, 40, 4), rgb(175, 107, 5));
@@ -136,11 +135,11 @@ div.title:empty:before{
 .sideBar {
     display: none;
     background-color: rgba(165, 165, 165, 0.856);
-    height: 50%;
+    height: 45%;
     width: 9%;
     position: relative;
     float: left;
-    margin-top: 30px;
+    margin-top: 30%;
     border-radius: 0px 10px 10px 0px;
 }
 .sideBar i {
@@ -148,8 +147,8 @@ div.title:empty:before{
     font-size: 16pt;
     color: rgb(255, 255, 255);
 }
-.sideBar i:first-child { margin-top: 50%; }
-.sideBar i:hover { color: rgb(102, 102, 102); }
+.sideBar button:first-child { margin-top: 40%; }
+.sideBar button:hover { color: rgb(102, 102, 102); }
 @media only screen and (max-height: 800px) {
     .faIconGroup { font-size: 20pt; }
 }
