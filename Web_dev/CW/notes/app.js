@@ -10,8 +10,10 @@ var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
+// for body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
