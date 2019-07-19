@@ -34,6 +34,7 @@ button:hover { color: rgb(204, 162, 23); }
     position: absolute;
     transform: translate(2%, 12%);
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 26pt;
     line-height: 2em;
     width: 50%;
@@ -154,6 +155,17 @@ div.title:empty:before{
     left: 7%;
     margin-top: 10%;
 }
+.newNoteMobile {
+    position: absolute;
+    line-height: 30px;
+    width: 50%;
+    color: white;
+    font-size: 22pt;
+    left: 100%;
+    top: 50%;
+    margin-left: 20%;
+    visibility: hidden;
+}
 .blocker {
     width: 100%;
     height: 100%;
@@ -165,94 +177,66 @@ input {
 	outline: none;
 	border: none;
 }
-.container-login100 {
-  width: 100%;  
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  position: relative;
-  background-color: #fff;
-}
-.wrap-login100 {
-  width: 500px;
-  background: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-  -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-  -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-}
-.login100-form {
+.registerForm {
     background-color: white;
     overflow: hidden;
     border-radius: 20px;
-    top: 25%;
-    left: 30%;
+    top: 20%;
+    left: 55%;
     width: 40%;
     position: absolute;
     box-shadow: 5px 10px 5px#0000007a;
 }
-.login100-form-title {
+.loginForm {
+    background-color: white;
+    overflow: hidden;
+    border-radius: 20px;
+    top: 20%;
+    left: 5%;
+    width: 40%;
+    position: absolute;
+    box-shadow: 5px 10px 5px#0000007a;
+}
+.loginFormTitle {
     margin-bottom: 30px;
-  font-size: 30px;
-  color: #fff;
-  line-height: 1.2;
-  text-align: center;
-
-  display: block;
-  position: relative;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: linear-gradient(to right,rgb(65, 40, 4), rgb(175, 107, 5));
-  padding-top: 50px;
-  padding-bottom: 39px;
+    font-size: 18pt;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    display: block;
+    position: relative;
+    background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
+    padding-top: 50px;
+    padding-bottom: 39px;
 }
-.wrap-input100 {
-  width: 75%;
-  background-color: #fff;
-  border-radius: 27px;
-  position: relative;
-  z-index: 1;
-}
-.input100 {
+.formInput {
   font-size: 15px;
   color: #000000;
-  line-height: 1.2;
-
   position: relative;
   display: block;
-  margin: 5%;
-  width: 100%;
+  width: 70%;
   height: 55px;
   background: #ebebeb;
   border-radius: 27px;
   padding: 0 35px 0px 35px;
+  margin: auto;
   margin-bottom: 35px;
 }
-.container-login100-form-btn {
+.containerFormBtn {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.login100-form-btn {
+.loginFormBtn {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 20px;
   width: 75%;
   height: 50px;
-  background: linear-gradient(to right,rgb(65, 40, 4), rgb(175, 107, 5));
+  background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
   border-radius: 25px;
   margin-bottom: 35px;
 
@@ -308,6 +292,12 @@ input {
         margin: 2px; 
     }
     button:first-child { margin-top: 15px; }
+    .newNote{
+        visibility: hidden;
+    }
+    .newNoteMobile {
+        visibility: visible;
+    }
 }
 @media only screen and (max-width: 361px) { .textArea { margin-top: 9%; }}
 @media only screen and (max-width: 769px) {

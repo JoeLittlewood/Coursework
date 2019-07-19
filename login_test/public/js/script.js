@@ -92,3 +92,47 @@ function delNotes() {
     }
     console.log(y);
 }
+
+function submitForm() {
+    var data = JSON.stringify({
+        "username": document.getElementById("user").value,
+        "password": document.getElementById("pwd").value,
+        "confirmPassword": document.getElementById("confPwd").value
+      });
+      
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          console.log(this.responseText);
+        }
+      });
+      
+      xhr.open("POST", "http://" +  window.location.hostname + ":5000/person");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.setRequestHeader("cache-control", "no-cache");      
+      xhr.send(data);
+}
+
+function getUser() {
+    var data = JSON.stringify({
+    "username": document.getElementById("userLogin").value
+    });
+    
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    
+    xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+        console.log(this.responseText);
+    }
+    });
+    
+    xhr.open("GET", "http://localhost:5000/people/");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.setRequestHeader("Postman-Token", "d781fe80-0459-4e57-8eb8-2693a243b691");
+    
+    xhr.send(data);
+}

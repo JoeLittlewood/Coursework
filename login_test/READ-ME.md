@@ -10,7 +10,7 @@ npm install mongodb --save // database driver
 node app.js
 
 Create new entry:
-curl -X Pn/json' -d '{"username":"<username>","password":"<password>"}' http://localhost:5000/person
+curl -X POST Pn/json' -d '{"username":"<username>","password":"<password>"}' http://localhost:5000/person
 
 All users:
 curl -X GET http://localhost:3000/people
