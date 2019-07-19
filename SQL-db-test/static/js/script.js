@@ -108,12 +108,13 @@ function displayNotes() {
         type: "GET",
         success: function(result) {
             $("#newPad").html("");
+            $("#dropdownContent").html("");
             result.forEach(Element => {
                 var noteID = Element.noteid;
                 var title = Element.title;
                 var content = Element.content;
 
-                var html = '<div class="pad" id="' + noteID + '">' +
+                var html = '<div style="visibility: hidden;" class="pad" id="' + noteID + '">' +
                     '<div class="verticalLine"></div>' +
                     '<div class="textArea" contenteditable="true" placeholder="Write your note here!" id="' + noteID + '"' +
                     'spellcheck="true">' + content + '</div>' +
@@ -122,9 +123,11 @@ function displayNotes() {
                     '</div>'
 
                 $("#newPad").append(html);
-                $("#" + noteID).css("visibility", "visible");
+                // $("#" + noteID).css("visibility", "visible");
                 lineRepeat(document.querySelector('#lineclone' + noteID), 60, true);
                 $("#help").css("visibility", "hidden");
+
+                $("#dropdownContent").append("<a onclick='showNote(" + noteID + ")'>" + title + "</a>");
                 // newItm.style.visibility = "visible";
 
 
@@ -133,6 +136,10 @@ function displayNotes() {
             })
         }
     })
+}
+
+function showNote(id) {
+    $("#" + id).css("visibility", "visible");
 }
 
 displayNotes();
