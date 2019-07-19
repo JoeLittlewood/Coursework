@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js"></script>
+    <script src="https://kit.fontawesome.com/f1e8cb77c0.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
+    <title>Notes</title>
+</head>
+
+<body>
+    <form class="loginForm">
+        <span class="loginFormTitle">Sign in <i class="fas fa-sign-in-alt"></i></span>
+        <input class="formInput" type="text" name="username" placeholder="Username" id="userLogin">
+        <input class="formInput" type="password" name="pass" placeholder="Password" id="">
+        <div class="containerFormBtn">
+            <button class="loginFormBtn">Sign in</button>
+        </div>
+    </form>
+    <form class="registerForm" method="POST" action="/signup">
+        <span class="loginFormTitle">Register <i class="fas fa-address-book"></i></span>
+        <input class="formInput" type="text" name="username" placeholder="Username" id="user">
+        <input class="formInput" type="password" name="pass" placeholder="Password" id="pwd">
+        <input class="formInput" type="password" name="confirmPass" placeholder="Confirm password" id="confPwd">
+        <div class="containerFormBtn">
+            <button class="loginFormBtn">Register</button>
+        </div>
+    </form>
+</body>
+
+</html>

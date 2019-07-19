@@ -14,21 +14,21 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 var database, collection;
 
-app.listen(5000, () => {
-    MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
-        if(error) {
-            throw error;
-        }
-        database = client.db(DATABASE_NAME);
-        collection = database.collection("people");
-        console.log("Connected to `" + DATABASE_NAME + "`!");
-    });
+app.listen(5000);
+
+MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
+    if (error) {
+        throw error;
+    }
+    database = client.db(DATABASE_NAME);
+    collection = database.collection("people");
+    console.log("Connected to `" + DATABASE_NAME + "`!");
 });
 
 // Add new person
 app.post("/person", (request, response) => {
     collection.insertOne(request.body, (error, result) => {
-        if(error) {
+        if (error) {
             return response.status(500).send(error);
         }
         response.send(result.result);
@@ -38,7 +38,7 @@ app.post("/person", (request, response) => {
 // Show all users
 app.get("/people", (request, response) => {
     collection.find({}).toArray((error, result) => {
-        if(error) {
+        if (error) {
             return response.status(500).send(error);
         }
         response.send(result);
@@ -48,9 +48,33 @@ app.get("/people", (request, response) => {
 // Find user by ID
 app.get("/person/:id", (request, response) => {
     collection.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
-        if(error) {
+        if (error) {
             return response.status(500).send(error);
         }
         response.send(result);
     });
 });
+
+// Find user by ID
+app.get("/test/:id", (request, response) => {
+    collection.findOne({ "username": new ObjectId(request.params.id) }, (error, result) => {
+        if (error) {
+            return response.status(500).send(error);
+        }
+        response.send(result);
+    });
+});
+
+app.post("/signup", (request, response) => {
+    var username = request.body.username;
+    var password = request.body.pass;
+    var confPass = request.body.confirmPass;
+
+    console.log(username, password, confPass);
+
+    if (username && password && confPass) {
+        if (password != confPass) {
+            response.send("Passwords don't match")
+        }
+    }
+})
