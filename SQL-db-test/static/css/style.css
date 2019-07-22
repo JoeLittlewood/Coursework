@@ -297,7 +297,6 @@ input {
     color: white;
     border-radius: 10px;
     width: auto;
-    height: 50%;
     background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
@@ -305,7 +304,7 @@ input {
 .logout {
     position: relative;
     float: right;
-    font-size: 12pt;
+    height: 100%;
 }
 
 .logout a {
@@ -362,7 +361,7 @@ input {
     }
     .container {
         width: 100%;
-        height: 100%;
+        aria-label="Sign Out"data-balloon-pos="left" height: 100%;
         border-radius: 0px;
         transform: translate(0, 0);
         top: 0;

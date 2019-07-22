@@ -3,9 +3,9 @@ function lineRepeat(line, count) {
         copy = line.cloneNode(); // Clones the horizontal lines
         line.parentNode.insertBefore(copy, line);
     }
-    lineRepeat(document.querySelector('.horizontalLine'), 60, true);
 }
 
+lineRepeat(document.querySelector('.horizontalLine'), 60, true);
 
 b = 1
 i = 1

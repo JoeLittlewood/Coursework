@@ -7,12 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/balloon.min.css">
     <title>Notes</title>
 </head>
 
 <body>
-    <div class="welcome">Welcome, {{ username }}
-        <div class="logout"><a href="/logout">Logout</a></div>
+    <div class="welcome">
+        Welcome, {{ username }}
+        <div class="logout">
+            <a href="/logout" title="Sign Out"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
     </div>
     <div class="container">
         <div class="title" placeholder="Title..." contenteditable="true" spellcheck="true" id="title"></div>
@@ -20,14 +24,14 @@
             <div class="newNote" id="help">New note<i class="fas fa-level-up-alt"></i></div>
 
             <span id="invisible">
-                <button class="fas fa-bold" onclick='makeBold()' id="button1"></button>
-                <button class="fas fa-italic" onclick='makeItalic()' id="button2"></button>
-                <button class="fas fa-underline" onclick='makeUnderline()' id="button3"></button>
-                <button class="fas fa-list" onclick='makeList()' id="button4"></button>
-                <button class="fas fa-pencil-alt" onclick="clone()"></button>
-                <button class="fas fa-bookmark" onclick="saveNote()"></button>
-                <button class="fas fa-trash" onclick="delNotes()"></button>
-                <button class="fas fa-caret-square-down"></button>
+                <button onclick='makeBold()' id="button1" title="Bold"><i class="fas fa-bold"></i></button>
+                <button onclick='makeItalic()' id="button2" title="Italic"><i class="fas fa-italic"></i></button>
+                <button onclick='makeUnderline()' id="button3" title="Underline"><i class="fas fa-underline"></i></button>
+                <button onclick='makeList()' id="button4" title="List"><i class="fas fa-list"></i></button>
+                <button onclick="clone()" title="New Note"><i class="fas fa-pencil-alt"></i></button>
+                <button onclick="saveNote()" title="Save Note"><i class="fas fa-bookmark"></i></button>
+                <button onclick="delNotes()" title="Delete Note"><i class="fas fa-trash"></i></button>
+                <button title="Download"><i class="fas fa-caret-square-down"></i></button>
             </span>
             <div class="dropdown">
                 <button class="fas fa-bars"></button>
