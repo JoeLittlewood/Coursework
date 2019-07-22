@@ -41,8 +41,6 @@ app.post("/signup", (request, response) => {
     var password = request.body.pass;
     var confPass = request.body.confirmPass;
 
-    console.log(username, password, confPass);
-
     if (username && password && confPass) {
         if (password != confPass) {
             return response.render("login", { errormessage: "Passwords don't match" })
@@ -71,8 +69,6 @@ app.post("/signup", (request, response) => {
 app.post("/signin", (request, response) => {
     var username = request.body.username;
     var password = request.body.pass;
-
-    console.log(username, password);
 
     if (username && password) {
         return db.all("SELECT * FROM users WHERE username = ?;", [username], function(err, rows) {

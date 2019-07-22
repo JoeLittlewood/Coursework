@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    {{#if errormessage}}<h1>{{errormessage}}</h1>{{/if}}
     <form class="loginForm" method="POST" action="/signin">
         <span class="loginFormTitle">Sign in <i class="fas fa-sign-in-alt"></i></span>
         <input class="formInput" type="text" name="username" placeholder="Username" id="userLogin">
@@ -21,6 +20,9 @@
         <div class="containerFormBtn">
             <button class="loginFormBtn">Sign in</button>
         </div>
+        <div class="err">
+            {{#if errormessage}}{{errormessage}}{{/if}}
+        </div> 
     </form>
     <form class="registerForm" method="POST" action="/signup">
         <span class="loginFormTitle">Register <i class="fas fa-address-book"></i></span>

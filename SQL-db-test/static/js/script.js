@@ -3,9 +3,9 @@ function lineRepeat(line, count) {
         copy = line.cloneNode(); // Clones the horizontal lines
         line.parentNode.insertBefore(copy, line);
     }
+    lineRepeat(document.querySelector('.horizontalLine'), 60, true);
 }
 
-lineRepeat(document.querySelector('.horizontalLine'), 60, true);
 
 b = 1
 i = 1
@@ -76,7 +76,7 @@ function clone() {
 
     document.getElementById("newPad").appendChild(cln);
     var newItm = document.getElementById("newNote" + (y));
-    $("#newNote" + y).attr("title", "newNote" + y);
+    $("#newNote" + y).attr("title", "");
     showNote("newNote" + y);
     console.log(y);
 }
@@ -101,6 +101,7 @@ function delNotes() {
                 displayNotes();
             }
         })
+        $("#title").html("");
     } else {
         txt = "Canceled."
     }
