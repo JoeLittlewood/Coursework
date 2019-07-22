@@ -105,8 +105,11 @@ app.get("/logout", (request, response) => {
 })
 
 app.post("/new-note", (request, response) => {
-    if (request.session.loggedin) {
-        return response.render("notes", { username: request.session.username });
+    var title = request.body.title;
+    var content = request.body.content;
+    if (request.session.loggedin && title && content) {
+        db.run("INSERT INTO notes (userid, title, content) VALUES (?,?,?)", [request.session.userid, title, content]);
+        return response.send(" ");
     } else {
         return response.render("login", { errormessage: "You're not logged in!" })
     }
@@ -123,16 +126,22 @@ app.get("/get-notes", (request, response) => {
 })
 
 app.post("/del-note", (request, response) => {
-    if (request.session.loggedin) {
-        return response.render("notes", { username: request.session.username });
+    var noteid = request.body.noteid;
+    if (noteid && request.session.loggedin) {
+        db.run("DELETE FROM notes WHERE userid = ? AND noteid = ?", [request.session.userid, noteid]);
+        return response.send(" ");
     } else {
         return response.render("login", { errormessage: "You're not logged in!" })
     }
 })
 
 app.post("/edit-note", (request, response) => {
+    var noteid = request.body.noteid;
+    var title = request.body.title;
+    var content = request.body.content;
     if (request.session.loggedin) {
-        return response.render("notes", { username: request.session.username });
+        db.run("UPDATE notes SET title = ?, content = ? WHERE userid = ? AND noteid = ?;", [title, content, request.session.userid, noteid]);
+        return response.send(" ");
     } else {
         return response.render("login", { errormessage: "You're not logged in!" })
     }

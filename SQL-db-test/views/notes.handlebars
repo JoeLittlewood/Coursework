@@ -11,7 +11,9 @@
 </head>
 
 <body>
-    <h1>Hello {{ username }}</h1>
+    <div class="welcome">
+        <h1>Hello {{ username }}</h1>
+    </div>
     <div class="container">
         <div class="title" placeholder="Title..." contenteditable="true" spellcheck="true" id="title"></div>
         <div class="faIconGroup">
@@ -23,7 +25,7 @@
                 <button class="fas fa-underline" onclick='makeUnderline()' id="button3"></button>
                 <button class="fas fa-list" onclick='makeList()' id="button4"></button>
                 <button class="fas fa-pencil-alt" onclick="clone()"></button>
-                <button class="fas fa-bookmark"></button>
+                <button class="fas fa-bookmark" onclick="saveNote()"></button>
                 <button class="fas fa-trash" onclick="delNotes()"></button>
                 <button class="fas fa-caret-square-down"></button>
             </span>
@@ -33,26 +35,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="blocker" onclick="">
-            <form class="loginForm">
-                <span class="loginFormTitle">Sign in <i class="fas fa-sign-in-alt"></i></span>
-                <input class="formInput" type="text" name="username" placeholder="Username" id="userLogin">
-                <input class="formInput" type="password" name="pass" placeholder="Password" id="">
-                <div class="containerFormBtn">
-                    <button onclick="getUser()" class="loginFormBtn">Sign in</button>
-                </div>
-            </form>
-            <form class="registerForm">
-                <span class="loginFormTitle">Register <i class="fas fa-address-book"></i></span>
-                <input class="formInput" type="text" name="username" placeholder="Username" id="user">
-                <input class="formInput" type="password" name="pass" placeholder="Password" id="pwd">
-                <input class="formInput" type="password" name="confirmPass" placeholder="Confirm password" id="confPwd">
-                <div class="containerFormBtn">
-                    <button onclick="submitForm()" class="loginFormBtn">Register</button>
-                </div>
-            </form>
-        </div> -->
-
         <div class="pad" id="cloneNode">
             <div class="verticalLine"></div>
             <div class="textArea" contenteditable="true" placeholder="Write your note here!" id="note"
@@ -61,7 +43,7 @@
             <div class="horizontalLine"></div>
         </div>
         <div id="newPad">
-            
+
         </div>
         <div class="sideBar">
             <div class="newNoteMobile" id="help"><i class="fas fa-reply"></i>New note</div>
@@ -70,7 +52,7 @@
             <button class="fas fa-underline" onclick='makeUnderline()' id="button3"></button>
             <button class="fas fa-list" onclick='makeList()' id="button4"></button>
             <button class="fas fa-pencil-alt" onclick="clone()"></button>
-            <button class="fas fa-bookmark"></button>
+            <button class="fas fa-bookmark" onclick="saveNote()"></button>
             <button class="fas fa-trash" onclick="delNotes()"></button>
             <button class="fas fa-caret-square-down"></button>
         </div>

@@ -5,6 +5,8 @@ function lineRepeat(line, count) {
     }
 }
 
+lineRepeat(document.querySelector('.horizontalLine'), 60, true);
+
 b = 1
 i = 1
 u = 1
@@ -61,47 +63,50 @@ function makeList() {
 y = 0
 
 function clone() {
+    y += 1;
+    $('#newPad').children('div').each(function() {
+        $(this).css("visibility", "hidden");
+    })
+
+    $("#dropdownContent").append("<a onclick='showNote(\"newNote" + y + "\")'>newNote</a>");
     var itm = document.getElementById("cloneNode");
     var help = document.getElementById("help");
     var cln = itm.cloneNode(true);
-    cln.id = "note" + (y += 1);
+    cln.id = "newNote" + y;
 
     document.getElementById("newPad").appendChild(cln);
-    var newItm = document.getElementById("note" + (y));
-    newItm.style.visibility = "visible";
-    help.style.visibility = "hidden";
+    var newItm = document.getElementById("newNote" + (y));
+    $("#newNote" + y).attr("title", "newNote" + y);
+    showNote("newNote" + y);
     console.log(y);
 }
 
 function delNotes() {
     var x = confirm("Are you sure you want to delete this note?");
     if (x == true) {
-        if ((y - 1) == 0) {
-            var itm = document.getElementById("cloneNode");
-            var help = document.getElementById("help");
-            document.getElementById("note" + y).outerHTML = "";
-            itm.style.visibility = "hidden";
-            help.style.visibility = "visible";
-            y -= 1
-        } else {
-            document.getElementById("note" + y).outerHTML = "";
-            y -= 1
-        }
+        idToDelete = -1;
+        $('#newPad').children('div').each(function() {
+            if ($(this).css("visibility") == "visible") {
+                idToDelete = $(this).attr("id");
+            }
+        })
+        $.ajax({
+            url: "/del-note",
+            type: "POST",
+            data: {
+                noteid: idToDelete
+            },
+
+            success: function(result) {
+                displayNotes();
+            }
+        })
     } else {
         txt = "Canceled."
     }
     console.log(y);
 }
 
-// $.ajax({
-//     url: "/get-notes",
-//     type: "GET",
-//     data: { noteid: selectedCard },
-
-//     success: function(result) {
-//         previewNotes();
-//     }
-// })
 function displayNotes() {
     $.ajax({
         url: "/get-notes",
@@ -114,7 +119,7 @@ function displayNotes() {
                 var title = Element.title;
                 var content = Element.content;
 
-                var html = '<div style="visibility: hidden;" class="pad" id="' + noteID + '">' +
+                var html = '<div class="pad" id="' + noteID + '" title="' + title + '">' +
                     '<div class="verticalLine"></div>' +
                     '<div class="textArea" contenteditable="true" placeholder="Write your note here!" id="' + noteID + '"' +
                     'spellcheck="true">' + content + '</div>' +
@@ -123,23 +128,62 @@ function displayNotes() {
                     '</div>'
 
                 $("#newPad").append(html);
-                // $("#" + noteID).css("visibility", "visible");
                 lineRepeat(document.querySelector('#lineclone' + noteID), 60, true);
-                $("#help").css("visibility", "hidden");
 
                 $("#dropdownContent").append("<a onclick='showNote(" + noteID + ")'>" + title + "</a>");
-                // newItm.style.visibility = "visible";
-
-
-
-                // alert(title)
+                $("#title").html("");
             })
         }
     })
 }
 
 function showNote(id) {
+    $("#help").css("visibility", "hidden");
+    $('#newPad').children('div').each(function() {
+        $(this).css("visibility", "hidden");
+    })
+
     $("#" + id).css("visibility", "visible");
+    $("#title").html($("#" + id).attr("title"));
+}
+
+function saveNote() {
+    var idToSave = -1;
+    $('#newPad').children('div').each(function() {
+        if ($(this).css("visibility") == "visible") {
+            idToSave = $(this).attr("id");
+        }
+    })
+    if ($.isNumeric(idToSave)) {
+        alert("edit");
+        $.ajax({
+            url: "/edit-note",
+            type: "POST",
+            data: {
+                noteid: idToSave,
+                title: $("#title").html(),
+                content: $("#" + idToSave).children('.textArea').html()
+            },
+
+            success: function(result) {
+                displayNotes();
+            }
+        })
+    } else {
+        alert("new");
+        $.ajax({
+            url: "/new-note",
+            type: "POST",
+            data: {
+                title: $("#title").html(),
+                content: $("#" + idToSave).children('.textArea').html()
+            },
+
+            success: function(result) {
+                displayNotes();
+            }
+        })
+    }
 }
 
 displayNotes();

@@ -287,6 +287,12 @@ input {
     text-transform: uppercase;
 }
 
+.welcome {
+    width: 50%;
+    height: 50%;
+    background-color: blue;
+}
+
 @media only screen and (max-height: 800px) {
     .faIconGroup {
         font-size: 20pt;
