@@ -43,14 +43,14 @@ app.post("/signup", (request, response) => {
 
     if (username && password && confPass) {
         if (password != confPass) {
-            return response.render("login", { errormessage: "Passwords don't match" })
+            return response.render("login", { errormessagesignup: "Passwords don't match" })
         }
         return db.all("SELECT * FROM users WHERE username = ?;", [username], function(err, rows) {
             if (err) {
                 console.log(err);
             }
             if (rows.length > 0) {
-                return response.render("login", { errormessage: "User Exists" })
+                return response.render("login", { errormessagesignup: "User Exists" })
             }
             password = bcrypt.hashSync(password, 12);
             return db.run("INSERT INTO users (username, password) VALUES (?,?)", [username, password], function(err) {

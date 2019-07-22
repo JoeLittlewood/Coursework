@@ -28,7 +28,7 @@
                 <button class="fas fa-underline" onclick='makeUnderline()' id="button3" title="Underline"></button>
                 <button class="fas fa-list" onclick='makeList()' id="button4" title="List"></button>
                 <button class="fas fa-pencil-alt" onclick="clone()" title="New Note"></button>
-                <button class="fas fa-bookmark" onclick="saveNote()" title="Save Note"></button>
+                <button class="fas fa-save" onclick="saveNote()" title="Save Note"></button>
                 <button class="fas fa-trash" onclick="delNotes()" title="Delete Note"></button>
                 <button class="fas fa-caret-square-down" title="Download"></button>
             </span>
@@ -40,9 +40,9 @@
         </div>
         <div class="pad" id="cloneNode">
             <div class="verticalLine"></div>
+            <div class="spacer"></div>
             <div class="textArea" contenteditable="true" placeholder="Write your note here!" id="note"
                 spellcheck="true"></div>
-            <div class="spacer"></div>
             <div class="horizontalLine"></div>
         </div>
         <div id="newPad">
@@ -55,7 +55,7 @@
             <button class="fas fa-underline" onclick='makeUnderline()' id="button3"></button>
             <button class="fas fa-list" onclick='makeList()' id="button4"></button>
             <button class="fas fa-pencil-alt" onclick="clone()"></button>
-            <button class="fas fa-bookmark" onclick="saveNote()"></button>
+            <button class="fas fa-save" onclick="saveNote()"></button>
             <button class="fas fa-trash" onclick="delNotes()"></button>
             <button class="fas fa-caret-square-down"></button>
         </div>

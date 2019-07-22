@@ -122,9 +122,9 @@ function displayNotes() {
 
                 var html = '<div class="pad" id="' + noteID + '" title="' + title + '">' +
                     '<div class="verticalLine"></div>' +
+                    '<div class="spacer"></div>' +
                     '<div class="textArea" contenteditable="true" placeholder="Write your note here!" id="' + noteID + '"' +
                     'spellcheck="true">' + content + '</div>' +
-                    '<div class="spacer"></div>' +
                     '<div id="lineclone' + noteID + '" class="horizontalLine"></div>' +
                     '</div>'
 
@@ -156,7 +156,6 @@ function saveNote() {
         }
     })
     if ($.isNumeric(idToSave)) {
-        alert("edit");
         $.ajax({
             url: "/edit-note",
             type: "POST",
@@ -171,7 +170,6 @@ function saveNote() {
             }
         })
     } else {
-        alert("new");
         $.ajax({
             url: "/new-note",
             type: "POST",
