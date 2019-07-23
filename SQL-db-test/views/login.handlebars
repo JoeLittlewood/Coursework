@@ -13,17 +13,6 @@
 </head>
 
 <body>
-    <form class="loginForm" method="POST" action="/signin">
-        <span class="loginFormTitle">Sign in <i class="fas fa-sign-in-alt"></i></span>
-        <input class="formInput" type="text" name="username" placeholder="Username">
-        <input class="formInput" type="password" name="pass" placeholder="Password">
-        <div class="containerFormBtn">
-            <button class="loginFormBtn">Sign in</button>
-        </div>
-        <div class="err">
-            {{#if errormessage}}{{errormessage}}{{/if}}
-        </div> 
-    </form>
     <form class="registerForm" method="POST" action="/signup">
         <span class="loginFormTitle">Register <i class="fas fa-address-book"></i></span>
         <input class="formInput" type="text" name="username" placeholder="Username" id="user">
@@ -34,6 +23,17 @@
         </div>
         <div class="err">
             {{#if errormessagesignup}}{{errormessagesignup}}{{/if}}
+        </div> 
+    </form>
+    <form class="loginForm" method="POST" action="/signin">
+        <span class="loginFormTitle">Sign in <i class="fas fa-sign-in-alt"></i></span>
+        <input class="formInput" type="text" name="username" placeholder="Username">
+        <input class="formInput" type="password" name="pass" placeholder="Password">
+        <div class="containerFormBtn">
+            <button class="loginFormBtn">Sign in</button>
+        </div>
+        <div class="err">
+            {{#if errormessage}}{{errormessage}}{{/if}}
         </div> 
     </form>
 </body>
