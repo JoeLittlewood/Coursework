@@ -1,145 +1,308 @@
 body {
+    /* Body on Notes and Login pages */
+    /* Background and positioning */
     background-image: url('../images/bg.jpg');
     margin: 0;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
+    /* Contents */
     font-family: 'Kalam', cursive;
 }
 
 button {
+    /* All buttons on both pages */
+    /* Background and shape */
     background-color: rgba(255, 255, 255, 0);
+    outline: none;
     border: none;
-    color: white;
+    /* Positioning */
+    display: inline;
     padding: 5px;
+    /* Contents */
+    font-size: 22pt;
+    color: white;
     text-align: center;
     text-decoration: none;
-    display: inline;
-    font-size: 22pt;
-    outline: none;
 }
 
 button:hover {
     color: rgb(204, 162, 23);
 }
 
-.container {
+
+/* LOGIN PAGE */
+
+.registerForm {
+    /* Sign up form on login page */
+    /* Background and shape */
+    background-color: white;
+    overflow: hidden;
+    border-radius: 20px;
+    width: 40%;
+    box-shadow: 5px 10px 5px#0000007a;
+    /* Positioning */
+    top: 20%;
+    left: 55%;
     position: absolute;
+}
+
+.loginForm {
+    /* Login form on login page */
+    /* Background and shape */
+    background-color: white;
+    overflow: hidden;
+    border-radius: 20px;
+    width: 40%;
+    box-shadow: 5px 10px 5px#0000007a;
+    /* Positioning */
+    top: 20%;
+    left: 5%;
+    position: absolute;
+}
+
+.loginFormTitle {
+    /* Title above forms on login page */
+    /* Background and shape */
+    background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
+    margin-bottom: 30px;
+    /* Content */
+    font-size: 18pt;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    /* Positioning */
+    display: block;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 39px;
+}
+
+.formInput {
+    /* Input boxes on login page */
+    /* Background and shape */
+    background: #ebebeb;
+    width: 70%;
+    height: 55px;
+    border-radius: 27px;
+    outline: none;
+    border: none;
+    /* Contents */
+    font-size: 15px;
+    color: #000000;
+    /* Positioning */
+    position: relative;
+    display: block;
+    padding: 0 35px 0px 35px;
+    margin: auto;
+    margin-bottom: 35px;
+}
+
+.containerFormBtn {
+    /* Sign up and sign in button containers */
+    /* Background and shape */
+    width: 100%;
+    /* Positioning */
+    display: flex;
+    flex-wrap: wrap;
+    /* Contents */
+    justify-content: center;
+}
+
+.loginFormBtn {
+    /* Sign up and sign in buttons */
+    /* Background and shape */
+    background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
+    width: 75%;
+    height: 50px;
+    border-radius: 25px;
+    /* Positioning */
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+    padding: 0 20px;
+    /* Contents */
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1.2;
+    justify-content: center;
+}
+
+.err {
+    /* Error notification on login page */
+    /* Background and shape */
+    width: auto;
+    /* Postioning */
+    position: relative;
+    padding: 10px;
+    /* Contents */
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    font-size: 12pt;
+}
+
+
+/* NOTES PAGE */
+
+.container {
+    /* Main container incl. top bar w/ title and buttons */
+    /* Background and shape */
     background: linear-gradient(to right, rgb(65, 40, 4), rgb(175, 107, 5));
     width: 75%;
     height: 80%;
     border-radius: 20px;
+    /* Positioning */
+    position: absolute;
     transform: translate(50%, 50%);
     top: -30%;
     left: -25%;
+    /* Contents */
     overflow: hidden;
 }
 
 .title {
-    position: absolute;
-    transform: translate(2%, 12%);
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 26pt;
-    line-height: 2em;
+    /* Title container */
+    /* Background and shape */
     width: 50%;
     height: 8%;
     outline: none;
+    /* Positioning */
+    position: absolute;
+    transform: translate(2%, 12%);
+    /* Contents */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26pt;
+    color: white;
+    line-height: 2em;
     overflow-y: hidden;
 }
 
 .pad {
-    visibility: hidden;
+    /* Container for the lined-paper-looking note */
+    /* Background and shape */
     background-color: rgb(255, 255, 255);
-    position: absolute;
+    visibility: hidden;
     width: 100%;
     height: 90%;
-    top: 10%;
     border-radius: 0 0 20px 20px;
-    overflow: hidden;
+    /* Positioning */
+    position: absolute;
+    top: 10%;
     z-index: -1;
-}
-
-.makeBold {
-    font-weight: bold;
+    /* Contents */
+    overflow: hidden;
 }
 
 .verticalLine {
-    position: absolute;
+    /* Vertical margin line (aesthetic)*/
+    /* Background and shape */
     min-height: 100%;
     border-left: 3px solid rgb(155, 0, 0);
+    /* Positioning */
+    position: absolute;
     margin-left: 10%;
 }
 
 .horizontalLine {
+    /* Lines on paper (aesthetic)*/
+    /* Background and shape */
     width: 100%;
     border-top: 3px solid rgba(0, 0, 83, 0.527);
+    /* Positioning */
     margin-top: 25px;
 }
 
 .spacer {
-    position: relative;
+    /* Spacer to add space at top of page (aesthetic) */
+    /* Background and shape */
     height: 7%;
     width: 100%;
+    /* Positioning */
+    position: relative;
 }
 
 .faIconGroup {
+    /* Font awesome icon group - buttons on top bar */
+    /* Bacground and shape */
     height: 8%;
     width: auto;
+    /* Positioning */
     float: right;
     transform: translate(-10%, 30%);
+    /* Contents */
     text-align: center;
 }
 
 .textArea {
-    font-size: 16pt;
-    line-height: 28px;
-    margin-left: 11%;
+    /* Text area within notepad */
+    /* Bacground and shape */
     width: 88%;
     height: 93%;
     outline: none;
+    /* Positioning */
     position: absolute;
+    margin-left: 11%;
+    /* Contents */
+    font-size: 16pt;
+    line-height: 28px;
     overflow-y: auto;
 }
 
 div.textArea:empty:before {
+    /* Clears text area and shows placeholder
+    when new note is added */
     content: attr(placeholder);
     color: rgba(0, 0, 0, 0.486);
 }
 
 div.title:empty:before {
+    /* Clears title and shows placeholder
+    when new note is added */
     content: attr(placeholder);
     color: rgba(255, 255, 255, 0.486);
 }
 
 .dropdown {
+    /* Dropdown container behind menu button */
+    /* Background and shape */
+    height: 100%;
+    /* Positioning */
     position: relative;
     display: inline-block;
-    height: 100%;
 }
 
 .dropdownContent {
-    display: none;
-    position: absolute;
+    /* The content of the dropdown menu */
+    /* Background and shape */
     background-color: #f8edd7;
-    margin-top: 21px;
-    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     border-radius: 0 0 10px 10px;
+    min-width: 160px;
+    /* Positioning */
+    position: absolute;
+    display: none;
+    margin-top: 21px;
     right: 1%;
 }
 
 .dropdownContent a {
+    /* Each element in the content of the dropdown menu */
+    /* Background and shape */
+    border-bottom: 1px solid black;
+    /* Positioning */
+    display: block;
+    padding: 0 16px 0 16px;
+    /* Contents */
     color: black;
     font-size: 16pt;
-    padding: 0 16px 0 16px;
     text-decoration: none;
-    display: block;
-    border-bottom: 1px solid black;
 }
 
 .dropdownContent a:last-child {
+    /* Add curved corners to the last element and remove border */
     border-bottom: none;
     border-radius: 0 0 10px 10px;
 }
@@ -152,155 +315,41 @@ div.title:empty:before {
     display: block;
 }
 
-.sideBar {
-    display: none;
-    background-color: rgba(165, 165, 165, 0.856);
-    height: auto;
-    width: 10%;
-    position: relative;
-    float: left;
-    margin-top: 30%;
-    border-radius: 0px 10px 10px 0px;
-}
-
-.sideBar i {
-    margin: 25%;
-    font-size: 16pt;
-    color: rgb(255, 255, 255);
-}
-
-.sideBar button:first-child {
-    margin-top: 40%;
-}
-
-.sideBar button:hover {
-    color: rgb(102, 102, 102);
-}
-
 .newNote {
-    position: absolute;
+    /* Help message that appears locating the new note button */
+    /* Background and shape */
     height: 7%;
     width: 50%;
-    color: white;
-    font-size: 22pt;
-    text-align: center;
+    /* Positioning */
+    position: absolute;
     left: 7%;
     margin-top: 10%;
-}
-
-.newNoteMobile {
-    position: absolute;
-    line-height: 30px;
-    width: 50%;
+    /* Contents */
     color: white;
     font-size: 22pt;
-    left: 100%;
-    top: 50%;
-    margin-left: 20%;
-    visibility: hidden;
-}
-
-.blocker {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: #0000003b;
-    z-index: 3;
-}
-
-input {
-    outline: none;
-    border: none;
-}
-
-.registerForm {
-    background-color: white;
-    overflow: hidden;
-    border-radius: 20px;
-    top: 20%;
-    left: 55%;
-    width: 40%;
-    position: absolute;
-    box-shadow: 5px 10px 5px#0000007a;
-}
-
-.loginForm {
-    background-color: white;
-    overflow: hidden;
-    border-radius: 20px;
-    top: 20%;
-    left: 5%;
-    width: 40%;
-    position: absolute;
-    box-shadow: 5px 10px 5px#0000007a;
-}
-
-.loginFormTitle {
-    margin-bottom: 30px;
-    font-size: 18pt;
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    color: #fff;
     text-align: center;
-    display: block;
-    position: relative;
-    background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
-    padding-top: 50px;
-    padding-bottom: 39px;
-}
-
-.formInput {
-    font-size: 15px;
-    color: #000000;
-    position: relative;
-    display: block;
-    width: 70%;
-    height: 55px;
-    background: #ebebeb;
-    border-radius: 27px;
-    padding: 0 35px 0px 35px;
-    margin: auto;
-    margin-bottom: 35px;
-}
-
-.containerFormBtn {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.loginFormBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    width: 75%;
-    height: 50px;
-    background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
-    border-radius: 25px;
-    margin-bottom: 35px;
-    font-size: 15px;
-    color: #fff;
-    line-height: 1.2;
-    text-transform: uppercase;
 }
 
 .welcome {
+    /* Welcome message at top of page */
+    /* Background and shape */
+    background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: auto;
+    /* Positioning */
     position: relative;
     margin: 10px;
     padding: 10px;
+    /* Contents */
     font-size: 22pt;
-    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    border-radius: 10px;
-    width: auto;
-    background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .logout {
+    /* Logout button in welcome message bar */
     position: relative;
     float: right;
     height: 100%;
@@ -311,13 +360,66 @@ input {
     color: white;
 }
 
-.err {
+
+/* MOBILE */
+
+.sideBar {
+    /* Mobile version side bar containing buttons */
+    /* Background and shape */
+    background-color: rgba(165, 165, 165, 0.856);
+    height: auto;
+    width: 10%;
+    border-radius: 0px 10px 10px 0px;
+    /* Positioning */
     position: relative;
-    padding: 10px;
-    width: auto;
-    font-family: Arial, Helvetica, sans-serif;
-    color: red;
-    font-size: 12pt;
+    display: none;
+    float: left;
+    margin-top: 30%;
+}
+
+.sideBar i {
+    /* Contents */
+    margin: 25%;
+    font-size: 16pt;
+    color: rgb(255, 255, 255);
+}
+
+.sideBar button:first-child {
+    margin-top: 40%;
+}
+
+.sideBar button:hover {
+    color: rgb(65, 40, 4);
+}
+
+.newNoteMobile {
+    /* Help message that appears locating the new note button */
+    /* Background and shape */
+    width: 50%;
+    visibility: hidden;
+    /* Positioning */
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-left: 20%;
+    /* Contents */
+    line-height: 30px;
+    color: white;
+    font-size: 22pt;
+    z-index: -2;
+}
+
+.signOutMobile {
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    left: 92%;
+    top: 95%;
+    font-size: 16pt;
+}
+
+.signOutMobile a {
+    color: rgb(65, 40, 4);
 }
 
 @media only screen and (max-height: 800px) {
@@ -386,6 +488,9 @@ input {
         visibility: hidden;
     }
     .newNoteMobile {
+        visibility: visible;
+    }
+    .signOutMobile {
         visibility: visible;
     }
 }

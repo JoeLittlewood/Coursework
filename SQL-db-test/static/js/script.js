@@ -78,7 +78,6 @@ function clone() {
     var newItm = document.getElementById("newNote" + (y));
     $("#newNote" + y).attr("title", "");
     showNote("newNote" + y);
-    console.log(y);
 }
 
 function delNotes() {
@@ -108,7 +107,7 @@ function delNotes() {
     console.log(y);
 }
 
-function displayNotes() {
+function displayNotes(noteID) {
     $.ajax({
         url: "/get-notes",
         type: "GET",
@@ -183,6 +182,29 @@ function saveNote() {
             }
         })
     }
+}
+
+function downloadNote(idToDownload, filename) {
+    idToDownload = -1;
+    $('#newPad').children('div').each(function() {
+        if ($(this).css("visibility") == "visible") {
+            idToDownload = $(this).attr("id");
+        }
+    })
+    var filename = $("#title").html() + '.html';
+    if (idToDownload != -1) {
+        downloadInnerHtml(filename, idToDownload, "text/html");
+    }
+}
+
+function downloadInnerHtml(filename, idToDownload, mimeType) {
+    var elHtml = document.getElementById(idToDownload).innerHTML;
+    var link = document.createElement('a');
+    mimeType = mimeType || 'text/plain';
+
+    link.setAttribute('download', filename);
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+    link.click();
 }
 
 displayNotes();

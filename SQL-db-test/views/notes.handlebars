@@ -30,13 +30,16 @@
                 <button class="fas fa-pencil-alt" onclick="clone()" title="New Note"></button>
                 <button class="fas fa-save" onclick="saveNote()" title="Save Note"></button>
                 <button class="fas fa-trash" onclick="delNotes()" title="Delete Note"></button>
-                <button class="fas fa-caret-square-down" title="Download"></button>
+                <button class="fas fa-caret-square-down" title="Download" id="downloadLink" onclick="downloadNote()"></button>
             </span>
             <div class="dropdown">
                 <button class="fas fa-bars"></button>
                 <div class="dropdownContent" id="dropdownContent">
                 </div>
             </div>
+        </div>
+        <div class="signOutMobile">
+            <a href="/logout"><i class="fas fa-sign-out-alt" title="Sign Out"></i></a>
         </div>
         <div class="pad" id="cloneNode">
             <div class="verticalLine"></div>
@@ -45,9 +48,7 @@
                 spellcheck="true"></div>
             <div class="horizontalLine"></div>
         </div>
-        <div id="newPad">
-
-        </div>
+        <div id="newPad"></div>
         <div class="sideBar">
             <div class="newNoteMobile" id="help"><i class="fas fa-reply"></i>New note</div>
             <button class="fas fa-bold" onclick='makeBold()' id="button1"></button>
