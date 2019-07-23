@@ -422,6 +422,9 @@ div.title:empty:before {
     color: rgb(65, 40, 4);
 }
 
+
+/* media transforms web app into mobile-firnedly version */
+
 @media only screen and (max-width: 500px) {
     .faIconGroup {
         font-size: 20pt;
