@@ -1,30 +1,41 @@
+{{!-- 
+====================================================================================================================
+SET08702 2018-9 TR2 001 - Web Technologies
+Joe L - 40417692
+Coursework Part 2 submission.
+HTML document for Login page for my Notes application.
+====================================================================================================================
+--}}
 <!DOCTYPE html>
 <html lang=en>
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/script.js"></script>
-    <script src="https://kit.fontawesome.com/f1e8cb77c0.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
     <title>Notes</title>
 </head>
 
 <body>
-    <form class="registerForm" method="POST" action="/signup">
-        <span class="loginFormTitle">Register <i class="fas fa-address-book"></i></span>
-        <input class="formInput" type="text" name="username" placeholder="Username" id="user">
+    {{!-- Sign up form incase new user needs to be created --}}
+    <form class="registerForm" method="POST" action="/signup"> {{!-- Method is used to post to the database, action takes user through to /signup page which logs them in. --}}
+        <span class="loginFormTitle">Register <i class="fas fa-address-book"></i></span> {{!-- Sign up form has Register + a Font Awesome icon for aesthetics --}}
+        {{!-- Inputs ask for user's Username, Password and Confirm password. --}}
+        <input class="formInput" type="text" name="username" placeholder="Username" id="user"> 
         <input class="formInput" type="password" name="pass" placeholder="Password" id="pwd">
         <input class="formInput" type="password" name="confirmPass" placeholder="Confirm password" id="confPwd">
+        {{!-- This is the form button that submits the form to the database. --}}
         <div class="containerFormBtn">
             <button class="loginFormBtn">Register</button>
         </div>
+        {{!-- If there is an error, such as when the user inputs a confirm password that is different from the first, the error is printed to the correct form. --}}
         <div class="err">
             {{#if errormessagesignup}}{{errormessagesignup}}{{/if}}
         </div> 
     </form>
+    {{!-- Login form for existing users --}}
     <form class="loginForm" method="POST" action="/signin">
         <span class="loginFormTitle">Sign in <i class="fas fa-sign-in-alt"></i></span>
         <input class="formInput" type="text" name="username" placeholder="Username">
@@ -36,6 +47,8 @@
             {{#if errormessage}}{{errormessage}}{{/if}}
         </div> 
     </form>
+    <script src="/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/f1e8cb77c0.js"></script>
 </body>
 
 </html>
