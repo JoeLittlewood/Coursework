@@ -178,7 +178,7 @@ app.get("/logout", (request, response) => {
 // This is a function that creates a new note. The userid, title and content are all pasted into the database where a unique noteid is also created.
 app.post("/new-note", (request, response) => {
 
-    var title = request.body.title;
+    var title = request.body.title || "New note";
     var content = request.body.content;
 
     if (request.session.loggedin && title && content) {

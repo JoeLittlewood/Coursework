@@ -251,6 +251,10 @@ button:hover {
     overflow-y: auto;
 }
 
+ul li:first-child {
+    margin-top: 34px;
+}
+
 div.textArea:empty:before {
     /* Clears text area and shows placeholder
     when new note is added */
