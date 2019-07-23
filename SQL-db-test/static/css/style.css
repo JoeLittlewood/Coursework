@@ -519,4 +519,38 @@ div.title:empty:before {
         top: 0;
         left: 0;
     }
+    #invisible {
+        display: none;
+    }
+    .sideBar {
+        display: inherit;
+        width: 7%;
+    }
+    .newNote {
+        visibility: hidden;
+    }
+    .newNoteMobile {
+        visibility: visible;
+    }
+}
+
+@media only screen and (max-width: 709px) {
+    .sideBar {
+        display: inherit;
+        width: 8%;
+    }
+}
+
+@media only screen and (max-width: 623px) {
+    .sideBar {
+        display: inherit;
+        width: 9%;
+    }
+}
+
+@media only screen and (max-width: 525px) {
+    .sideBar {
+        display: inherit;
+        width: 10%;
+    }
 }
