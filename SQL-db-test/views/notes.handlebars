@@ -3,7 +3,7 @@
 SET08702 2018-9 TR2 001 - Web Technologies
 Joe L - 40417692
 Coursework Part 2 submission.
-HTML document for the notes page for my Notes application.
+HTML document for the Notes page for my Notes application.
 ====================================================================================================================
 --}}
 <!DOCTYPE html>
@@ -11,44 +11,50 @@ HTML document for the notes page for my Notes application.
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
     <title>Notes</title>
 </head>
 
 <body>
+    {{!-- Welcome message is located at the top of the page to show which user is active --}}
     <div class="welcome">
         Welcome, {{ username }}
         <div class="logout">
             <a href="/logout"><i class="fas fa-sign-out-alt" title="Sign Out"></i></a>
         </div>
     </div>
+    {{!-- All the notes are contained within this first container. --}}
     <div class="container">
         <div class="title" placeholder="Title..." contenteditable="true" spellcheck="true" id="title"></div>
         <div class="faIconGroup">
-            <div class="newNote" id="help">New note<i class="fas fa-level-up-alt"></i></div>
-
+            <div class="newNote" id="help">New note<i class="fas fa-level-up-alt"></i></div> {{!-- This is a helpful message that appears telling the user how to create a new note. --}}
+            {{!-- These icons turn invisible when the window size is reduced to a mobile phone screen size. New ones appear below in a sidebar. --}}
             <span id="invisible">
-                <button class="fas fa-bold" onclick='makeBold()' id="button1" title="Bold"></button>
-                <button class="fas fa-italic" onclick='makeItalic()' id="button2" title="Italic"></button>
-                <button class="fas fa-underline" onclick='makeUnderline()' id="button3" title="Underline"></button>
-                <button class="fas fa-list" onclick='makeList()' id="button4" title="List"></button>
-                <button class="fas fa-pencil-alt" onclick="clone()" title="New Note"></button>
-                <button class="fas fa-save" onclick="saveNote()" title="Save Note"></button>
-                <button class="fas fa-trash" onclick="delNotes()" title="Delete Note"></button>
-                <button class="fas fa-caret-square-down" title="Download" id="downloadLink" onclick="downloadNote()"></button>
+                <button class="fas fa-bold" onclick='makeBold()' id="button1" title="Bold"></button> {{!-- Bold button --}}
+                <button class="fas fa-italic" onclick='makeItalic()' id="button2" title="Italic"></button> {{!-- Italic button --}}
+                <button class="fas fa-underline" onclick='makeUnderline()' id="button3" title="Underline"></button> {{!-- Underline button --}}
+                <button class="fas fa-list" onclick='makeList()' id="button4" title="List"></button> {{!-- List button --}}
+                <button class="fas fa-pencil-alt" onclick="clone()" title="New Note"></button> {{!-- New note button --}}
+                <button class="fas fa-save" onclick="saveNote()" title="Save Note"></button> {{!-- Save button --}}
+                <button class="fas fa-trash" onclick="delNotes()" title="Delete Note"></button> {{!-- Delete button --}}
+                <button class="fas fa-caret-square-down" title="Download" id="downloadLink" 
+                    onclick="downloadNote()"></button> {{!-- Download button --}}
             </span>
+            {{!-- This dropdown menu appears when the menu icon is hovered over. It contains all titles of any saved documents. --}}
             <div class="dropdown">
                 <button class="fas fa-bars"></button>
                 <div class="dropdownContent" id="dropdownContent">
                 </div>
             </div>
         </div>
+        {{!-- This is hidden on a normal window but appears when in use on mobile. --}}
         <div class="signOutMobile">
             <a href="/logout"><i class="fas fa-sign-out-alt" title="Sign Out"></i></a>
         </div>
+        {{!-- This is the editable content for the note itself. I have made it look like a lined-paper document. --}}
         <div class="pad" id="cloneNode">
             <div class="verticalLine"></div>
             <div class="spacer"></div>
@@ -56,19 +62,20 @@ HTML document for the notes page for my Notes application.
                 spellcheck="true"></div>
             <div class="horizontalLine"></div>
         </div>
+        {{!-- When a new note is created the "pad" above gets cloned and pasted in this "newPad" div with a unique id. --}}
         <div id="newPad"></div>
+        {{!-- Sidebar is hidden on a normal window but appears on iPad and Phone resolutions. --}}
         <div class="sideBar">
             <div class="newNoteMobile" id="help"><i class="fas fa-reply"></i>New note</div>
-            <button class="fas fa-bold" onclick='makeBold()' id="button1"></button>
-            <button class="fas fa-italic" onclick='makeItalic()' id="button2"></button>
-            <button class="fas fa-underline" onclick='makeUnderline()' id="button3"></button>
-            <button class="fas fa-list" onclick='makeList()' id="button4"></button>
-            <button class="fas fa-pencil-alt" onclick="clone()"></button>
-            <button class="fas fa-save" onclick="saveNote()"></button>
-            <button class="fas fa-trash" onclick="delNotes()"></button>
-            <button class="fas fa-caret-square-down"></button>
+            <button class="fas fa-bold" onclick='makeBold()' id="button1"></button> {{!-- Bold button --}}
+            <button class="fas fa-italic" onclick='makeItalic()' id="button2"></button> {{!-- Italic button --}}
+            <button class="fas fa-underline" onclick='makeUnderline()' id="button3"></button> {{!-- Underline button --}}
+            <button class="fas fa-list" onclick='makeList()' id="button4"></button> {{!-- List button --}}
+            <button class="fas fa-pencil-alt" onclick="clone()"></button> {{!-- New note button --}}
+            <button class="fas fa-save" onclick="saveNote()"></button> {{!-- Save button --}}
+            <button class="fas fa-trash" onclick="delNotes()"></button> {{!-- Delete button --}}
+            <button class="fas fa-caret-square-down" id="downloadLink" onclick="downloadNote()"></button> {{!-- Download button --}}
         </div>
-
     </div>
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/script.js"></script>
