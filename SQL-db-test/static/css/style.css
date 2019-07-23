@@ -422,12 +422,6 @@ div.title:empty:before {
     color: rgb(65, 40, 4);
 }
 
-@media only screen and (max-height: 800px) {
-    .faIconGroup {
-        font-size: 20pt;
-    }
-}
-
 @media only screen and (max-width: 500px) {
     .faIconGroup {
         font-size: 20pt;
