@@ -272,7 +272,7 @@ div.title:empty:before {
 .dropdown {
     /* Dropdown container behind menu button */
     /* Background and shape */
-    height: 100%;
+    height: 110%;
     /* Positioning */
     position: relative;
     display: inline-block;
@@ -283,13 +283,12 @@ div.title:empty:before {
     /* Background and shape */
     background-color: #f8edd7;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 0 0 10px 10px;
+    border-radius: 10px 0 10px 10px;
     min-width: 160px;
     /* Positioning */
     position: absolute;
     display: none;
-    margin-top: 21px;
-    right: 1%;
+    right: 50%;
 }
 
 .dropdownContent a {
@@ -309,6 +308,11 @@ div.title:empty:before {
     /* Add curved corners to the last element and remove border */
     border-bottom: none;
     border-radius: 0 0 10px 10px;
+}
+
+.dropdownContent a:first-child {
+    /* Add curved corners to the last element and remove border */
+    border-radius: 10px 0 0 0;
 }
 
 .dropdownContent a:hover {
