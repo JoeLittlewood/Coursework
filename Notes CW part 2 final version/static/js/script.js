@@ -8,9 +8,6 @@ function lineRepeat(line, count) {
 lineRepeat(document.querySelector('.horizontalLine'), 60, true);
 
 b = 1
-i = 1
-u = 1
-l = 1
 
 function makeBold() {
     b += 1
@@ -24,6 +21,8 @@ function makeBold() {
     document.execCommand("bold", false, null)
 }
 
+i = 1
+
 function makeItalic() {
     i += 1
     if (i % 2 == 0) {
@@ -36,6 +35,8 @@ function makeItalic() {
     document.execCommand("italic", false, null)
 }
 
+u = 1
+
 function makeUnderline() {
     u += 1
     if (u % 2 == 0) {
@@ -47,6 +48,8 @@ function makeUnderline() {
     }
     document.execCommand("underline", false, null)
 }
+
+l = 1
 
 function makeList() {
     l += 1
