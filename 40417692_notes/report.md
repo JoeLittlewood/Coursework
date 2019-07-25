@@ -58,7 +58,7 @@ There were two major reasons for doing this. One was to make the web application
 In order to easily save and generate new notes, I decided to re-think the layout of my web application. Before the container that housed every element within it was the white text area. Now the container that houses everything within it is the brown and yellow background that can be seen in the top bar.
 
 <center>
-<img src="Screenshots/8.png" alt="Initial Design - Part 1" width="500"/>
+<img src="screenshots/8.png" alt="Initial Design - Part 1" width="500"/>
 </center>
 
 _Figure 2_ shows the notepad and how it is now separate from the container of the web application.
@@ -73,9 +73,9 @@ _Figure 2_ shows the notepad and how it is now separate from the container of th
 One goal for the development of my application was to make it more mobile-friendly. I think I have achieved this because the application maintains it's simplistic look and appeal while staying functional and easy to navigate.
 
 <center>
-<img src="Screenshots/3.png" alt="Initial Design - Part 1" height="350"/>
-<img src="Screenshots/4.png" alt="Initial Design - Part 1" height="350"/>
-<img src="Screenshots/5.png" alt="Initial Design - Part 1" height="350"/>
+<img src="screenshots/3.png" alt="Initial Design - Part 1" height="350"/>
+<img src="screenshots/4.png" alt="Initial Design - Part 1" height="350"/>
+<img src="screenshots/5.png" alt="Initial Design - Part 1" height="350"/>
 </center>
 
 #### SQL DB
@@ -136,13 +136,13 @@ I enjoyed making this note-taking web application. I especially enjoyed the desi
 
 ### Figure 1
 
-<img src="Screenshots/1.png" alt="Initial Design - Part 1" width="600"/>
+<img src="screenshots/1.png" alt="Initial Design - Part 1" width="600"/>
 
 > Initial design, completed for part one of the coursework.
 
 ### Figure 2
 
-<img src="Screenshots/7.png" alt="Initial Design - Part 1" width="600"/>
+<img src="screenshots/7.png" alt="Initial Design - Part 1" width="600"/>
 
 > Screenshot showing the notepad div separate from the main container.
 
@@ -150,33 +150,33 @@ I enjoyed making this note-taking web application. I especially enjoyed the desi
 
 ### Figure 3
 
-<img src="Screenshots/9.png" alt="Initial Design - Part 1" width="600"/>
+<img src="screenshots/9.png" alt="Initial Design - Part 1" width="600"/>
 
 > Sign-up and sign-in page.
 
 ### Figure 4
 
-<img src="Screenshots/8.png" alt="Initial Design - Part 1" width="600"/>
+<img src="screenshots/8.png" alt="Initial Design - Part 1" width="600"/>
 
 > Home page. The user is now logged in.
 
 ### Figure 5
 
-<img src="Screenshots/10.png" alt="Initial Design - Part 1" width="600"/>
+<img src="screenshots/10.png" alt="Initial Design - Part 1" width="600"/>
 
 > Example of a note with font formatting.
 
 ### Figure 6
 
-<img src="Screenshots/11.png" alt="Initial Design - Part 1" width="600"/>
+<img src="screenshots/11.png" alt="Initial Design - Part 1" width="600"/>
 
 > Example of drop-down menu showing saved notes.
 
 ### Figure 7
 
-<img src="Screenshots/3.png" alt="Initial Design - Part 1" height="350"/>
-<img src="Screenshots/4.png" alt="Initial Design - Part 1" height="350"/>
-<img src="Screenshots/5.png" alt="Initial Design - Part 1" height="350"/>
+<img src="screenshots/3.png" alt="Initial Design - Part 1" height="350"/>
+<img src="screenshots/4.png" alt="Initial Design - Part 1" height="350"/>
+<img src="screenshots/5.png" alt="Initial Design - Part 1" height="350"/>
 
 > Mobile compatibility screenshots.
 </center>
