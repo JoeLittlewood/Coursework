@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<center>
+<h1 id="set08702-2018-9-tr2-001---web-technologies">SET08702 2018-9 TR2 001 - Web Technologies</h1>
+<h2 id="cw-report-part-ii">CW Report part ii</h2>
+</center>
+<blockquote>
+<p>Joe L, 40417692</p>
+</blockquote>
+<hr>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#SET08702-2018-9-TR2-001---Web-Technologies">SET08702 2018-9 TR2 001 - Web Technologies</a>
+<ul>
+<li><a href="#CW-Report-part-ii">CW Report part ii</a></li>
+<li><a href="#Contents">Contents</a>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#Development-from-my-initial-plan">Development from my initial plan</a>
+<ul>
+<li><a href="#SQL-DB">SQL DB</a></li>
+<li><a href="#Login-page">Login page</a></li>
+</ul>
+</li>
+<li><a href="#Challenges">Challenges</a>
+<ul>
+<li><a href="#jQuery-and-ajax">jQuery and ajax</a></li>
+<li><a href="#Sessions">Sessions</a></li>
+<li><a href="#Text-formatting-buttons---Bold-Underline-Italic-and-List">Text formatting buttons - Bold, Underline, Italic and List</a></li>
+<li><a href="#Features">Features</a></li>
+</ul>
+</li>
+<li><a href="#Conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#Appendix">Appendix</a>
+<ul>
+<li><a href="#Figure-1">Figure 1</a></li>
+<li><a href="#Figure-2">Figure 2</a></li>
+<li><a href="#Figure-3">Figure 3</a></li>
+<li><a href="#Figure-4">Figure 4</a></li>
+<li><a href="#Figure-5">Figure 5</a></li>
+<li><a href="#Figure-6">Figure 6</a></li>
+<li><a href="#Figure-7">Figure 7</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="page-break-after: always;"></div>
+<h3 id="introduction">Introduction</h3>
+<p>The front-end of my note-taking web application has mostly remained unchanged from the initial design and prototype. In this report I will discuss the development process, the challenges I have faced and what features I have managed to implement into the final version of this note-taking web application through the use of the <strong>SQL</strong> database platform, <strong>Javascript</strong> and <strong>jQuery</strong>.</p>
+<hr>
+<h3 id="development-from-my-initial-plan">Development from my initial plan</h3>
+<p>The first part of this coursework was to design and implement a prototype user interface for a note-taking web application. <em>Figure 1</em> is a capture of this initial design. Note that my main goal for this design was to be user-friendly, easy to use and aesthetically appealing. I achieved this through the use of minimal HTML with the aim of simplifying the application, and extensive CSS code that took care of the aesthetics.</p>
+<p>At first, there does not seem to be much of a difference between this prototype and the final version of my web application. Some subtle changes may be that I have changed the position of some buttons, changed the note shape and added a list feature. In reality the final version of my web application has been completely re-written.</p>
+<p>There were two major reasons for doing this. One was to make the web application more mobile friendly. The other was to make sure that loading in a new note could be made easier.</p>
+<center>
+<blockquote>
+<p><strong>Notepad</strong></p>
+</blockquote>
+</center>
+<p>In order to easily save and generate new notes, I decided to re-think the layout of my web application. Before the container that housed every element within it was the white text area. Now the container that houses everything within it is the brown and yellow background that can be seen in the top bar.</p>
+<center>
+<img src="Screenshots/8.png" alt="Initial Design - Part 1" width="500"/>
+</center>
+<p><em>Figure 2</em> shows the notepad and how it is now separate from the container of the web application.</p>
+<div style="page-break-after: always;"></div>
+<center>
+<blockquote>
+<p><strong>Mobile compatibility</strong></p>
+</blockquote>
+</center>
+<p>One goal for the development of my application was to make it more mobile-friendly. I think I have achieved this because the application maintains it's simplistic look and appeal while staying functional and easy to navigate.</p>
+<center>
+<img src="Screenshots/3.png" alt="Initial Design - Part 1" height="350"/>
+<img src="Screenshots/4.png" alt="Initial Design - Part 1" height="350"/>
+<img src="Screenshots/5.png" alt="Initial Design - Part 1" height="350"/>
+</center>
+<h4 id="sql-db">SQL DB</h4>
+<p>In order to achieve full functionality I needed to consider how to save my notes and where to save them. At first I considered using a cloud-based environment such as <strong>MongoDB</strong>. The benefits of using a cloud-based environment to host a database are that it is easily accessible, easily managed and expandable. Despite these benefits I decided to opt for an SQL database as I was more familiar with this environment and for the requirements of this application, I felt like this form of data logging was sufficient.</p>
+<h4 id="login-page">Login page</h4>
+<p>In order to enable the functionality of viewing and editing previously saved notes, I had to incorporate a user-based system. Therefore a login page was needed. This allows a user to sign up with their own username and password and all their notes will be saved under their own details, enabling them to log in at any time and view their notes.</p>
+<p><em>Figure 3</em> shows the new sign-up and sign-in page. I tried to get this theme to match as close as possible to the theme of the not-taking application itself.</p>
+<hr>
+<h3 id="challenges">Challenges</h3>
+<h4 id="jquery-and-ajax">jQuery and ajax</h4>
+<p>Most of the challenges I faced were involving the server-side integration. I had not written jQuery before and most sources of research involved writing jQuery and ajax in order to integrate the SQL database. I therefore had to learn jQuery and ajax in order to write this coursework.</p>
+<h4 id="sessions">Sessions</h4>
+<p>Another point of difficulty was setting up the sessions for the user. I hadn't used sessions before to keep a user logged in so this was another aspect in which I had to do extra research.</p>
+<h4 id="text-formatting-buttons---bold-underline-italic-and-list">Text formatting buttons - Bold, Underline, Italic and List</h4>
+<p>These buttons were particularly difficult to integrate as they do not work on a text area, only on a div. They also lack the consistency I desire. They only will work if the div is clicked and then the button is pressed.</p>
+<p>In order to show the user that one of these buttons is active I tried to incorporate some Javascript that would toggle the colour of the button once clicked. This works consistently when the button is clicked, but may turn 'on' even though the text hasn't taken on the desired formatting.</p>
+<hr>
+<h4 id="features">Features</h4>
+<ul>
+<li>User sign-up and sign-in capability.</li>
+<li>Personalised user &quot;Welcome&quot; message.</li>
+<li>Ability to create, save, edit and delete notes.</li>
+<li>Can make text within the note bold, underlined, italic or make a list.</li>
+<li>Can download the current note as a .html document.</li>
+<li>Useful balloon tags appear on the buttons when hovered over. This improves usability.</li>
+<li>Fully mobile and tablet friendly.</li>
+</ul>
+<p>My note-taking application is fully functional and working. The user can sign-up, sign-in <em>(Figure 3)</em>, create a note and save it <em>(Figure 10)</em>. They can see all their previous notes in the drop-down menu <em>(Figure 11)</em>, delete any unwanted notes and even download the current note they are on. It will download in .html format in order to preserve the bold, underline and italic formatting. If the user is confused about how to use the application then they can hover over the buttons and a balloon will appear, describing what the button does.</p>
+<p>One feature I am proud of is that the app is fully mobile compatible. Therefore it could be developed further into a mobile application fairly easily.</p>
+<hr>
+<h3 id="conclusion">Conclusion</h3>
+<p>I enjoyed making this note-taking web application. I especially enjoyed the design phase and making it aesthetically appealing. Getting it to be fully functional was very rewarding, however. If I were to do this coursework again I would maybe try a better way of displaying the saved notes to the user, possibly with another page instead of a drop-down menu. I would also migrate to a cloud-based database which would improve the admin's access and provide the opportunity for expansion.</p>
+<div style="page-break-after: always;"></div>
+<h2 id="appendix">Appendix</h2>
+<center>
+<h3 id="figure-1">Figure 1</h3>
+<img src="Screenshots/1.png" alt="Initial Design - Part 1" width="600"/>
+<blockquote>
+<p>Initial design, completed for part one of the coursework.</p>
+</blockquote>
+<h3 id="figure-2">Figure 2</h3>
+<img src="Screenshots/7.png" alt="Initial Design - Part 1" width="600"/>
+<blockquote>
+<p>Screenshot showing the notepad div separate from the main container.</p>
+</blockquote>
+<div style="page-break-after: always;"></div>
+<h3 id="figure-3">Figure 3</h3>
+<img src="Screenshots/9.png" alt="Initial Design - Part 1" width="600"/>
+<blockquote>
+<p>Sign-up and sign-in page.</p>
+</blockquote>
+<h3 id="figure-4">Figure 4</h3>
+<img src="Screenshots/8.png" alt="Initial Design - Part 1" width="600"/>
+<blockquote>
+<p>Home page. The user is now logged in.</p>
+</blockquote>
+<h3 id="figure-5">Figure 5</h3>
+<img src="Screenshots/10.png" alt="Initial Design - Part 1" width="600"/>
+<blockquote>
+<p>Example of a note with font formatting.</p>
+</blockquote>
+<h3 id="figure-6">Figure 6</h3>
+<img src="Screenshots/11.png" alt="Initial Design - Part 1" width="600"/>
+<blockquote>
+<p>Example of drop-down menu showing saved notes.</p>
+</blockquote>
+<h3 id="figure-7">Figure 7</h3>
+<img src="Screenshots/3.png" alt="Initial Design - Part 1" height="350"/>
+<img src="Screenshots/4.png" alt="Initial Design - Part 1" height="350"/>
+<img src="Screenshots/5.png" alt="Initial Design - Part 1" height="350"/>
+<blockquote>
+<p>Mobile compatibility screenshots.</p>
+</blockquote>
+</center>
+</body>
+</html>
