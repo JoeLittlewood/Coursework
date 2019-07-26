@@ -4,6 +4,11 @@
 // Coursework Part 2 submission.
 // Javascript document to run SQL database for my Notes application.
 // ====================================================================================================================
+// References:
+// https://www.codecademy.com/articles/sql-commands
+// https://www.w3schools.com/sql/
+// ====================================================================================================================
+
 var sqlite3 = require("sqlite3");
 var express = require("express");
 var BodyParser = require("body-parser");

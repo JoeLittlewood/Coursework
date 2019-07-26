@@ -4,7 +4,10 @@
 // Coursework Part 2 submission.
 // Javascript document to run SQL database for my Notes application.
 // ====================================================================================================================
-
+// References:
+// https://api.jquery.com/
+// https://www.w3schools.com/jquery/
+// https://www.w3schools.com/jquery/jquery_intro.asp
 // This is a function that clones the horizontal line for an aesthetic look. I have tried to replicate a lined-paper effect.
 function lineRepeat(line, count) {
     for (var i = 0, copy; i < count - 1; i++) {
@@ -22,6 +25,7 @@ b = 1
 // Each of the next four functions work very similarly. They all simply toggle the color of the button once pressed and insert a bold, italic or
 // underline tag in the text that the user has written in. This does not work perfectly as the colour of the button can toggle even if the tag has
 // not been pasted into the text.
+// Reference: https://stackoverflow.com/questions/41056605/contenteditable-div-with-bold-option Code snippet: document.execCommand('bold');
 function makeBold() {
     b += 1
 
@@ -77,6 +81,12 @@ function makeList() {
 y = 1
 
 // This function clones the "pad" div and shows it with a unique ID ready to be saved by the user.
+// Reference: https://stackoverflow.com/questions/11985156/clone-div-and-change-id 
+// Code snippet: 
+//      var div = document.getElementById('div_id'),
+//      clone = div.cloneNode(true); // true means clone all childNodes and all event handlers
+//      clone.id = "some_id";
+//      document.body.appendChild(clone);
 function clone() {
 
     var itm = document.getElementById("cloneNode");
@@ -238,6 +248,19 @@ function saveNote() {
 }
 
 // This function calls the downloadInnerHtml function that downloads the note as a html file. This preserves the formatting.
+// Reference:
+// https://stackoverflow.com/questions/22084698/how-to-export-source-content-within-div-to-text-html-file
+// Code snippet:
+//   function downloadInnerHtml(filename, elId, mimeType) {
+//     var elHtml = document.getElementById(elId).innerHTML;
+//     var link = document.createElement('a');
+//     mimeType = mimeType || 'text/plain';
+
+//     link.setAttribute('download', filename);
+//     link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
+//     link.click(); 
+// }
+
 function downloadNote(idToDownload, filename) {
 
     // Downloaded filename is changed to title of current note.

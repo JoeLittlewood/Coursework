@@ -10,7 +10,7 @@ i = 1
 u = 1
 l = 1
 
-function makeBold () {
+function makeBold() {
     b += 1
     if (b % 2 == 0) {
         document.getElementById("button1").style.color = 'black';
@@ -19,10 +19,10 @@ function makeBold () {
         console.log('Non-bold')
         document.getElementById("button1").style.color = 'white';
     }
-    document.execCommand("bold",false,null)
+    document.execCommand("bold", false, null)
 }
 
-function makeItalic () {
+function makeItalic() {
     i += 1
     if (i % 2 == 0) {
         document.getElementById("button2").style.color = 'black';
@@ -31,10 +31,10 @@ function makeItalic () {
         console.log('Non-italic')
         document.getElementById("button2").style.color = 'white';
     }
-    document.execCommand("italic",false,null)
+    document.execCommand("italic", false, null)
 }
 
-function makeUnderline () {
+function makeUnderline() {
     u += 1
     if (u % 2 == 0) {
         document.getElementById("button3").style.color = 'black';
@@ -43,10 +43,10 @@ function makeUnderline () {
         console.log('No-underline')
         document.getElementById("button3").style.color = 'white';
     }
-    document.execCommand("underline",false,null)
+    document.execCommand("underline", false, null)
 }
 
-function makeList () {
+function makeList() {
     l += 1
     if (l % 2 == 0) {
         document.getElementById("button4").style.color = 'black';
@@ -55,7 +55,7 @@ function makeList () {
         console.log('No-list')
         document.getElementById("button4").style.color = 'white';
     }
-    document.execCommand("insertUnorderedList",false,null)
+    document.execCommand("insertUnorderedList", false, null)
 }
 
 y = 0
@@ -75,7 +75,7 @@ function clone() {
 
 function delNotes() {
     var x = confirm("Are you sure you want to delete this note?");
-    if (x == true){
+    if (x == true) {
         if ((y - 1) == 0) {
             var itm = document.getElementById("cloneNode");
             var help = document.getElementById("help");
@@ -83,7 +83,7 @@ function delNotes() {
             itm.style.visibility = "hidden";
             help.style.visibility = "visible";
             y -= 1
-        } else  {
+        } else {
             document.getElementById("note" + y).outerHTML = "";
             y -= 1
         }
@@ -98,41 +98,41 @@ function submitForm() {
         "username": document.getElementById("user").value,
         "password": document.getElementById("pwd").value,
         "confirmPassword": document.getElementById("confPwd").value
-      });
-      
-      var xhr = new XMLHttpRequest();
-      xhr.withCredentials = true;
-      
-      xhr.addEventListener("readystatechange", function () {
+    });
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function() {
         if (this.readyState === 4) {
-          console.log(this.responseText);
+            console.log(this.responseText);
         }
-      });
-      
-      xhr.open("POST", "http://" +  window.location.hostname + ":5000/person");
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.setRequestHeader("cache-control", "no-cache");      
-      xhr.send(data);
+    });
+
+    xhr.open("POST", "http://" + window.location.hostname + ":5000/person");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.send(data);
 }
 
 function getUser() {
     var data = JSON.stringify({
-    "username": document.getElementById("userLogin").value
+        "username": document.getElementById("userLogin").value
     });
-    
+
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-    
-    xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === 4) {
-        console.log(this.responseText);
-    }
+
+    xhr.addEventListener("readystatechange", function() {
+        if (this.readyState === 4) {
+            console.log(this.responseText);
+        }
     });
-    
+
     xhr.open("GET", "http://localhost:5000/people/");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("cache-control", "no-cache");
     xhr.setRequestHeader("Postman-Token", "d781fe80-0459-4e57-8eb8-2693a243b691");
-    
+
     xhr.send(data);
 }

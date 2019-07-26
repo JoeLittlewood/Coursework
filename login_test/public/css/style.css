@@ -1,3 +1,8 @@
+/* 
+References:
+https://www.w3schools.com/css/ 
+*/
+
 body {
     background-image: url('../images/bg.jpg');
     margin: 0;
@@ -7,6 +12,7 @@ body {
     background-attachment: fixed;
     font-family: 'Kalam', cursive;
 }
+
 button {
     background-color: rgba(255, 255, 255, 0);
     border: none;
@@ -18,10 +24,14 @@ button {
     font-size: 22pt;
     outline: none;
 }
-button:hover { color: rgb(204, 162, 23); }
+
+button:hover {
+    color: rgb(204, 162, 23);
+}
+
 .container {
     position: absolute;
-    background: linear-gradient(to right,rgb(65, 40, 4), rgb(175, 107, 5));
+    background: linear-gradient(to right, rgb(65, 40, 4), rgb(175, 107, 5));
     width: 75%;
     height: 80%;
     border-radius: 20px;
@@ -30,6 +40,7 @@ button:hover { color: rgb(204, 162, 23); }
     left: -25%;
     overflow: hidden;
 }
+
 .title {
     position: absolute;
     transform: translate(2%, 12%);
@@ -42,6 +53,7 @@ button:hover { color: rgb(204, 162, 23); }
     outline: none;
     overflow-y: hidden;
 }
+
 .pad {
     visibility: hidden;
     background-color: rgb(255, 255, 255);
@@ -53,25 +65,30 @@ button:hover { color: rgb(204, 162, 23); }
     overflow: hidden;
     z-index: -1;
 }
+
 .makeBold {
     font-weight: bold;
 }
+
 .verticalLine {
     position: absolute;
     min-height: 100%;
     border-left: 3px solid rgb(155, 0, 0);
     margin-left: 10%;
 }
+
 .horizontalLine {
     width: 100%;
     border-top: 3px solid rgba(0, 0, 83, 0.527);
     margin-top: 25px;
 }
+
 .spacer {
     position: relative;
     height: 7%;
     width: 100%;
 }
+
 .faIconGroup {
     height: 8%;
     width: auto;
@@ -79,6 +96,7 @@ button:hover { color: rgb(204, 162, 23); }
     transform: translate(-10%, 30%);
     text-align: center;
 }
+
 .textArea {
     font-size: 16pt;
     line-height: 28px;
@@ -90,30 +108,35 @@ button:hover { color: rgb(204, 162, 23); }
     position: absolute;
     overflow-y: auto;
 }
-div.textArea:empty:before{
+
+div.textArea:empty:before {
     content: attr(placeholder);
     color: rgba(0, 0, 0, 0.486);
 }
-div.title:empty:before{
+
+div.title:empty:before {
     content: attr(placeholder);
     color: rgba(255, 255, 255, 0.486);
 }
+
 .dropdown {
-    position: relative; 
+    position: relative;
     display: inline-block;
     height: 100%;
 }
+
 .dropdownContent {
     display: none;
     position: absolute;
     background-color: #f8edd7;
     margin-top: 21px;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     border-radius: 0 0 10px 10px;
     right: 1%;
     z-index: 2;
 }
+
 .dropdownContent a {
     color: black;
     font-size: 16pt;
@@ -122,12 +145,20 @@ div.title:empty:before{
     display: block;
     border-bottom: 1px solid black;
 }
+
 .dropdownContent a:last-child {
     border-bottom: none;
     border-radius: 0 0 10px 10px;
 }
-.dropdownContent a:hover {background-color: rgb(202, 179, 143);}
-.dropdown:hover .dropdownContent {display: block;}
+
+.dropdownContent a:hover {
+    background-color: rgb(202, 179, 143);
+}
+
+.dropdown:hover .dropdownContent {
+    display: block;
+}
+
 .sideBar {
     display: none;
     background-color: rgba(165, 165, 165, 0.856);
@@ -138,13 +169,21 @@ div.title:empty:before{
     margin-top: 30%;
     border-radius: 0px 10px 10px 0px;
 }
+
 .sideBar i {
     margin: 25%;
     font-size: 16pt;
     color: rgb(255, 255, 255);
 }
-.sideBar button:first-child { margin-top: 40%; }
-.sideBar button:hover { color: rgb(102, 102, 102); }
+
+.sideBar button:first-child {
+    margin-top: 40%;
+}
+
+.sideBar button:hover {
+    color: rgb(102, 102, 102);
+}
+
 .newNote {
     position: absolute;
     height: 7%;
@@ -155,6 +194,7 @@ div.title:empty:before{
     left: 7%;
     margin-top: 10%;
 }
+
 .newNoteMobile {
     position: absolute;
     line-height: 30px;
@@ -166,6 +206,7 @@ div.title:empty:before{
     margin-left: 20%;
     visibility: hidden;
 }
+
 .blocker {
     width: 100%;
     height: 100%;
@@ -173,10 +214,12 @@ div.title:empty:before{
     background-color: #0000003b;
     z-index: 3;
 }
+
 input {
-	outline: none;
-	border: none;
+    outline: none;
+    border: none;
 }
+
 .registerForm {
     background-color: white;
     overflow: hidden;
@@ -187,6 +230,7 @@ input {
     position: absolute;
     box-shadow: 5px 10px 5px#0000007a;
 }
+
 .loginForm {
     background-color: white;
     overflow: hidden;
@@ -197,6 +241,7 @@ input {
     position: absolute;
     box-shadow: 5px 10px 5px#0000007a;
 }
+
 .loginFormTitle {
     margin-bottom: 30px;
     font-size: 18pt;
@@ -210,53 +255,64 @@ input {
     padding-top: 50px;
     padding-bottom: 39px;
 }
-.formInput {
-  font-size: 15px;
-  color: #000000;
-  position: relative;
-  display: block;
-  width: 70%;
-  height: 55px;
-  background: #ebebeb;
-  border-radius: 27px;
-  padding: 0 35px 0px 35px;
-  margin: auto;
-  margin-bottom: 35px;
-}
-.containerFormBtn {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.loginFormBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  width: 75%;
-  height: 50px;
-  background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
-  border-radius: 25px;
-  margin-bottom: 35px;
 
-  font-size: 15px;
-  color: #fff;
-  line-height: 1.2;
-  text-transform: uppercase;
+.formInput {
+    font-size: 15px;
+    color: #000000;
+    position: relative;
+    display: block;
+    width: 70%;
+    height: 55px;
+    background: #ebebeb;
+    border-radius: 27px;
+    padding: 0 35px 0px 35px;
+    margin: auto;
+    margin-bottom: 35px;
+}
+
+.containerFormBtn {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.loginFormBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 75%;
+    height: 50px;
+    background: linear-gradient(rgb(235, 163, 56), rgb(175, 107, 5));
+    border-radius: 25px;
+    margin-bottom: 35px;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
 }
 
 @media only screen and (max-height: 800px) {
-    .faIconGroup { font-size: 20pt; }
+    .faIconGroup {
+        font-size: 20pt;
+    }
 }
+
 @media only screen and (max-width: 500px) {
-    .faIconGroup { font-size: 20pt; }
-    .verticalLine { margin-left: 10%; }
+    .faIconGroup {
+        font-size: 20pt;
+    }
+    .verticalLine {
+        margin-left: 10%;
+    }
     .horizontalLine {
         margin-top: 30px;
         border-top: 1px solid rgba(0, 0, 83, 0.527);
     }
-    .spacer { height: 28px; }
+    .spacer {
+        height: 28px;
+    }
     .textArea {
         margin-left: 11%;
         font-size: 14pt;
@@ -269,8 +325,12 @@ input {
         font-size: 24pt;
         transform: translate(3%, 12%);
     }
-    #invisible { display: none; }
-    .faIconGroup i { margin-right: 20px; }
+    #invisible {
+        display: none;
+    }
+    .faIconGroup i {
+        margin-right: 20px;
+    }
     .container {
         width: 100%;
         height: 100%;
@@ -279,28 +339,42 @@ input {
         top: 0;
         left: 0;
     }
-    .pad { 
-        border-radius: 0px; 
+    .pad {
+        border-radius: 0px;
     }
-    .sideBar { display: inherit; }
+    .sideBar {
+        display: inherit;
+    }
     .dropdownContent {
         margin-top: 38%;
-        left: -150%; 
+        left: -150%;
     }
-    button { 
+    button {
         font-size: 18pt;
-        margin: 2px; 
+        margin: 2px;
     }
-    button:first-child { margin-top: 15px; }
-    .newNote{
+    button:first-child {
+        margin-top: 15px;
+    }
+    .newNote {
         visibility: hidden;
     }
     .newNoteMobile {
         visibility: visible;
     }
 }
-@media only screen and (max-width: 361px) { .textArea { margin-top: 9%; }}
+
+@media only screen and (max-width: 361px) {
+    .textArea {
+        margin-top: 9%;
+    }
+}
+
 @media only screen and (max-width: 769px) {
-    .textArea { margin-top: 9%; }
-    .title { width: 200px; }
+    .textArea {
+        margin-top: 9%;
+    }
+    .title {
+        width: 200px;
+    }
 }
