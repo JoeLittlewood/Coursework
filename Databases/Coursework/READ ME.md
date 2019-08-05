@@ -28,7 +28,7 @@ CREATE DATABASE haulage;
 mysql -u username -p new_databse < data-dump.sql
 ```
 
-**username:** J
+**username:** root
 **new_database:** haulage
 **data-dump.sql:** haulage.sql
 
