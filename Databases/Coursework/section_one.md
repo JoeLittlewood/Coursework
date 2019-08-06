@@ -3,20 +3,21 @@
 ----
 
 - [Section One - SELECT Statements (60 Points)](#Section-One---SELECT-Statements-60-Points)
-  - [1. **Trip 73440.** How many items were transported during trip 73440?](#1-Trip-73440-How-many-items-were-transported-during-trip-73440)
-  - [2. **Singleton.** Find the trip in which only a single item was transported.](#2-Singleton-Find-the-trip-in-which-only-a-single-item-was-transported)
-  - [3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April?](#3-Gavin-Brandon-Which-company-did-Gavin-Brandon-deliver-to-between-the-24th-and-25th-of-April)
-  - [4. **Long haul.** Which driver was responsible for the longest trip?](#4-Long-haul-Which-driver-was-responsible-for-the-longest-trip)
-  - [5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered.](#5-Peak-district-Find-the-town-where-we-do-the-most-business-%E2%80%93-ie-the-one-where-the-largest-number-of-items-are-picked-up-and-delivered)
-  - [6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on.](#6-Least-used-Find-the-five-trucks-that-are-least-used-during-the-six-months-covered-by-the-data-Order-by-the-number-of-trips-they-were-used-on)
+  - [1. **Trip 73440.** How many items were transported during trip 73440? COMPLETE](#1-Trip-73440-How-many-items-were-transported-during-trip-73440-COMPLETE)
+  - [2. **Singleton.** Find the trip in which only a single item was transported. COMPLETE](#2-Singleton-Find-the-trip-in-which-only-a-single-item-was-transported-COMPLETE)
+  - [3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April? COMPLETE](#3-Gavin-Brandon-Which-company-did-Gavin-Brandon-deliver-to-between-the-24th-and-25th-of-April-COMPLETE)
+  - [4. **Long haul.** Which driver was responsible for the longest trip? COMPLETE](#4-Long-haul-Which-driver-was-responsible-for-the-longest-trip-COMPLETE)
+  - [5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered. COMPLETE](#5-Peak-district-Find-the-town-where-we-do-the-most-business-%E2%80%93-ie-the-one-where-the-largest-number-of-items-are-picked-up-and-delivered-COMPLETE)
+  - [6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on. COMPLETE](#6-Least-used-Find-the-five-trucks-that-are-least-used-during-the-six-months-covered-by-the-data-Order-by-the-number-of-trips-they-were-used-on-COMPLETE)
   - [7. Customer satisfaction. Each month the company emails the five customers with the highest number of pickups (not manifest items) to check they are happy with the service. List the top five customers for June.](#7-Customer-satisfaction-Each-month-the-company-emails-the-five-customers-with-the-highest-number-of-pickups-not-manifest-items-to-check-they-are-happy-with-the-service-List-the-top-five-customers-for-June)
-  - [8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated)](#8-Gently-does-it-Which-drivers-have-never-transported-anything-fragile-NB-Results-are-abbreviated)
-  - [9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking?](#9-Travelling-light-Usually-the-sequence-of-pickups-and-deliveries-has-to-be-carefully-managed-so-as-not-to-exceed-the-vehicles-capacity-However-if-the-total-weight-of-manifest-items-for-the-whole-trip-does-not-exceed-the-limit-these-checks-can-be-skipped-How-many-trips-can-proceed-without-checking)
-  - [10.](#10)
+  - [8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated) COMPLETE](#8-Gently-does-it-Which-drivers-have-never-transported-anything-fragile-NB-Results-are-abbreviated-COMPLETE)
+  - [9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking? COMPLETE](#9-Travelling-light-Usually-the-sequence-of-pickups-and-deliveries-has-to-be-carefully-managed-so-as-not-to-exceed-the-vehicles-capacity-However-if-the-total-weight-of-manifest-items-for-the-whole-trip-does-not-exceed-the-limit-these-checks-can-be-skipped-How-many-trips-can-proceed-without-checking-COMPLETE)
+  - [10. **Average number of trips.** What is the average number of trips in each month? Order the results by month.](#10-Average-number-of-trips-What-is-the-average-number-of-trips-in-each-month-Order-the-results-by-month)
+  - [11. Dangerous driving. For all trips where hazardous good were transported, find the percentage of each category of item in the manifest.Sort in descending order of the percentage of hazardous items. (NB results are abbreviated)](#11-Dangerous-driving-For-all-trips-where-hazardous-good-were-transported-find-the-percentage-of-each-category-of-item-in-the-manifestSort-in-descending-order-of-the-percentage-of-hazardous-items-NB-results-are-abbreviated)
 
 ----
 
-## 1. **Trip 73440.** How many items were transported during trip 73440?
+## 1. **Trip 73440.** How many items were transported during trip 73440?    COMPLETE
 
 **Answer:**
 
@@ -36,7 +37,7 @@ SELECT COUNT(*) Items FROM manifest WHERE trip_id = 73440;
 
 ----
 
-## 2. **Singleton.** Find the trip in which only a single item was transported.
+## 2. **Singleton.** Find the trip in which only a single item was transported. COMPLETE
 
 **Answer:**
 
@@ -56,7 +57,7 @@ SELECT trip_id FROM manifest GROUP BY trip_id HAVING (count(trip_id) = 1);
 
 ----
 
-## 3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April?
+## 3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April? COMPLETE
 
 **Answer:**
 
@@ -92,7 +93,7 @@ WHERE reference = (
 
 ----
 
-## 4. **Long haul.** Which driver was responsible for the longest trip?
+## 4. **Long haul.** Which driver was responsible for the longest trip? COMPLETE
 
 **Answer:**
 
@@ -121,7 +122,7 @@ LIMIT 1;
 
 ----
 
-## 5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered.
+## 5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered.    COMPLETE
 
 **Answer:**
 
@@ -151,7 +152,7 @@ LIMIT 1;
 
 ----
 
-## 6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on.
+## 6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on. COMPLETE
 
 **Answer:**
 
@@ -214,7 +215,7 @@ LIMIT 5;
 
 ----
 
-## 8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated)
+## 8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated) COMPLETE
 
 **Answer:**
 
@@ -294,7 +295,7 @@ WHERE driver.employee_no = trip.employee_no
 
 ----
 
-## 9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking?
+## 9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking? COMPLETE
 
 **Answer:**
 
@@ -334,12 +335,28 @@ AND NOT total.weight > maximum.maximum_weight;
 
 ----
 
-## 10. 
+## 10. **Average number of trips.** What is the average number of trips in each month? Order the results by month.
 
 **Answer:**
 
 ```sql
+SELECT DATE_FORMAT(`departure_date`,'%M') as trip_month, COUNT(trip_id) as trips FROM trip WHERE departure_date BETWEEN '2012-01-01' AND '2012-01-31' GROUP BY trip_month;
+```
 
+**Output:**
+
+```sql
+
+```
+
+----
+
+## 11. Dangerous driving. For all trips where hazardous good were transported, find the percentage of each category of item in the manifest.Sort in descending order of the percentage of hazardous items. (NB results are abbreviated)
+
+**Answer:**
+
+```sql
+SELECT DATE_FORMAT(`departure_date`,'%M') as trip_month, COUNT(trip_id) as trips FROM trip WHERE departure_date BETWEEN '2012-01-01' AND '2012-01-31' GROUP BY trip_month;
 ```
 
 **Output:**
