@@ -190,27 +190,29 @@ LIMIT 5;
 **Answer:**
 
 ```sql
-
+SELECT customer.reference, customer.company_name, COUNT(DISTINCT trip.trip_id) pickups
+FROM manifest JOIN customer, trip
+WHERE customer.reference = manifest.pickup_customer_ref
+    AND manifest.trip_id = trip.trip_id
+    AND trip.departure_date
+        BETWEEN '2012-06-01' AND '2012-06-30'
+GROUP BY manifest.pickup_customer_ref
+ORDER BY pickups DESC, customer.reference ASC
+LIMIT 5;
 ```
 
 **Output:**
 
 ```sql
-
-```
-
-----
-
-```sql
-SELECT customer.reference, customer.company_name, COUNT(*) pickups
-FROM manifest INNER JOIN customer, trip
-WHERE customer.reference = manifest.pickup_customer_ref
-    AND manifest.trip_id = trip.trip_id
-    AND trip.departure_date
-        BETWEEN '2012-06-01' AND '2012-06-30'
-GROUP BY manifest.pickup_customer_ref, manifest.trip_id
-ORDER BY pickups DESC
-LIMIT 5;
++-----------+------------------------+---------+
+| reference | company_name           | pickups |
++-----------+------------------------+---------+
+|         3 | Trochiline Services    |       9 |
+|        99 | Temerarious & Co       |       9 |
+|       264 | Byssiferous Industrial |       9 |
+|       283 | Contemper Retail       |       9 |
+|         7 | Noumenalism Plc        |       8 |
++-----------+------------------------+---------+
 ```
 
 ----
