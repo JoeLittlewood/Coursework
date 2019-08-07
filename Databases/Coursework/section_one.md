@@ -1,10 +1,21 @@
 # Section One - SELECT Statements (60 Points)
 
-Website: https://db-cw.tk/phpmyadmin/db_sql.php?db=joe
+## Setup:
+
+run:
+
+```sh
+$ sudo mysql -u joe -p -h db-cw.tk
+
+MariaDB [(none)]> Enter password.
+
+MariaDB [(none)]> USE joe;
+```
 
 ----
 
 - [Section One - SELECT Statements (60 Points)](#Section-One---SELECT-Statements-60-Points)
+  - [Setup:](#Setup)
   - [1. **Trip 73440.** How many items were transported during trip 73440? COMPLETE](#1-Trip-73440-How-many-items-were-transported-during-trip-73440-COMPLETE)
   - [2. **Singleton.** Find the trip in which only a single item was transported. COMPLETE](#2-Singleton-Find-the-trip-in-which-only-a-single-item-was-transported-COMPLETE)
   - [3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April? COMPLETE](#3-Gavin-Brandon-Which-company-did-Gavin-Brandon-deliver-to-between-the-24th-and-25th-of-April-COMPLETE)
