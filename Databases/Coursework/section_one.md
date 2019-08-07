@@ -16,21 +16,22 @@ MariaDB [(none)]> USE joe;
 
 ## Table of Contents
 
-- [Section One - SELECT Statements (60 Points)](#Section-One---SELECT-Statements-60-Points)
-  - [Setup](#Setup)
-  - [Table of Contents](#Table-of-Contents)
-  - [1. **Trip 73440.** How many items were transported during trip 73440? ✔ (5 Marks)](#1-Trip-73440-How-many-items-were-transported-during-trip-73440-%E2%9C%94-5-Marks)
-  - [2. **Singleton.** Find the trip in which only a single item was transported. ✔ (5 Marks)](#2-Singleton-Find-the-trip-in-which-only-a-single-item-was-transported-%E2%9C%94-5-Marks)
-  - [3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April? ✔ (5 Marks)](#3-Gavin-Brandon-Which-company-did-Gavin-Brandon-deliver-to-between-the-24th-and-25th-of-April-%E2%9C%94-5-Marks)
-  - [4. **Long haul.** Which driver was responsible for the longest trip? ✔ (5 Marks)](#4-Long-haul-Which-driver-was-responsible-for-the-longest-trip-%E2%9C%94-5-Marks)
-  - [5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered. ✔ (5 Marks)](#5-Peak-district-Find-the-town-where-we-do-the-most-business-%E2%80%93-ie-the-one-where-the-largest-number-of-items-are-picked-up-and-delivered-%E2%9C%94-5-Marks)
-  - [6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on. ✔ (8 Marks)](#6-Least-used-Find-the-five-trucks-that-are-least-used-during-the-six-months-covered-by-the-data-Order-by-the-number-of-trips-they-were-used-on-%E2%9C%94-8-Marks)
-  - [7. **Customer satisfaction.** Each month the company emails the five customers with the highest number of pickups (not manifest items) to check they are happy with the service. List the top five customers for June. ✔ (8 Marks)](#7-Customer-satisfaction-Each-month-the-company-emails-the-five-customers-with-the-highest-number-of-pickups-not-manifest-items-to-check-they-are-happy-with-the-service-List-the-top-five-customers-for-June-%E2%9C%94-8-Marks)
-  - [8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated) ✔ (8 Marks)](#8-Gently-does-it-Which-drivers-have-never-transported-anything-fragile-NB-Results-are-abbreviated-%E2%9C%94-8-Marks)
-  - [9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking? ✔ (8 Marks)](#9-Travelling-light-Usually-the-sequence-of-pickups-and-deliveries-has-to-be-carefully-managed-so-as-not-to-exceed-the-vehicles-capacity-However-if-the-total-weight-of-manifest-items-for-the-whole-trip-does-not-exceed-the-limit-these-checks-can-be-skipped-How-many-trips-can-proceed-without-checking-%E2%9C%94-8-Marks)
-  - [10. **Average number of trips.** What is the average number of trips per driver in each month? Order the results by month. ✔ (8 Marks)](#10-Average-number-of-trips-What-is-the-average-number-of-trips-per-driver-in-each-month-Order-the-results-by-month-%E2%9C%94-8-Marks)
-  - [11. **Dangerous driving.** For all trips where hazardous goods were transported, find the percentage of each category of item in the manifest. Sort in descending order of the percentage of hazardous items. (NB results are abbreviated) (12 Marks)](#11-Dangerous-driving-For-all-trips-where-hazardous-goods-were-transported-find-the-percentage-of-each-category-of-item-in-the-manifest-Sort-in-descending-order-of-the-percentage-of-hazardous-items-NB-results-are-abbreviated-12-Marks)
-  - [12. Unused trucks.List the registration numbers of the trucks that were not in use between 1st and 5th April inclusive. ✔ (12 marks)](#12-Unused-trucksList-the-registration-numbers-of-the-trucks-that-were-not-in-use-between-1st-and-5th-April-inclusive-%E2%9C%94-12-marks)
+- [Top](#Section-One---SELECT-Statements-60-Points)
+  - [1. **Trip 73440.** (5 Marks) ✔](#1-Trip-73440-How-many-items-were-transported-during-trip-73440-%E2%9C%94-5-Marks)
+  - [2. **Singleton.** (5 Marks) ✔](#2-Singleton-Find-the-trip-in-which-only-a-single-item-was-transported-%E2%9C%94-5-Marks)
+  - [3. **Gavin Brandon.** (5 Marks) ✔](#3-Gavin-Brandon-Which-company-did-Gavin-Brandon-deliver-to-between-the-24th-and-25th-of-April-%E2%9C%94-5-Marks)
+  - [4. **Long haul.** (5 Marks) ✔](#4-Long-haul-Which-driver-was-responsible-for-the-longest-trip-%E2%9C%94-5-Marks)
+  - [5. **Peak district.** (5 Marks) ✔](#5-Peak-district-Find-the-town-where-we-do-the-most-business-%E2%80%93-ie-the-one-where-the-largest-number-of-items-are-picked-up-and-delivered-%E2%9C%94-5-Marks)
+  - [6. **Least used.** (8 Marks) ✔](#6-Least-used-Find-the-five-trucks-that-are-least-used-during-the-six-months-covered-by-the-data-Order-by-the-number-of-trips-they-were-used-on-%E2%9C%94-8-Marks)
+  - [7. **Customer satisfaction.** (8 Marks) ✔](#7-Customer-satisfaction-Each-month-the-company-emails-the-five-customers-with-the-highest-number-of-pickups-not-manifest-items-to-check-they-are-happy-with-the-service-List-the-top-five-customers-for-June-%E2%9C%94-8-Marks)
+  - [8. **Gently does it.** (8 Marks) ✔](#8-Gently-does-it-Which-drivers-have-never-transported-anything-fragile-NB-Results-are-abbreviated-%E2%9C%94-8-Marks)
+  - [9. **Travelling light.** (8 Marks) ✔](#9-Travelling-light-Usually-the-sequence-of-pickups-and-deliveries-has-to-be-carefully-managed-so-as-not-to-exceed-the-vehicles-capacity-However-if-the-total-weight-of-manifest-items-for-the-whole-trip-does-not-exceed-the-limit-these-checks-can-be-skipped-How-many-trips-can-proceed-without-checking-%E2%9C%94-8-Marks)
+  - [10. **Average number of trips.** (8 Marks) ✔](#10-Average-number-of-trips-What-is-the-average-number-of-trips-per-driver-in-each-month-Order-the-results-by-month-%E2%9C%94-8-Marks)
+  - [11. **Dangerous driving.** (12 Marks)](#11-Dangerous-driving-For-all-trips-where-hazardous-goods-were-transported-find-the-percentage-of-each-category-of-item-in-the-manifest-Sort-in-descending-order-of-the-percentage-of-hazardous-items-NB-results-are-abbreviated-12-Marks)
+  - [12. **Unused trucks.** (12 marks) ✔](#12-Unused-trucks-List-the-registration-numbers-of-the-trucks-that-were-not-in-use-between-1st-and-5th-April-inclusive-%E2%9C%94-12-marks)
+  - [13. **Bonus.** (12 Marks)](#13-Bonus-If-a-driver-works-more-than-22days-in-any-one-month-they-are-paid-at-a-higher-rate-for-the-extra-days-List-the-drivers-who-qualify-for-bonus-payments-for-each-month-in-the-data-and-include-the-number-of-extra-days-worked-Drivers-who-are-not-eligible-for-a-bonus-should-notbe-shownOrder-by-month-and-number-of-days-descending-12-Marks)
+  - [14. **Peak week.** (12 Marks)](#14-Peak-week-Find-the-busiest-week-based-on-the-number-of-departures-and-returnsShow-the-start-date-assuming-that-a-week-starts-on-Monday-and-the-number-of-departures-and-returns-12-Marks)
+  - [15. **Capacity factor.** (12 Marks)](#15-Capacity-factor-100-capacity-is-when-every-truck-is-in-use-every-day-If-some-trucks-are-idle-the-capacity-factor-is-less-than-100-What-is-the-total-capacity-factor-for-the-company-for-thetime-periodcovered-by-the-data-12-Marks)
 
 ----
 
@@ -472,6 +473,76 @@ ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
 **Answer:**
 
 ```sql
+SELECT total.trip_id,
+    CONCAT(IFNULL(ROUND(a_count.A / total.items_per_trip * 100), 0), '%') as A,
+    CONCAT(IFNULL(ROUND(b_count.B / total.items_per_trip * 100), 0), '%') as B,
+    CONCAT(IFNULL(ROUND(c_count.C / total.items_per_trip * 100), 0), '%') as C
+FROM (
+    SELECT items.trip_id, COUNT(*) as items_per_trip
+        FROM (
+            SELECT manifest.trip_id, manifest.category
+            FROM manifest
+            JOIN (
+                SELECT trip_id
+                FROM manifest
+                WHERE category = 'C'
+            ) as hazerdous_trip
+            ON hazerdous_trip.trip_id = manifest.trip_id
+            ORDER BY trip_id
+        ) as items
+        GROUP BY items.trip_id
+) as total
+LEFT JOIN (
+    SELECT trip_id, COUNT(*) as A
+        FROM (
+            SELECT manifest.trip_id, manifest.category
+            FROM manifest
+            JOIN (
+                SELECT trip_id
+                FROM manifest
+                WHERE category = 'C'
+            ) as hazerdous_trip
+            ON hazerdous_trip.trip_id = manifest.trip_id
+            ORDER BY trip_id
+        ) as a_items
+        WHERE a_items.category = 'A'
+        GROUP BY trip_id
+) as a_count ON total.trip_id = a_count.trip_id
+LEFT JOIN (
+    SELECT trip_id, COUNT(*) as B
+        FROM (
+            SELECT manifest.trip_id, manifest.category
+            FROM manifest
+            JOIN (
+                SELECT trip_id
+                FROM manifest
+                WHERE category = 'C'
+            ) as hazerdous_trip
+            ON hazerdous_trip.trip_id = manifest.trip_id
+            ORDER BY trip_id
+        ) as b_items
+    WHERE b_items.category = 'B'
+    GROUP BY trip_id
+) as b_count
+ON total.trip_id = b_count.trip_id
+LEFT JOIN (
+    SELECT trip_id, COUNT(*) as C
+        FROM (
+            SELECT manifest.trip_id, manifest.category
+            FROM manifest
+            JOIN (
+            SELECT trip_id
+                FROM manifest
+                WHERE category = 'C'
+            ) as hazerdous_trip
+            ON hazerdous_trip.trip_id = manifest.trip_id
+            ORDER BY trip_id
+        ) as c_items
+    WHERE c_items.category = 'C'
+    GROUP BY trip_id
+) as c_count
+ON total.trip_id = c_count.trip_id
+ORDER BY c_count.C / total.items_per_trip * 100 DESC;
 
 ```
 
@@ -483,7 +554,7 @@ ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
 
 ----
 
-## 12. Unused trucks.List the registration numbers of the trucks that were not in use between 1st and 5th April inclusive. ✔ (12 marks)
+## 12. **Unused trucks.** List the registration numbers of the trucks that were not in use between 1st and 5th April inclusive. ✔ (12 marks)
 
 **Answer:**
 
@@ -523,6 +594,54 @@ WHERE used.registration IS NULL;
 | BD60BVF      |
 | BD08AOF      |
 +--------------+
+```
+
+----
+
+## 13. **Bonus.** If a driver works more than 22days in any one month, they are paid at a higher rate for the extra days. List the drivers who qualify for bonus payments for each month in the data and include the number of extra days worked. Drivers who are not eligible for a bonus should notbe shown.Order by month and number of days descending. (12 Marks)
+
+**Answer:**
+
+```sql
+
+```
+
+**Output:**
+
+```sql
+
+```
+
+----
+
+## 14. **Peak week.** Find the busiest week based on the number of departures and returns. Show the start date assuming that a week starts on Monday and the number of departures and returns. (12 Marks)
+
+**Answer:**
+
+```sql
+
+```
+
+**Output:**
+
+```sql
+
+```
+
+----
+
+## 15. **Capacity factor.** 100% capacity is when every truck is in use every day. If some trucks are idle, the capacity factor is less than 100%. What is the total capacity factor for the company for thetime periodcovered by the data? (12 Marks)
+
+**Answer:**
+
+```sql
+
+```
+
+**Output:**
+
+```sql
+
 ```
 
 ----
