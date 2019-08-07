@@ -19,21 +19,21 @@ MariaDB [(none)]> USE joe;
 - [Section One - SELECT Statements (60 Points)](#Section-One---SELECT-Statements-60-Points)
   - [Setup](#Setup)
   - [Table of Contents](#Table-of-Contents)
-  - [1. **Trip 73440.** How many items were transported during trip 73440? ✔](#1-Trip-73440-How-many-items-were-transported-during-trip-73440-%E2%9C%94)
-  - [2. **Singleton.** Find the trip in which only a single item was transported. ✔](#2-Singleton-Find-the-trip-in-which-only-a-single-item-was-transported-%E2%9C%94)
-  - [3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April? ✔](#3-Gavin-Brandon-Which-company-did-Gavin-Brandon-deliver-to-between-the-24th-and-25th-of-April-%E2%9C%94)
-  - [4. **Long haul.** Which driver was responsible for the longest trip? ✔](#4-Long-haul-Which-driver-was-responsible-for-the-longest-trip-%E2%9C%94)
-  - [5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered. ✔](#5-Peak-district-Find-the-town-where-we-do-the-most-business-%E2%80%93-ie-the-one-where-the-largest-number-of-items-are-picked-up-and-delivered-%E2%9C%94)
-  - [6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on. ✔](#6-Least-used-Find-the-five-trucks-that-are-least-used-during-the-six-months-covered-by-the-data-Order-by-the-number-of-trips-they-were-used-on-%E2%9C%94)
-  - [7. **Customer satisfaction.** Each month the company emails the five customers with the highest number of pickups (not manifest items) to check they are happy with the service. List the top five customers for June. ✔](#7-Customer-satisfaction-Each-month-the-company-emails-the-five-customers-with-the-highest-number-of-pickups-not-manifest-items-to-check-they-are-happy-with-the-service-List-the-top-five-customers-for-June-%E2%9C%94)
-  - [8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated) ✔](#8-Gently-does-it-Which-drivers-have-never-transported-anything-fragile-NB-Results-are-abbreviated-%E2%9C%94)
-  - [9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking? ✔](#9-Travelling-light-Usually-the-sequence-of-pickups-and-deliveries-has-to-be-carefully-managed-so-as-not-to-exceed-the-vehicles-capacity-However-if-the-total-weight-of-manifest-items-for-the-whole-trip-does-not-exceed-the-limit-these-checks-can-be-skipped-How-many-trips-can-proceed-without-checking-%E2%9C%94)
-  - [10. **Average number of trips.** What is the average number of trips in each month? Order the results by month.](#10-Average-number-of-trips-What-is-the-average-number-of-trips-in-each-month-Order-the-results-by-month)
-  - [11. **Dangerous driving.** For all trips where hazardous good were transported, find the percentage of each category of item in the manifest.Sort in descending order of the percentage of hazardous items. (NB results are abbreviated)](#11-Dangerous-driving-For-all-trips-where-hazardous-good-were-transported-find-the-percentage-of-each-category-of-item-in-the-manifestSort-in-descending-order-of-the-percentage-of-hazardous-items-NB-results-are-abbreviated)
+  - [1. **Trip 73440.** How many items were transported during trip 73440? ✔ (5 Marks)](#1-Trip-73440-How-many-items-were-transported-during-trip-73440-%E2%9C%94-5-Marks)
+  - [2. **Singleton.** Find the trip in which only a single item was transported. ✔ (5 Marks)](#2-Singleton-Find-the-trip-in-which-only-a-single-item-was-transported-%E2%9C%94-5-Marks)
+  - [3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April? ✔ (5 Marks)](#3-Gavin-Brandon-Which-company-did-Gavin-Brandon-deliver-to-between-the-24th-and-25th-of-April-%E2%9C%94-5-Marks)
+  - [4. **Long haul.** Which driver was responsible for the longest trip? ✔ (5 Marks)](#4-Long-haul-Which-driver-was-responsible-for-the-longest-trip-%E2%9C%94-5-Marks)
+  - [5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered. ✔ (5 Marks)](#5-Peak-district-Find-the-town-where-we-do-the-most-business-%E2%80%93-ie-the-one-where-the-largest-number-of-items-are-picked-up-and-delivered-%E2%9C%94-5-Marks)
+  - [6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on. ✔ (8 Marks)](#6-Least-used-Find-the-five-trucks-that-are-least-used-during-the-six-months-covered-by-the-data-Order-by-the-number-of-trips-they-were-used-on-%E2%9C%94-8-Marks)
+  - [7. **Customer satisfaction.** Each month the company emails the five customers with the highest number of pickups (not manifest items) to check they are happy with the service. List the top five customers for June. ✔ (8 Marks)](#7-Customer-satisfaction-Each-month-the-company-emails-the-five-customers-with-the-highest-number-of-pickups-not-manifest-items-to-check-they-are-happy-with-the-service-List-the-top-five-customers-for-June-%E2%9C%94-8-Marks)
+  - [8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated) ✔ (8 Marks)](#8-Gently-does-it-Which-drivers-have-never-transported-anything-fragile-NB-Results-are-abbreviated-%E2%9C%94-8-Marks)
+  - [9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking? ✔ (8 Marks)](#9-Travelling-light-Usually-the-sequence-of-pickups-and-deliveries-has-to-be-carefully-managed-so-as-not-to-exceed-the-vehicles-capacity-However-if-the-total-weight-of-manifest-items-for-the-whole-trip-does-not-exceed-the-limit-these-checks-can-be-skipped-How-many-trips-can-proceed-without-checking-%E2%9C%94-8-Marks)
+  - [10. **Average number of trips.** What is the average number of trips per driver in each month? Order the results by month. ✔ (8 Marks)](#10-Average-number-of-trips-What-is-the-average-number-of-trips-per-driver-in-each-month-Order-the-results-by-month-%E2%9C%94-8-Marks)
+  - [11. **Dangerous driving.** For all trips where hazardous good were transported, find the percentage of each category of item in the manifest.Sort in descending order of the percentage of hazardous items. (NB results are abbreviated) (12 Marks)](#11-Dangerous-driving-For-all-trips-where-hazardous-good-were-transported-find-the-percentage-of-each-category-of-item-in-the-manifestSort-in-descending-order-of-the-percentage-of-hazardous-items-NB-results-are-abbreviated-12-Marks)
 
 ----
 
-## 1. **Trip 73440.** How many items were transported during trip 73440? ✔
+## 1. **Trip 73440.** How many items were transported during trip 73440? ✔ (5 Marks)
 
 **Answer:**
 
@@ -53,7 +53,7 @@ SELECT COUNT(*) Items FROM manifest WHERE trip_id = 73440;
 
 ----
 
-## 2. **Singleton.** Find the trip in which only a single item was transported. ✔
+## 2. **Singleton.** Find the trip in which only a single item was transported. ✔ (5 Marks)
 
 **Answer:**
 
@@ -73,7 +73,7 @@ SELECT trip_id FROM manifest GROUP BY trip_id HAVING (count(trip_id) = 1);
 
 ----
 
-## 3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April? ✔
+## 3. **Gavin Brandon.** Which company did Gavin Brandon deliver to between the 24th and 25th of April? ✔ (5 Marks)
 
 **Answer:**
 
@@ -109,7 +109,7 @@ WHERE reference = (
 
 ----
 
-## 4. **Long haul.** Which driver was responsible for the longest trip? ✔
+## 4. **Long haul.** Which driver was responsible for the longest trip? ✔ (5 Marks)
 
 **Answer:**
 
@@ -138,7 +138,7 @@ LIMIT 1;
 
 ----
 
-## 5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered. ✔
+## 5. **Peak district.** Find the town where we do the most business – ie the one where the largest number of items are picked up and delivered. ✔ (5 Marks)
 
 **Answer:**
 
@@ -168,7 +168,7 @@ LIMIT 1;
 
 ----
 
-## 6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on. ✔
+## 6. **Least used.** Find the five trucks that are least used during the six months covered by the data. Order by the number of trips they were used on. ✔ (8 Marks)
 
 **Answer:**
 
@@ -180,7 +180,7 @@ SELECT model.make,
 FROM vehicle INNER JOIN model, trip
 WHERE model.model = vehicle.model
     AND vehicle.vehicle_id = trip.vehicle_id
-GROUP BY vehicle.registration
+GROUP BY vehicle.registration, model.make, model.model
 ORDER BY trips
 LIMIT 5;
 ```
@@ -201,7 +201,7 @@ LIMIT 5;
 
 ----
 
-## 7. **Customer satisfaction.** Each month the company emails the five customers with the highest number of pickups (not manifest items) to check they are happy with the service. List the top five customers for June. ✔
+## 7. **Customer satisfaction.** Each month the company emails the five customers with the highest number of pickups (not manifest items) to check they are happy with the service. List the top five customers for June. ✔ (8 Marks)
 
 **Answer:**
 
@@ -212,7 +212,7 @@ WHERE customer.reference = manifest.pickup_customer_ref
     AND manifest.trip_id = trip.trip_id
     AND trip.departure_date
         BETWEEN '2012-06-01' AND '2012-06-30'
-GROUP BY manifest.pickup_customer_ref
+GROUP BY manifest.pickup_customer_ref, customer.company_name, customer.reference
 ORDER BY pickups DESC, customer.reference ASC
 LIMIT 5;
 ```
@@ -233,7 +233,7 @@ LIMIT 5;
 
 ----
 
-## 8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated) ✔
+## 8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated) ✔ (8 Marks)
 
 **Answer:**
 
@@ -313,7 +313,7 @@ WHERE driver.employee_no = trip.employee_no
 
 ----
 
-## 9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking? ✔
+## 9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking? ✔ (8 Marks)
 
 **Answer:**
 
@@ -338,7 +338,6 @@ INNER JOIN
 ) as maximum
 WHERE total.trip_id = maximum.trip_id
 AND NOT total.weight > maximum.maximum_weight;
-
 ```
 
 **Output:**
@@ -353,28 +352,126 @@ AND NOT total.weight > maximum.maximum_weight;
 
 ----
 
-## 10. **Average number of trips.** What is the average number of trips in each month? Order the results by month.
+## 10. **Average number of trips.** What is the average number of trips per driver in each month? Order the results by month. ✔ (8 Marks)
 
 **Answer:**
 
 ```sql
-SELECT DATE_FORMAT(`departure_date`,'%M') as trip_month, COUNT(trip_id) as trips FROM trip WHERE departure_date BETWEEN '2012-01-01' AND '2012-01-31' GROUP BY trip_month;
+SELECT drivers.trip_month as MONTH, FORMAT(total.trips / drivers.drivers, 1) trips
+FROM
+(
+    SELECT MONTHNAME(`departure_date`) as trip_month, COUNT(trip_id) as trips FROM trip
+    GROUP BY trip_month
+) as total
+INNER JOIN
+(
+    SELECT january.trip_month, COUNT(*) drivers
+    FROM
+    (
+        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
+        FROM trip
+        INNER JOIN driver
+        ON driver.employee_no = trip.employee_no
+        WHERE trip.departure_date BETWEEN '2012-01-01' AND '2012-01-31'
+    ) as january
+    GROUP BY january.trip_month
+    UNION
+    SELECT february.trip_month, COUNT(*) drivers
+    FROM
+    (
+        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
+        FROM trip
+        INNER JOIN driver
+        ON driver.employee_no = trip.employee_no
+        WHERE trip.departure_date BETWEEN '2012-02-01' AND '2012-02-28'
+    ) as february
+    GROUP BY february.trip_month
+    UNION
+    SELECT march.trip_month, COUNT(*) drivers
+    FROM
+    (
+        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
+        FROM trip
+        INNER JOIN driver
+        ON driver.employee_no = trip.employee_no
+        WHERE trip.departure_date BETWEEN '2012-03-01' AND '2012-03-31'
+    ) as march
+    GROUP BY march.trip_month
+    UNION
+    SELECT april.trip_month, COUNT(*) drivers
+    FROM
+    (
+        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
+        FROM trip
+        INNER JOIN driver
+        ON driver.employee_no = trip.employee_no
+        WHERE trip.departure_date BETWEEN '2012-04-01' AND '2012-04-30'
+    ) as april
+    GROUP BY april.trip_month
+    UNION
+    SELECT may.trip_month, COUNT(*) drivers
+    FROM
+    (
+        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
+        FROM trip
+        INNER JOIN driver
+        ON driver.employee_no = trip.employee_no
+        WHERE trip.departure_date BETWEEN '2012-05-01' AND '2012-05-31'
+    ) as may
+    GROUP BY may.trip_month
+    UNION
+    SELECT june.trip_month, COUNT(*) drivers
+    FROM
+    (
+        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
+        FROM trip
+        INNER JOIN driver
+        ON driver.employee_no = trip.employee_no
+        WHERE trip.departure_date BETWEEN '2012-06-01' AND '2012-06-30'
+    ) as june
+    GROUP BY june.trip_month
+    UNION
+    SELECT july.trip_month, COUNT(*) drivers
+    FROM
+    (
+        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
+        FROM trip
+        INNER JOIN driver
+        ON driver.employee_no = trip.employee_no
+        WHERE trip.departure_date BETWEEN '2012-07-01' AND '2012-07-31'
+    ) as july
+    GROUP BY july.trip_month
+) as drivers
+ON total.trip_month = drivers.trip_month
+ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
+
+
 ```
 
 **Output:**
 
 ```sql
-
++----------+-------+
+| MONTH    | trips |
++----------+-------+
+| January  | 3.7   |
+| February | 3.3   |
+| March    | 3.6   |
+| April    | 3.5   |
+| May      | 3.5   |
+| June     | 3.5   |
+| July     | 1.0   |
++----------+-------+
 ```
 
 ----
 
-## 11. **Dangerous driving.** For all trips where hazardous good were transported, find the percentage of each category of item in the manifest.Sort in descending order of the percentage of hazardous items. (NB results are abbreviated)
+## 11. **Dangerous driving.** For all trips where hazardous good were transported, find the percentage of each category of item in the manifest.Sort in descending order of the percentage of hazardous items. (NB results are abbreviated) (12 Marks)
 
 **Answer:**
 
 ```sql
-SELECT DATE_FORMAT(`departure_date`,'%M') as trip_month, COUNT(trip_id) as trips FROM trip WHERE departure_date BETWEEN '2012-01-01' AND '2012-01-31' GROUP BY trip_month;
+SELECT MONTHNAME(`departure_date`) as trip_month, COUNT(trip_id) as trips FROM trip WHERE departure_date BETWEEN '2012-01-01' AND '2012-01-31' GROUP BY trip_month;
 ```
 
 **Output:**
