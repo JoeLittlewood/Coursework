@@ -29,7 +29,8 @@ MariaDB [(none)]> USE joe;
   - [8. **Gently does it.** Which drivers have never transported anything fragile? (NB Results are abbreviated) ✔ (8 Marks)](#8-Gently-does-it-Which-drivers-have-never-transported-anything-fragile-NB-Results-are-abbreviated-%E2%9C%94-8-Marks)
   - [9. **Travelling light.** Usually, the sequence of pickups and deliveries has to be carefully managed so as not to exceed the vehicle’s capacity. However, if the total weight of manifest items for the whole trip does not exceed the limit, these checks can be skipped. How many trips can proceed without checking? ✔ (8 Marks)](#9-Travelling-light-Usually-the-sequence-of-pickups-and-deliveries-has-to-be-carefully-managed-so-as-not-to-exceed-the-vehicles-capacity-However-if-the-total-weight-of-manifest-items-for-the-whole-trip-does-not-exceed-the-limit-these-checks-can-be-skipped-How-many-trips-can-proceed-without-checking-%E2%9C%94-8-Marks)
   - [10. **Average number of trips.** What is the average number of trips per driver in each month? Order the results by month. ✔ (8 Marks)](#10-Average-number-of-trips-What-is-the-average-number-of-trips-per-driver-in-each-month-Order-the-results-by-month-%E2%9C%94-8-Marks)
-  - [11. **Dangerous driving.** For all trips where hazardous good were transported, find the percentage of each category of item in the manifest.Sort in descending order of the percentage of hazardous items. (NB results are abbreviated) (12 Marks)](#11-Dangerous-driving-For-all-trips-where-hazardous-good-were-transported-find-the-percentage-of-each-category-of-item-in-the-manifestSort-in-descending-order-of-the-percentage-of-hazardous-items-NB-results-are-abbreviated-12-Marks)
+  - [11. **Dangerous driving.** For all trips where hazardous goods were transported, find the percentage of each category of item in the manifest. Sort in descending order of the percentage of hazardous items. (NB results are abbreviated) (12 Marks)](#11-Dangerous-driving-For-all-trips-where-hazardous-goods-were-transported-find-the-percentage-of-each-category-of-item-in-the-manifest-Sort-in-descending-order-of-the-percentage-of-hazardous-items-NB-results-are-abbreviated-12-Marks)
+  - [12. Unused trucks.List the registration numbers of the trucks that were not in use between 1st and 5th April inclusive. ✔ (12 marks)](#12-Unused-trucksList-the-registration-numbers-of-the-trucks-that-were-not-in-use-between-1st-and-5th-April-inclusive-%E2%9C%94-12-marks)
 
 ----
 
@@ -466,18 +467,62 @@ ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
 
 ----
 
-## 11. **Dangerous driving.** For all trips where hazardous good were transported, find the percentage of each category of item in the manifest.Sort in descending order of the percentage of hazardous items. (NB results are abbreviated) (12 Marks)
+## 11. **Dangerous driving.** For all trips where hazardous goods were transported, find the percentage of each category of item in the manifest. Sort in descending order of the percentage of hazardous items. (NB results are abbreviated) (12 Marks)
 
 **Answer:**
 
 ```sql
-SELECT MONTHNAME(`departure_date`) as trip_month, COUNT(trip_id) as trips FROM trip WHERE departure_date BETWEEN '2012-01-01' AND '2012-01-31' GROUP BY trip_month;
+
 ```
 
 **Output:**
 
 ```sql
 
+```
+
+----
+
+## 12. Unused trucks.List the registration numbers of the trucks that were not in use between 1st and 5th April inclusive. ✔ (12 marks)
+
+**Answer:**
+
+```sql
+SELECT DISTINCT all_vehicles.registration
+FROM
+(
+    SELECT DISTINCT vehicle.registration
+    FROM vehicle
+    INNER JOIN trip
+    ON trip.vehicle_id = vehicle.vehicle_id
+) as all_vehicles
+LEFT JOIN
+(
+    SELECT DISTINCT vehicle.registration
+    FROM vehicle
+    INNER JOIN trip
+    ON trip.vehicle_id = vehicle.vehicle_id
+    WHERE trip.departure_date <= '2012-04-01'
+        AND trip.return_date BETWEEN '2012-04-01' AND '2012-04-05'
+        OR trip.departure_date <= '2012-04-01' AND trip.return_date >= '2012-04-05'
+        OR trip.departure_date BETWEEN '2012-04-01' AND '2012-04-05'
+) as used
+ON all_vehicles.registration = used.registration
+WHERE used.registration IS NULL;
+```
+
+**Output:**
+
+```sql
++--------------+
+| registration |
++--------------+
+| SDU 567M     |
+| PY06 BYP     |
+| PY61 RNU     |
+| BD60BVF      |
+| BD08AOF      |
++--------------+
 ```
 
 ----
