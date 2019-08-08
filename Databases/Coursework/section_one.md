@@ -601,7 +601,6 @@ ORDER BY c_count.C / total.items_per_trip * 100 DESC;
 |   74059 | 96%  | 0%   | 4%   |
 |   73049 | 96%  | 0%   | 4%   |
 +---------+------+------+------+
-
 ```
 
 ----
@@ -650,18 +649,41 @@ WHERE used.registration IS NULL;
 
 ----
 
-## 13. **Bonus.** If a driver works more than 22days in any one month, they are paid at a higher rate for the extra days. List the drivers who qualify for bonus payments for each month in the data and include the number of extra days worked. Drivers who are not eligible for a bonus should notbe shown.Order by month and number of days descending. (12 Marks)
+## 13. **Bonus.** If a driver works more than 22 days in any one month, they are paid at a higher rate for the extra days. List the drivers who qualify for bonus payments for each month in the data and include the number of extra days worked. Drivers who are not eligible for a bonus should notbe shown.Order by month and number of days descending. (12 Marks)
 
 **Answer:**
 
 ```sql
-
+SELECT MONTHNAME(departure_date) as month,
+    CONCAT(driver.first_name, ' ', driver.last_name) as Name,
+    SUM(DATEDIFF(return_date, departure_date)) as Days,
+    SUM(DATEDIFF(return_date, departure_date)) - 22 as 'Bonus Days'
+FROM trip INNER JOIN driver ON driver.employee_no = trip.employee_no
+GROUP BY Name, month
+HAVING Days > '22'
+ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
 ```
 
 **Output:**
 
-```sql
-
+```sh
++----------+-----------------------+------+------------+
+| month    | Name                  | Days | Bonus Days |
++----------+-----------------------+------+------------+
+| January  | Henry Cobelli         |   23 |          1 |
+| January  | Igor Woodruffe        |   24 |          2 |
+| February | Tristan Crumbie       |   23 |          1 |
+| March    | Henry Cobelli         |   23 |          1 |
+| March    | Eden Blackbrough      |   23 |          1 |
+| March    | Oscar Nutten          |   27 |          5 |
+| March    | Daniel Miliffe        |   26 |          4 |
+| March    | Barry Thayre          |   23 |          1 |
+| April    | Durant Kewzick        |   24 |          2 |
+| April    | Leonardo Charlet      |   24 |          2 |
+| May      | Solomon Alessandrucci |   24 |          2 |
+| June     | Durant Kewzick        |   26 |          4 |
+| June     | Lee Rookledge         |   28 |          6 |
++----------+-----------------------+------+------------+
 ```
 
 ----
@@ -682,7 +704,7 @@ WHERE used.registration IS NULL;
 
 ----
 
-## 15. **Capacity factor.** 100% capacity is when every truck is in use every day. If some trucks are idle, the capacity factor is less than 100%. What is the total capacity factor for the company for thetime periodcovered by the data? (12 Marks)
+## 15. **Capacity factor.** 100% capacity is when every truck is in use every day. If some trucks are idle, the capacity factor is less than 100%. What is the total capacity factor for the company for the time period covered by the data? (12 Marks)
 
 **Answer:**
 
