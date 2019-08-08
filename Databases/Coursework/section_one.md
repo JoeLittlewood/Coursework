@@ -359,95 +359,26 @@ AND NOT total.weight > maximum.maximum_weight;
 **Answer:**
 
 ```sql
-SELECT drivers.trip_month as MONTH, FORMAT(total.trips / drivers.drivers, 1) trips
-FROM
-(
-    SELECT MONTHNAME(`departure_date`) as trip_month, COUNT(trip_id) as trips FROM trip
-    GROUP BY trip_month
+SELECT drivers.trip_month as MONTH, FORMAT(total.trips / drivers.trips, 1) as trips
+FROM (
+    SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, COUNT(*) as trips
+            FROM trip
+            INNER JOIN driver
+            ON driver.employee_no = trip.employee_no
+            GROUP BY trip_month
 ) as total
-INNER JOIN
-(
-    SELECT january.trip_month, COUNT(*) drivers
-    FROM
-    (
+INNER JOIN (
+    SELECT DISTINCT drivers_per_month.trip_month, COUNT(drivers_per_month.trip_month) as trips
+    FROM (
         SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
-        FROM trip
-        INNER JOIN driver
-        ON driver.employee_no = trip.employee_no
-        WHERE trip.departure_date BETWEEN '2012-01-01' AND '2012-01-31'
-    ) as january
-    GROUP BY january.trip_month
-    UNION
-    SELECT february.trip_month, COUNT(*) drivers
-    FROM
-    (
-        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
-        FROM trip
-        INNER JOIN driver
-        ON driver.employee_no = trip.employee_no
-        WHERE trip.departure_date BETWEEN '2012-02-01' AND '2012-02-28'
-    ) as february
-    GROUP BY february.trip_month
-    UNION
-    SELECT march.trip_month, COUNT(*) drivers
-    FROM
-    (
-        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
-        FROM trip
-        INNER JOIN driver
-        ON driver.employee_no = trip.employee_no
-        WHERE trip.departure_date BETWEEN '2012-03-01' AND '2012-03-31'
-    ) as march
-    GROUP BY march.trip_month
-    UNION
-    SELECT april.trip_month, COUNT(*) drivers
-    FROM
-    (
-        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
-        FROM trip
-        INNER JOIN driver
-        ON driver.employee_no = trip.employee_no
-        WHERE trip.departure_date BETWEEN '2012-04-01' AND '2012-04-30'
-    ) as april
-    GROUP BY april.trip_month
-    UNION
-    SELECT may.trip_month, COUNT(*) drivers
-    FROM
-    (
-        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
-        FROM trip
-        INNER JOIN driver
-        ON driver.employee_no = trip.employee_no
-        WHERE trip.departure_date BETWEEN '2012-05-01' AND '2012-05-31'
-    ) as may
-    GROUP BY may.trip_month
-    UNION
-    SELECT june.trip_month, COUNT(*) drivers
-    FROM
-    (
-        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
-        FROM trip
-        INNER JOIN driver
-        ON driver.employee_no = trip.employee_no
-        WHERE trip.departure_date BETWEEN '2012-06-01' AND '2012-06-30'
-    ) as june
-    GROUP BY june.trip_month
-    UNION
-    SELECT july.trip_month, COUNT(*) drivers
-    FROM
-    (
-        SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, driver.employee_no
-        FROM trip
-        INNER JOIN driver
-        ON driver.employee_no = trip.employee_no
-        WHERE trip.departure_date BETWEEN '2012-07-01' AND '2012-07-31'
-    ) as july
-    GROUP BY july.trip_month
+                FROM trip
+                INNER JOIN driver
+                ON driver.employee_no = trip.employee_no
+    ) as drivers_per_month
+    GROUP BY drivers_per_month.trip_month
 ) as drivers
 ON total.trip_month = drivers.trip_month
 ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
-
-
 ```
 
 **Output:**
