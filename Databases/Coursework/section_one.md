@@ -474,7 +474,6 @@ LEFT JOIN (
 ) as c_count
 ON total.trip_id = c_count.trip_id
 ORDER BY c_count.C / total.items_per_trip * 100 DESC;
-
 ```
 
 **Output:**
