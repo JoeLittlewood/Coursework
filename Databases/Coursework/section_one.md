@@ -320,7 +320,7 @@ WHERE driver.employee_no = trip.employee_no
 **Answer:**
 
 ```sql
-SELECT COUNT(*)
+SELECT count(*)
 FROM
 (
     SELECT trip.trip_id, SUM(manifest.weight) weight
@@ -359,7 +359,7 @@ AND NOT total.weight > maximum.maximum_weight;
 **Answer:**
 
 ```sql
-SELECT drivers.trip_month as MONTH, FORMAT(total.trips / drivers.trips, 1) as trips
+SELECT drivers.trip_month, FORMAT(total.trips / drivers.trips, 1) as trips
 FROM (
     SELECT DISTINCT MONTHNAME(`departure_date`) as trip_month, COUNT(*) as trips
             FROM trip
@@ -378,7 +378,7 @@ INNER JOIN (
     GROUP BY drivers_per_month.trip_month
 ) as drivers
 ON total.trip_month = drivers.trip_month
-ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
+ORDER BY FIELD(drivers.trip_month,'January','February','March','April','May','June','July');
 ```
 
 **Output:**
@@ -584,10 +584,10 @@ WHERE used.registration IS NULL;
 **Answer:**
 
 ```sql
-SELECT MONTHNAME(departure_date) as month,
+SELECT MONTHNAME(departure_date) as Month,
     CONCAT(driver.first_name, ' ', driver.last_name) as Name,
     SUM(DATEDIFF(return_date, departure_date)) as Days,
-    SUM(DATEDIFF(return_date, departure_date)) - 22 as 'Bonus Days'
+    SUM(DATEDIFF(return_date, departure_date)) - 22 as 'Bonus days'
 FROM trip INNER JOIN driver ON driver.employee_no = trip.employee_no
 GROUP BY Name, month
 HAVING Days > '22'
@@ -598,7 +598,7 @@ ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
 
 ```sh
 +----------+-----------------------+------+------------+
-| month    | Name                  | Days | Bonus Days |
+| Month    | Name                  | Days | Bonus days |
 +----------+-----------------------+------+------------+
 | January  | Henry Cobelli         |   23 |          1 |
 | January  | Igor Woodruffe        |   24 |          2 |
@@ -623,7 +623,7 @@ ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
 **Answer:**
 
 ```sql
-SELECT DATE_ADD('2011-12-26', INTERVAL a.departure_week WEEK) AS week,
+SELECT DATE_ADD('2011-12-26', INTERVAL a.departure_week WEEK) AS Week,
     (a.trips + b.trips) AS Movements
 FROM (
     SELECT COUNT(*) AS trips,
@@ -650,7 +650,7 @@ LIMIT 1;
 
 ```sh
 +------------+-----------+
-| week       | Movements |
+| Week       | Movements |
 +------------+-----------+
 | 2012-04-02 |       105 |
 +------------+-----------+
