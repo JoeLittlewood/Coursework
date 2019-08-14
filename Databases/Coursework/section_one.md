@@ -565,7 +565,7 @@ WHERE used.registration IS NULL;
 
 **Output:**
 
-```sql
+```sh
 +--------------+
 | registration |
 +--------------+
