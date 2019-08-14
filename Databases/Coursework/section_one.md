@@ -5,7 +5,7 @@
 run:
 
 ```sh
-$ sudo mysql -u joe -p -h db-cw.tk
+$ sudo mysql -u joe -p -h db-cw.tk --ssl
 
 MariaDB [(none)]> Enter password.
 
@@ -623,13 +623,37 @@ ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
 **Answer:**
 
 ```sql
-
+SELECT DATE_ADD('2011-12-26', INTERVAL a.departure_week WEEK) AS week,
+    (a.trips + b.trips) AS Movements
+FROM (
+    SELECT COUNT(*) AS trips,
+        d.departure_week
+    FROM (
+        SELECT WEEK(departure_date,1) AS departure_week
+        FROM trip) AS d
+        GROUP BY d.departure_week)
+AS a
+INNER JOIN (
+    SELECT COUNT(*) AS trips,
+        r.return_week
+    FROM (
+        SELECT WEEK(return_date,1) AS return_week
+        FROM trip) AS r
+        GROUP BY r.return_week)
+AS b
+ON departure_week = return_week
+ORDER BY movements DESC
+LIMIT 1;
 ```
 
 **Output:**
 
-```sql
-
+```sh
++------------+-----------+
+| week       | Movements |
++------------+-----------+
+| 2012-04-02 |       105 |
++------------+-----------+
 ```
 
 ----
@@ -639,13 +663,40 @@ ORDER BY FIELD(MONTH,'January','February','March','April','May','June','July');
 **Answer:**
 
 ```sql
-
+SELECT CONCAT(IFNULL(ROUND(actual.days / possible.maximum_hours * 100), 0), '%') AS capacity
+FROM (
+    SELECT SUM(a.used) AS days
+    FROM (
+        SELECT trip_id,
+        DATEDIFF(return_date, departure_date) AS used
+    FROM trip)
+    AS a
+) AS actual
+INNER JOIN (
+    SELECT (total.total_possible * vehicles.vehicles_available) AS maximum_hours
+    FROM (
+        SELECT DATEDIFF(x.departure_date, y.departure_date) AS total_possible
+        FROM (
+            SELECT departure_date FROM trip ORDER BY departure_date DESC LIMIT 1
+        ) AS x
+        INNER JOIN (
+            SELECT departure_date FROM trip ORDER BY departure_date ASC LIMIT 1
+        ) AS y
+    ) AS total
+    INNER JOIN (
+        SELECT COUNT(*) AS vehicles_available FROM vehicle
+    ) AS vehicles
+) AS possible;
 ```
 
 **Output:**
 
-```sql
-
+```sh
++----------+
+| capacity |
++----------+
+| 43%      |
++----------+
 ```
 
 ----
