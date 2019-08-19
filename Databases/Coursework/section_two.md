@@ -69,40 +69,53 @@ CHANGE employee_no employee_no integer;
 
 -- Removes the driver table.
 DROP TABLE driver;
+```
 
+----
 
+## Customer Queries
 
--- create table query(
---     query_id integer auto_increment primary key,
---     response_id integer not null,
---     foreign key (query_id) references query(query_id),
---     foreign key (response_id) references response(response_id)
--- );
--- create table response(
---     response_id integer auto_increment primary key,
---     date_created datetime,
---     query_id integer not null,
---     content text,
---     cam_id integer not null,
---     foreign key (query_id) references query_state(query_id),
---     foreign key (cam_id) references employee(employee_no)
--- );
--- create table query_state(
---     query_state text primary key,
---     query_id integer not null,
---     response_id integer not null,
---     foreign key (query_id) references query(query_id),
---     foreign key (response_id) references response(response_id)
--- );
--- create table response(
---     response_id integer auto_increment primary key,
---     date_created datetime,
---     query_id integer not null,
---     content text,
---     cam_id integer not null,
---     foreign key (query_id) references query_state(query_id),
---     foreign key (cam_id) references employee(employee_no)
--- );
+```sql
+-- Creates query table.
+CREATE TABLE query(
+    query_id integer auto_increment primary key,
+    response_id integer not null
+);
+
+-- Creates response table.
+CREATE TABLE response(
+    response_id integer auto_increment primary key,
+    date_created date,
+    query_id integer not null,
+    content text,
+    cam_id integer not null
+);
+
+-- Makes response_id foreign key.
+ALTER TABLE query
+ADD FOREIGN KEY (response_id)
+REFERENCES response(response_id);
+
+-- Makes query_id and cam_id foreign key.
+ALTER TABLE response
+ADD FOREIGN KEY (query_id)
+REFERENCES query(query_id),
+ADD FOREIGN KEY (cam_id)
+REFERENCES employee(employee_no);
+
+-- Creates query_state table.
+CREATE TABLE query_state(
+    query_id integer not null,
+    response_id integer not null,
+    query_state text
+);
+
+-- Makes foreign keys.
+ALTER TABLE query_state
+ADD FOREIGN KEY (query_id)
+REFERENCES query(query_id),
+ADD FOREIGN KEY (response_id)
+REFERENCES response(response_id);
 ...
 ```
 
