@@ -6,7 +6,7 @@
 
 ## Extending the ER diagram to accomodate Customer Account Managers (CAM's)
 
-![ER Diagram for section two](haulage.drawio.png)
+![ER Diagram for section two](haulage_drawio.png)
 
 In order to introduce a customer account manager, I had to remove the driver table as they are no-longer the only employees. I replaced the driver table with an employee table and introduced an attreibute of 'role' that will describe the role of that employee, whether they are a driver or a CAM. One unique attribute that belonged to the driver table was whether they could carry hazardous goods or not. In order to satisfy this requirment, I introduced a certificates table where this certificate, along with any additional certificates that may be acquired in the future, can be stored. So that a customer's CAM can be identified at any time, I placed a cam_id attribute in the customer table which is a direct reference to an employee number. This can also be seen in the manifest table so that any CAM can be identified as being responsible for any trip.
 
@@ -17,18 +17,18 @@ I have made it so that one customer has to have a CAM at all times but a CAM can
 ```SQL
 -- Adds cam_id to table.
 ALTER TABLE customer
-ADD cam_id integer not null
+ADD cam_id INTEGER NOT NULL
 AFTER contact_email;
 
 -- Creates employee table.
 CREATE TABLE employee(
-    employee_no integer auto_increment primary key,
-    first_name varchar(20) not null,
-    last_name varchar(20) not null,
-    ni_no varchar(13),
-    telephone varchar(20),
-    mobile varchar(20),
-    role varchar(6)
+    employee_no INTEGER auto_increment PRIMARY KEY,
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20) NOT NULL,
+    ni_no VARCHAR(13),
+    telephone VARCHAR(20),
+    mobile VARCHAR(20),
+    role VARCHAR(6)
 );
 
 -- Makes cam_id a foreign key.
@@ -38,7 +38,7 @@ REFERENCES employee(employee_no);
 
 -- Adds cam_id to manifest table.
 ALTER TABLE manifest
-ADD cam_id integer not null
+ADD cam_id INTEGER NOT NULL
 AFTER weight;
 
 -- Makes cam_id a foreign key.
@@ -48,11 +48,11 @@ REFERENCES employee(employee_no);
 
 -- Creates certificates table.
 CREATE TABLE certificates(
-    certificate_id integer auto_increment primary key,
-    employee_no integer not null,
-    certificate_type varchar(20),
-    achievement_date date,
-    expiry_date date
+    certificate_id INTEGER auto_increment PRIMARY KEY,
+    employee_no INTEGER NOT NULL,
+    certificate_type VARCHAR(20),
+    achievement_date DATE,
+    expiry_date DATE
 );
 
 -- Makes employee_no foreign key.
@@ -64,37 +64,37 @@ REFERENCES employee(employee_no);
 ALTER TABLE trip
 DROP FOREIGN KEY trip_ibfk_2;
 
--- Changes the type for employee to integer.
-CHANGE employee_no employee_no integer;
+-- Changes the type for employee to INTEGER.
+CHANGE employee_no employee_no INTEGER;
 
 -- Removes the driver table.
 DROP TABLE driver;
 ```
 
-----
-
-## Customer Queries
+### Customer Queries
 
 ```sql
 -- Creates query table.
 CREATE TABLE query(
-    query_id integer auto_increment primary key,
-    response_id integer not null
+    query_id INTEGER auto_increment PRIMARY KEY,
+    date_created DATE NOT NULL,
+    customer_ref INTEGER NOT NULL,
+    content TEXT NOT NULL
 );
 
 -- Creates response table.
 CREATE TABLE response(
-    response_id integer auto_increment primary key,
-    date_created date,
-    query_id integer not null,
-    content text,
-    cam_id integer not null
+    response_id INTEGER auto_increment PRIMARY KEY,
+    date_created DATE,
+    query_id INTEGER NOT NULL,
+    content TEXT,
+    cam_id INTEGER NOT NULL
 );
 
 -- Makes response_id foreign key.
 ALTER TABLE query
-ADD FOREIGN KEY (response_id)
-REFERENCES response(response_id);
+ADD FOREIGN KEY (customer_ref)
+REFERENCES customer(reference);
 
 -- Makes query_id and cam_id foreign key.
 ALTER TABLE response
@@ -105,9 +105,9 @@ REFERENCES employee(employee_no);
 
 -- Creates query_state table.
 CREATE TABLE query_state(
-    query_id integer not null,
-    response_id integer not null,
-    query_state text
+    query_id INTEGER NOT NULL,
+    response_id INTEGER NOT NULL,
+    query_state TEXT
 );
 
 -- Makes foreign keys.
@@ -126,24 +126,24 @@ REFERENCES response(response_id);
 Employee table:
 
 ```sql
-insert into employee (first_name, last_name, ni_no, telephone, mobile, role)
-values(
+INSERT INTO employee (first_name, last_name, ni_no, telephone, mobile, role)
+VALUES(
     'Carlos',
     'Coronel',
     'AA 12 34 56 B',
     '0165 6727840',
     '07659 9770175',
     'driver'); -- Added role
-insert into employee (first_name, last_name, ni_no, telephone, mobile, role)
-values(  
+INSERT INTO employee (first_name, last_name, ni_no, telephone, mobile, role)
+VALUES(  
     'Vicky',
     'Feilding',
     'BB 12 34 56 C',
     '0165 6727840',
     '07659 9770175',
     'cam'); -- Added role
-insert into employee (first_name, last_name, ni_no, telephone, mobile, role)
-values(
+INSERT INTO employee (first_name, last_name, ni_no, telephone, mobile, role)
+VALUES(
     'Alissa',
     'McWhinnie',
     'CC 12 34 56 D',
@@ -153,29 +153,29 @@ values(
 ...
 ```
 
-After pasting this command, I realised I had input the telephone number in an incorrect format; so I used the following command to make this right:
+> After pasting this command, I realised I had input the telephone number in an incorrect format; so I used the following command to make this right:
 
 ```sql
 UPDATE employee SET telephone = '01656 727840' WHERE employee_no = 1 OR 2 OR 3;
 ```
 
-Certificates table:
+Cerificates table:
 
 ```sql
-insert into certificates (employee_no, certificate_type, achievement_date, expiry_date)
-values(
+INSERT INTO certificates (employee_no, certificate_type, achievement_date, expiry_date)
+VALUES(
     '1',
     'Hazerdous Goods',
     '2012-03-01',
     '2013-03-01');
-insert into certificates (employee_no, certificate_type, achievement_date, expiry_date)
-values(
+INSERT INTO certificates (employee_no, certificate_type, achievement_date, expiry_date)
+VALUES(
     '2',
     'Customer Service',
     '2012-04-11',
     '2013-04-11');
-insert into certificates (employee_no, certificate_type, achievement_date, expiry_date)
-values(
+INSERT INTO certificates (employee_no, certificate_type, achievement_date, expiry_date)
+VALUES(
     '3',
     'Hazardous Goods',
     '2012-02-21',
@@ -186,7 +186,7 @@ values(
 Customer table:
 
 ```sql
-insert into customer (company_name,
+INSERT INTO customer (company_name,
     address,
     town,
     post_code,
@@ -195,7 +195,7 @@ insert into customer (company_name,
     contact_sname,
     contact_email,
     cam_id)
-values(
+VALUES(
     'Calash Ltd.',  
     '88 Rinkomania Lane',
     'Cardigan',
@@ -205,7 +205,8 @@ values(
     'Dunnico',
     'c.dunnico@calash.co.uk',
     '2');
-insert into customer (company_name,
+
+INSERT INTO customer (company_name,
     address,
     town,
     post_code,
@@ -214,7 +215,7 @@ insert into customer (company_name,
     contact_sname,
     contact_email,
     cam_id)
-values(
+VALUES(
     'Stichomancy & Co',  
     '17 Suspiration Street',
     'Okehampton',
@@ -224,7 +225,8 @@ values(
     'Petts',
     'h.petts@stichomancy.co.uk',
     '2');
-insert into customer (company_name,
+
+INSERT INTO customer (company_name,
     address,
     town,
     post_code,
@@ -233,7 +235,7 @@ insert into customer (company_name,
     contact_sname,
     contact_email,
     cam_id)
-values(
+VALUES(
     'Trochiline Services',  
     '15 Upcast Street',
     'Carrbridge',
@@ -249,60 +251,146 @@ values(
 Manifest table:
 
 ```sql
-insert into manifest (trip_id,
+INSERT INTO manifest (trip_id,
     barcode,
     weight,
     category,
     pickup_customer_ref,
     delivery_customer_ref,
     cam_id)
-select 73927,
+SELECT 73927,
     259979829,
     299,
     'A',
     c1.reference,
     c2.reference,
     '2'
-from customer c1, customer c2
-where c1.company_name = 'Officialism & Co'
-    and c2.company_name = 'Splenium Industrial';
+FROM customer c1, customer c2
+WHERE c1.company_name = 'Officialism & Co'
+    AND c2.company_name = 'Splenium Industrial';
 
-insert into manifest (trip_id,
+INSERT INTO manifest (trip_id,
     barcode,
     weight,
     category,
     pickup_customer_ref,
     delivery_customer_ref,
     cam_id)
-select 73928,
+SELECT 73928,
     722529999,
     2861,
     'A',
     c1.reference,
     c2.reference,
     '2'
-from customer c1, customer c2
-where c1.company_name = 'Splenium Industrial'
-    and c2.company_name = 'Cocket Services';
+FROM customer c1, customer c2
+WHERE c1.company_name = 'Splenium Industrial'
+    AND c2.company_name = 'Cocket Services';
 
-insert into manifest (trip_id,
+INSERT INTO manifest (trip_id,
     barcode,
     weight,
     category,
     pickup_customer_ref,
     delivery_customer_ref,
     cam_id)
-select 73929,
+SELECT 73929,
     395486229,
     1037,
     'A',
     c1.reference,
     c2.reference,
     '2'
-from customer c1, customer c2
-where c1.company_name = 'Splenium Industrial'
-    and c2.company_name = 'Eulogomania Group';
+FROM customer c1, customer c2
+WHERE c1.company_name = 'Splenium Industrial'
+    AND c2.company_name = 'Eulogomania Group';
 ...
+```
+
+Query table:
+
+```sql
+INSERT INTO query (date_created, customer_ref, content)
+VALUES(
+    '2012-04-01',
+    301,
+    'Im not very happy with the service because the delivery was late!');
+INSERT INTO query (date_created, customer_ref, content)
+VALUES(
+    '2012-05-21',
+    302,
+    'Thank-you so much for this order.');
+INSERT INTO query (date_created, customer_ref, content)
+VALUES(
+    '2012-07-25',
+    303,
+    'Can I order more of these please?');
+```
+
+Response table:
+
+```sql
+INSERT INTO response(
+    date_created,
+    query_id,
+    content,
+    cam_id)
+VALUES (
+    '2012-04-07',
+    2,
+    'Im sorry to hear that, this wont happen again.
+    Your next order will be discounted with 20% off as an appology.',
+    2
+);
+
+INSERT INTO response(
+    date_created,
+    query_id,
+    content,
+    cam_id)
+VALUES (
+    '2012-05-26',
+    3,
+    'Im glad you are happy with your order.',
+    2
+);
+
+INSERT INTO response(
+    date_created,
+    query_id,
+    content,
+    cam_id)
+VALUES (
+    '2012-05-26',
+    4,
+    'Ill look into that for you',
+    2
+);
+```
+
+Query_state table:
+
+```sql
+INSERT INTO query_state
+VALUES (
+    2,
+    1,
+    'Completed'
+);
+
+INSERT INTO query_state
+VALUES (
+    3,
+    2,
+    'Completed'
+);
+
+INSERT INTO query_state
+VALUES (
+    4,
+    3,
+    'Pending'
+);
 ```
 
 ## Querying the database
@@ -330,7 +418,8 @@ Output:
 Identify a customer's current cam:
 
 ```sql
-SELECT customer.company_name, employee.first_name, employee.last_name
+SELECT customer.company_name, CONCAT(employee.first_name, ' ', employee.last_name) 
+AS 'Managed By'
 FROM employee
 INNER JOIN customer
 ON customer.cam_id = employee.employee_no
@@ -340,24 +429,9 @@ WHERE customer.reference = 301;
 Output:
 
 ```sh
-+--------------+------------+-----------+
-| company_name | first_name | last_name |
-+--------------+------------+-----------+
-| Calash Ltd.  | Vicky      | Feilding  |
-+--------------+------------+-----------+
-```
-
-Add customer query to DB:
-
-```sql
-```
-
-Show all history of query including follow up's in chronilogical order:
-
-```sql
-```
-
-Calculate a performance rating:
-
-```sql
++--------------+----------------+
+| company_name | Managed By     |
++--------------+----------------+
+| Calash Ltd.  | Vicky Feilding |
++--------------+----------------+
 ```
