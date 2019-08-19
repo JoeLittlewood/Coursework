@@ -15,74 +15,13 @@ I have made it so that one customer has to have a CAM at all times but a CAM can
 ## Alter the database to inlcude any additional tables and attributes
 
 ```SQL
-drop table if exists manifest;
-drop table if exists customer;
-drop table if exists trip;
-drop table if exists vehicle;
-drop table if exists model;
-drop table if exists category;
-drop table if exists employee; -- Removed driver table and added employee table
-drop table if exists certificates; -- Added cedrtificates table
-drop table if exists query; -- Added query table
-drop table if exists query_state; -- Added query_state table
-drop table if exists response; -- Added response table
+-- Adds cam_id to table.
+ALTER TABLE customer
+ADD cam_id integer not null
+AFTER contact_email;
 
-create table category (
-    category varchar(1) primary key,
-    description varchar(10) not null,
-    requirement varchar(255)
-);
-create table model(
-    model varchar(12) primary key,
-    make varchar(10) not null,
-    kerb integer,
-    gvw integer
-);
-create table vehicle (
-    vehicle_id integer auto_increment primary key,
-    registration varchar(10) not null,
-    model varchar(12) not null,
-    year integer not null,
-    body varchar(20),
-    foreign key (model) references model(model)
-);
-create table trip(
-    trip_id integer auto_increment primary key,
-    departure_date datetime,
-    return_date datetime,
-    vehicle_id integer,
-    employee_no varchar(7),
-    foreign key (vehicle_id) references vehicle(vehicle_id),
-    foreign key (employee_no) references driver(employee_no)
-);
-create table customer(
-    reference integer auto_increment primary key,
-    company_name varchar(25) not null,
-    address varchar(30) not null,
-    town varchar(30),
-    post_code varchar(10) not null,
-    telephone varchar(20) not null,
-    contact_fname varchar(25),
-    contact_sname varchar(25),
-    contact_email varchar(40)
-    cam_id integer not null,
-    foreign key (cam_id) references employee(employee_no)
-);
-create table manifest(
-    barcode integer auto_increment primary key,
-    trip_id integer not null,
-    pickup_customer_ref integer not null,
-    delivery_customer_ref integer not null,
-    category varchar(1) not null,
-    weight integer not null,
-    cam_id integer not null,
-    foreign key (trip_id) references trip(trip_id),
-    foreign key (pickup_customer_ref) references customer(reference),
-    foreign key (delivery_customer_ref) references customer(reference),
-    foreign key (category) references category(category),
-    foreign key (cam_id) references employee(employee_no)
-);
-create table employee(
+-- Creates employee table.
+CREATE TABLE employee(
     employee_no integer auto_increment primary key,
     first_name varchar(20) not null,
     last_name varchar(20) not null,
@@ -91,46 +30,79 @@ create table employee(
     mobile varchar(20),
     role varchar(6)
 );
-create table certificates(
-    certificate_id integer auto_incrememnt primary key,
+
+-- Makes cam_id a foreign key.
+ALTER TABLE customer
+ADD FOREIGN KEY (cam_id)
+REFERENCES employee(employee_no);
+
+-- Adds cam_id to manifest table.
+ALTER TABLE manifest
+ADD cam_id integer not null
+AFTER weight;
+
+-- Makes cam_id a foreign key.
+ALTER TABLE manifest
+ADD FOREIGN KEY (cam_id)
+REFERENCES employee(employee_no);
+
+-- Creates certificates table.
+CREATE TABLE certificates(
+    certificate_id integer auto_increment primary key,
     employee_no integer not null,
-    achieved varchar(1),
-    achievment_date datetime,
-    expiry_date datetime,
-    foreign key (employee_no) references employee(employee_no)
+    certificate_type varchar(20),
+    achievement_date date,
+    expiry_date date
 );
-create table query(
-    query_id integer auto_increment primary key,
-    query_id integer not null,
-    response_id integer not null,
-    foreign key (query_id) references query(query_id),
-    foreign key (response_id) references response(response_id)
-);
-create table response(
-    response_id integer auto_increment primary key,
-    date_created datetime,
-    query_id integer not null,
-    content text,
-    cam_id integer not null,
-    foreign key (query_id) references query_state(query_id),
-    foreign key (cam_id) references employee(employee_no)
-);
-create table query_state(
-    query_state text primary key,
-    query_id integer not null,
-    response_id integer not null,
-    foreign key (query_id) references query(query_id),
-    foreign key (response_id) references response(response_id)
-);
-create table response(
-    response_id integer auto_increment primary key,
-    date_created datetime,
-    query_id integer not null,
-    content text,
-    cam_id integer not null,
-    foreign key (query_id) references query_state(query_id),
-    foreign key (cam_id) references employee(employee_no)
-);
+
+-- Makes employee_no foreign key.
+ALTER TABLE certificates
+ADD FOREIGN KEY (employee_no)
+REFERENCES employee(employee_no);
+
+-- Removes the current foreign key.
+ALTER TABLE trip
+DROP FOREIGN KEY trip_ibfk_2;
+
+-- Changes the type for employee to integer.
+CHANGE employee_no employee_no integer;
+
+-- Removes the driver table.
+DROP TABLE driver;
+
+
+
+-- create table query(
+--     query_id integer auto_increment primary key,
+--     response_id integer not null,
+--     foreign key (query_id) references query(query_id),
+--     foreign key (response_id) references response(response_id)
+-- );
+-- create table response(
+--     response_id integer auto_increment primary key,
+--     date_created datetime,
+--     query_id integer not null,
+--     content text,
+--     cam_id integer not null,
+--     foreign key (query_id) references query_state(query_id),
+--     foreign key (cam_id) references employee(employee_no)
+-- );
+-- create table query_state(
+--     query_state text primary key,
+--     query_id integer not null,
+--     response_id integer not null,
+--     foreign key (query_id) references query(query_id),
+--     foreign key (response_id) references response(response_id)
+-- );
+-- create table response(
+--     response_id integer auto_increment primary key,
+--     date_created datetime,
+--     query_id integer not null,
+--     content text,
+--     cam_id integer not null,
+--     foreign key (query_id) references query_state(query_id),
+--     foreign key (cam_id) references employee(employee_no)
+-- );
 ...
 ```
 
@@ -168,24 +140,30 @@ values(
 ...
 ```
 
+After pasting this command, I realised I had input the telephone number in an incorrect format; so I used the following command to make this right:
+
+```sql
+UPDATE employee SET telephone = '01656 727840' WHERE employee_no = 1 OR 2 OR 3;
+```
+
 Certificates table:
 
 ```sql
 insert into certificates (employee_no, certificate_type, achievement_date, expiry_date)
 values(
-    '001234', -- Employee number
-    'Hazerdous Goods', -- Certificate type
-    '2012-03-01', -- Date achieved
-    '2013-03-01'); -- Valid until
+    '1',
+    'Hazerdous Goods',
+    '2012-03-01',
+    '2013-03-01');
 insert into certificates (employee_no, certificate_type, achievement_date, expiry_date)
 values(
-    '001235',
+    '2',
     'Customer Service',
     '2012-04-11',
     '2013-04-11');
 insert into certificates (employee_no, certificate_type, achievement_date, expiry_date)
 values(
-    '001236',
+    '3',
     'Hazardous Goods',
     '2012-02-21',
     '2013-02-21');
@@ -195,9 +173,16 @@ values(
 Customer table:
 
 ```sql
-insert into customer
+insert into customer (company_name,
+    address,
+    town,
+    post_code,
+    telephone,
+    contact_fname,
+    contact_sname,
+    contact_email,
+    cam_id)
 values(
-    1,
     'Calash Ltd.',  
     '88 Rinkomania Lane',
     'Cardigan',
@@ -206,10 +191,17 @@ values(
     'Cameron',
     'Dunnico',
     'c.dunnico@calash.co.uk',
-    '001235'); -- Added cam_id
-insert into customer
+    '2');
+insert into customer (company_name,
+    address,
+    town,
+    post_code,
+    telephone,
+    contact_fname,
+    contact_sname,
+    contact_email,
+    cam_id)
 values(
-    2,
     'Stichomancy & Co',  
     '17 Suspiration Street',
     'Okehampton',
@@ -218,10 +210,17 @@ values(
     'Henry',
     'Petts',
     'h.petts@stichomancy.co.uk',
-    '002316'); -- Added cam_id
-insert into customer
+    '2');
+insert into customer (company_name,
+    address,
+    town,
+    post_code,
+    telephone,
+    contact_fname,
+    contact_sname,
+    contact_email,
+    cam_id)
 values(
-    3,
     'Trochiline Services',  
     '15 Upcast Street',
     'Carrbridge',
@@ -230,7 +229,7 @@ values(
     'Richard',
     'Hanford',
     'r.hanford@trochiline.co.uk',
-    '001235'); -- Added cam_id
+    '2');
 ...
 ```
 
@@ -245,12 +244,12 @@ insert into manifest (trip_id,
     delivery_customer_ref,
     cam_id)
 select 73927,
-    259979822,
+    259979829,
     299,
     'A',
     c1.reference,
     c2.reference,
-    '001235' -- Added cam_id
+    '2'
 from customer c1, customer c2
 where c1.company_name = 'Officialism & Co'
     and c2.company_name = 'Splenium Industrial';
@@ -260,14 +259,15 @@ insert into manifest (trip_id,
     weight,
     category,
     pickup_customer_ref,
-    delivery_customer_ref)
-select 73927,
-    722520992,
+    delivery_customer_ref,
+    cam_id)
+select 73928,
+    722529999,
     2861,
     'A',
     c1.reference,
     c2.reference,
-    '001235' -- Added cam_id
+    '2'
 from customer c1, customer c2
 where c1.company_name = 'Splenium Industrial'
     and c2.company_name = 'Cocket Services';
@@ -277,14 +277,15 @@ insert into manifest (trip_id,
     weight,
     category,
     pickup_customer_ref,
-    delivery_customer_ref)
-select 73927,
-    395496225,
+    delivery_customer_ref,
+    cam_id)
+select 73929,
+    395486229,
     1037,
     'A',
     c1.reference,
     c2.reference,
-    '001235' -- Added cam_id
+    '2'
 from customer c1, customer c2
 where c1.company_name = 'Splenium Industrial'
     and c2.company_name = 'Eulogomania Group';
@@ -300,17 +301,37 @@ SELECT manifest.cam_id, employee.first_name, employee.last_name
 FROM employee
 INNER JOIN manifest
 ON manifest.cam_id = employee.employee_no
-WHERE trip_id = <trip_id>;
+WHERE trip_id = 73929;
+```
+
+Output:
+
+```sh
++--------+------------+-----------+
+| cam_id | first_name | last_name |
++--------+------------+-----------+
+|      2 | Vicky      | Feilding  |
++--------+------------+-----------+
 ```
 
 Identify a customer's current cam:
 
 ```sql
-SELECT employee.employee_number, employee.first_name, employee.last_name
+SELECT customer.company_name, employee.first_name, employee.last_name
 FROM employee
 INNER JOIN customer
 ON customer.cam_id = employee.employee_no
-WHERE customer.reference = <reference>;
+WHERE customer.reference = 301;
+```
+
+Output:
+
+```sh
++--------------+------------+-----------+
+| company_name | first_name | last_name |
++--------------+------------+-----------+
+| Calash Ltd.  | Vicky      | Feilding  |
++--------------+------------+-----------+
 ```
 
 Add customer query to DB:

@@ -444,7 +444,7 @@ LEFT JOIN (
         FROM (
             SELECT manifest.trip_id, manifest.category
             FROM manifest
-            JOIN (
+            JOIN (****
                 SELECT trip_id
                 FROM manifest
                 WHERE category = 'C'
@@ -700,3 +700,91 @@ INNER JOIN (
 ```
 
 ----
+
+SELECT total.trip_id,
+    CONCAT(IFNULL(ROUND(a_count.A / total.items_per_trip * 100), 0), '%') as A,
+    CONCAT(IFNULL(ROUND(b_count.B / total.items_per_trip * 100), 0), '%') as B,
+    CONCAT(IFNULL(ROUND(c_count.C / total.items_per_trip * 100), 0), '%') as C
+FROM (
+    SELECT items.trip_id, COUNT(*) as items_per_trip
+        FROM (
+            SELECT manifest.trip_id, manifest.category
+            FROM manifest
+            JOIN (
+                SELECT trip_id
+                FROM manifest
+                WHERE category = 'C'
+            ) as hazerdous_trip
+            ON hazerdous_trip.trip_id = manifest.trip_id
+            ORDER BY trip_id
+        ) as items
+        GROUP BY items.trip_id
+) as total
+LEFT JOIN (
+    SELECT trip_id, COUNT(*) as A
+        FROM (
+            SELECT manifest.trip_id, manifest.category
+            FROM manifest
+            JOIN (
+                SELECT trip_id
+                FROM manifest
+                WHERE category = 'C'
+            ) as hazerdous_trip
+            ON hazerdous_trip.trip_id = manifest.trip_id
+            ORDER BY trip_id
+        ) as a_items
+        WHERE a_items.category = 'A'
+        GROUP BY trip_id
+) as a_count ON total.trip_id = a_count.trip_id
+LEFT JOIN (
+    SELECT trip_id, COUNT(*) as B
+        FROM (
+            SELECT manifest.trip_id, manifest.category
+            FROM manifest
+            JOIN (
+                SELECT trip_id
+                FROM manifest
+                WHERE category = 'C'
+            ) as hazerdous_trip
+            ON hazerdous_trip.trip_id = manifest.trip_id
+            ORDER BY trip_id
+        ) as b_items
+    WHERE b_items.category = 'B'
+    GROUP BY trip_id
+) as b_count
+ON total.trip_id = b_count.trip_id
+LEFT JOIN (
+    SELECT trip_id, COUNT(*) as C
+        FROM (
+            SELECT manifest.trip_id, manifest.category
+            FROM manifest
+            JOIN (
+            SELECT trip_id
+                FROM manifest
+                WHERE category = 'C'
+            ) as hazerdous_trip
+            ON hazerdous_trip.trip_id = manifest.trip_id
+            ORDER BY trip_id
+        ) as c_items
+    WHERE c_items.category = 'C'
+    GROUP BY trip_id
+) as c_count
+ON total.trip_id = c_count.trip_id
+ORDER BY c_count.C / total.items_per_trip * 100 DESC;
+
+
+SELECT trip_id,
+    CONCAT(IFNULL(ROUND(a_count.A / total.items_per_trip * 100), 0), '%') as A,
+FROM trip 
+
+SELECT trip_id
+FROM manifest
+WHERE category = 'C'
+
+SELECT trip_id
+FROM manifest
+WHERE category = 'A'
+
+SELECT trip_id
+FROM manifest
+WHERE category = 'B'
