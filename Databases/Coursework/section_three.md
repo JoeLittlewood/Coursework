@@ -32,20 +32,23 @@ In a relational database there is ideally no repeated data. So if an employee ch
 
 ### MYSQL Disadvantages
 
-Having many tables can disadvantage MYSQL over NoSQL when it comes to large data sets, however. A simple query may involve many tables, which takes time and processing power; making relational dtabase structures slower with less performance capability than a non-relational database.
+Having many tables can disadvantage MYSQL over NoSQL when it comes to large data sets. A simple query may involve many tables, which takes time and processing power; making relational database structures slower with less performance capability than a non-relational database.
 
-Worse performance than nosql.
-Horizontal Scaling. - Add more servers. Not supported for SQL db's.
-Limitiations with lots of read and write queries per second.
-SQL injection.
+Scalability is also a factor that is worth concidering when it comes to differences between relational and non-relational databases. A database can be scaled in one of two ways with the limitation being the type of database. The two methods of scalability are horizontal and vertical scaling.
+
+Horizontal scaling is when more physical machines are added to the structure to handle the demands of the database. Vertical scaling is when the machine itself is altered, increasing it's processing power.
+
+MYSQL, being a relational database, is limited to just vertical scaling. This is because the database cannot be spread between multiple machines. This of course limits it's scale to the machine's physical power; making a relational database less useable for large data sets or datasets that are predicted to expand substantially.
+
+One point worth mentioning is the security of MYSQL. SQL is a language developed for relational databases. It is used to access, modify and delete data in the database. A website or webpage using MYSQL can be vulnerable to attack in the form of a SQL injection attack (SQLi). An SQL injection attack is when an attacker has the power to paste SQL queries in user input fields on a webpage that directly communicate wih the database. This gives the attacker the ability to run operating system commands.
 
 ## NOSQL
 
-Collections instead of tables.
-Documents are stored in collections. - Don't have to use same schema.
-No relations - MongoDB
+NOSQL, commonly confused as not containing the Structured Query Language, stands for "Not Only SQL". It approaches database design in a way that can accomodate most data models. The example that this report will reference is a document-based database structure called MongoDB. One significant difference between a non-relational database like MongoDB and a relational structure is that it relies on 'collections' containing 'documents' of data instead of 'tables'. Documents get stored within collections, elliminating the need for a schema explaining the structure of the database.
 
 ### NOSQL Advantages
+
+Having no schema can be both an advantage and disadvantage. For the same reason a schema is an advantage in a MYSQL database, it makes not having one a disadvantage in a NOSQL database. Despite this, the advantage of no schema outweighs the disadvantage. This advantage being that inputting data in a NOSQL database is 
 
 No schema.
 No relations.
