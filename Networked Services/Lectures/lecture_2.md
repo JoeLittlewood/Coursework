@@ -97,7 +97,7 @@ $ blkid
 When the system boots the fstab file tells the kernel what file systems to load.
 
 ```bash
-$ cat /etc/fstab 
+$ cat /etc/fstab
 
 /dev/mapper/centos_lvm-root / xfs defaults 1 1
 UUID=f3b744e4-e754-4842-93d1-43b06de64b66 /boot xfs defaults 1 2
@@ -131,5 +131,7 @@ $ du -sh /usr/lib
 
 > “-s” is useful, otherwise it tells you about all subdirectories too.
 > “-h” puts it into human readable form.
+
+----
 
 ## Linux Boot process
