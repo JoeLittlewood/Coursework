@@ -14,6 +14,14 @@
       - [Block Identifiers](#block-identifiers)
     - [Disk Usage](#disk-usage)
   - [Linux Boot process](#linux-boot-process)
+    - [Booting to Kernel](#booting-to-kernel)
+    - [Startup commands](#startup-commands)
+    - [Target tree](#target-tree)
+    - [Controlling services in systemd](#controlling-services-in-systemd)
+    - [Make things start when you boot](#make-things-start-when-you-boot)
+    - [Status](#status)
+  - [user management](#user-management)
+    - [Manual Creation](#manual-creation)
 
 ----
 
@@ -135,3 +143,112 @@ $ du -sh /usr/lib
 ----
 
 ## Linux Boot process
+
+### Booting to Kernel
+
+From switch-on:
+
+- PC BIOS selects a boot disk
+- BIOS loads the boot block and executes it.
+- This loads a stage 1 boot loader.
+- Stage 1 loads stage 2 loader.
+- Linux loader (e.g. Grub, lilo) runs
+- Operator selects from loader menu
+- Kernel loaded with device ramdisk
+
+### Startup commands
+
+As linux boots, it runs various system scripts. In Redhat/Centos/Fedora, this is controlled largely by systemd. Systemd forms a tree of dependencies:
+
+- Start the network before starting sshd
+- Start the firewall after the network
+
+The internals of systemd are very complex, so best to alway use the system commands to control how systemd runs.
+
+Systemd has only been around since 2014 and was developed by Redhat.
+
+### Target tree
+
+In order for systemd to speed up the process of booting then it introduces a tree of processes to tell which processes need to run in which order.
+
+Systemd does not have run levels, these are instead called targets.
+
+### Controlling services in systemd
+
+There are many services in which you may want to control. These may be sshd, apache and databases. Things that are services are named "something.service", such as ssh.service. Control is via systemctl.
+
+- Start a service: `systemctl start sshd.service`
+- Stop a service: `systemctl stop sshd.service`
+- Restart sshd: `systemctl restart sshd.service`
+- Reload sshd: `systemctl reload sshd.service`
+
+### Make things start when you boot
+
+Start a service: `systemctl start sshd.service`
+
+If you want something to run everytime you reboot then enabable it: `systemctl enable sshd.service`
+
+Disable: `systemctl disable sshd.service`
+
+Stop a service: `systemctl stop sshd.service`
+
+### Status
+
+The information about a service is stored in a few locations. You can do that yourself, but systemctl can build the info for you.
+`systemctl status sshd.service`
+
+Configuration file: `/usr/lib/systemd/system/sshd.service`
+
+```bash
+[Unit]
+Description=OpenSSH server daemon
+After=syslog.target network.target auditd.service
+[Service]
+EnvironmentFile=/etc/sysconfig/sshd
+ExecStartPre=/usr/sbin/sshd-keygen
+ExecStart=/usr/sbin/sshd -D $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+[Install]
+WantedBy=multi-user.target
+```
+
+----
+
+## user management
+
+### Manual Creation
+
+- User entries in passwd, shadow, group and gshadow.
+- Home directory in /home.
+- Copy basic .files into their home directory.
+- Make new user own their own directory and files.
+
+### `adduser Gordon`
+
+This does all the configuration for you. It copies the default.files from /etc/skel/.
+
+```bash
+.bash_logout .bash_profile .bashrc .gtkrc .kde
+```
+
+In bash, .bashrc is executed in non-login shell, and .bash_profile in a login shell.
+
+### Skel files
+
+These files are basic .files created for a new user. Users are free to edit these when they login. This allows them to control their own path, env and other settings. However, if you install a new package which needs something set for each user at login, editing all these copies by hand would be tiresome.
+
+### `ls /etc/profile.d`
+
+```bash
+colorls.csh gnome-ssh-askpass.csh krb5.csh less.csh vim.csh
+colorls.sh gnome-ssh-askpass.sh krb5.sh less.sh vim.sh
+glib2.csh kde.csh lang.csh qt.csh which-2.sh
+glib2.sh kde.sh lang.sh qt.sh
+```
+
+- If you log in with bash, all the .sh files are executed before your .files
+- If you log in with csh, all the .csh files are executed before your .files
+
