@@ -1,10 +1,10 @@
-# Networked Services 1.0
+# Networked Services: 1.1
 
 > 25/11/2019
 
 ----
 
-- [Networked Services 1.0](#networked-services-10)
+- [Networked Services: 1.1](#networked-services-11)
   - [Linux](#linux)
     - [Why Linux?](#why-linux)
     - [Recommended Literature](#recommended-literature)
@@ -18,11 +18,49 @@
     - [Links](#links)
       - [Hardlinks](#hardlinks)
       - [Softfile](#softfile)
-  - [Users](#users)
-    - [UID (User ID)](#uid-user-id)
-    - [GID (Group ID)](#gid-group-id)
-    - [User details](#user-details)
-    - [Extracting information](#extracting-information)
+    - [Users](#users)
+      - [UID (User ID)](#uid-user-id)
+      - [GID (Group ID)](#gid-group-id)
+      - [User details](#user-details)
+      - [Extracting information](#extracting-information)
+    - [Permissions](#permissions)
+      - [Chmod](#chmod)
+        - [Permissions table](#permissions-table)
+        - [Examples:](#examples)
+    - [Processes](#processes)
+      - [State codes](#state-codes)
+      - [Process Relationships](#process-relationships)
+      - [/proc](#proc)
+      - [Deamons](#deamons)
+        - [Syslog](#syslog)
+  - [Labs](#labs)
+    - [Intro 1](#intro-1)
+      - [Question 2: cal](#question-2-cal)
+      - [Question 3: cal year](#question-3-cal-year)
+      - [Question 4: ls](#question-4-ls)
+      - [Question 5: file size](#question-5-file-size)
+      - [Question 6: append](#question-6-append)
+      - [Question 7: copying](#question-7-copying)
+      - [Question 8: moving](#question-8-moving)
+      - [Question 9: deleting](#question-9-deleting)
+      - [Question 10: big concat](#question-10-big-concat)
+    - [Intro 2](#intro-2)
+      - [Question 2: Create a directory structure](#question-2-create-a-directory-structure)
+      - [Question 3: cp](#question-3-cp)
+      - [Question 4: Relative move](#question-4-relative-move)
+      - [Question 5: rename](#question-5-rename)
+      - [Question 6: cp](#question-6-cp)
+      - [Question 7: tilde](#question-7-tilde)
+      - [Question 8: case and space](#question-8-case-and-space)
+    - [Wildcards](#wildcards)
+      - [Question 2: Wild copy](#question-2-wild-copy)
+      - [Question 3: Duplicate thismonth](#question-3-duplicate-thismonth)
+      - [Question 4: Copy and rename](#question-4-copy-and-rename)
+      - [Question 5: Square Brackets](#question-5-square-brackets)
+      - [Question 6: rm](#question-6-rm)
+      - [Question 7: Hard link](#question-7-hard-link)
+      - [Question 8: Soft link](#question-8-soft-link)
+      - [Question 9: Soft link - Absolute](#question-9-soft-link---absolute)
 
 ----
 
@@ -388,3 +426,236 @@ A Deamon is a process that starts when you boot which runs in the background. No
 
 Syslogd helps other deamons record what is going on in a file.
 
+----
+
+## Labs
+
+### Intro 1
+
+#### Question 2: cal
+
+`cal 31 12 2002`
+
+```bash
+    December 2002
+Mo Tu We Th Fr Sa Su
+                   1
+ 2  3  4  5  6  7  8
+ 9 10 11 12 13 14 15
+16 17 18 19 20 21 22
+23 24 25 26 27 28 29
+30 31
+```
+
+#### Question 3: cal year
+
+`cal 2005 > yearfile`
+
+#### Question 4: ls
+
+`ls -al /home/demo`
+
+```bash
+total 32
+drwx------. 5 demo tutorial 4096 Nov 27 14:17 .
+drwxr-xr-x. 4 root root       29 Nov 27 14:02 ..
+-rw-r--r--. 1 demo tutorial   18 Dec  6  2016 .bash_logout
+-rw-r--r--. 1 demo tutorial  193 Dec  6  2016 .bash_profile
+-rw-r--r--. 1 demo tutorial  231 Dec  6  2016 .bashrc
+-rw-r--r--. 1 demo tutorial 4082 Nov 27 14:18 bigfile
+drwxr-xr-x. 3 demo tutorial   17 Nov 27 14:02 .cache
+drwxr-xr-x. 3 demo tutorial   17 Nov 27 14:02 .config
+drwxr-xr-x. 4 demo tutorial   37 Sep  8  2014 .mozilla
+-rw-r--r--. 1 demo tutorial  174 Nov 27 14:11 thismonth
+-rw-r--r--. 1 demo tutorial 1954 Nov 27 14:15 thisyear
+-rw-r--r--. 1 demo tutorial 1954 Nov 27 14:15 yearfile2
+```
+
+#### Question 5: file size
+
+`ls -alh /home/demo`
+
+```bash
+total 32K
+drwx------. 5 demo tutorial 4.0K Nov 27 14:17 .
+drwxr-xr-x. 4 root root       29 Nov 27 14:02 ..
+-rw-r--r--. 1 demo tutorial   18 Dec  6  2016 .bash_logout
+-rw-r--r--. 1 demo tutorial  193 Dec  6  2016 .bash_profile
+-rw-r--r--. 1 demo tutorial  231 Dec  6  2016 .bashrc
+-rw-r--r--. 1 demo tutorial 4.0K Nov 27 14:18 bigfile
+drwxr-xr-x. 3 demo tutorial   17 Nov 27 14:02 .cache
+drwxr-xr-x. 3 demo tutorial   17 Nov 27 14:02 .config
+drwxr-xr-x. 4 demo tutorial   37 Sep  8  2014 .mozilla
+-rw-r--r--. 1 demo tutorial  174 Nov 27 14:11 thismonth
+-rw-r--r--. 1 demo tutorial 2.0K Nov 27 14:15 thisyear
+-rw-r--r--. 1 demo tutorial 2.0K Nov 27 14:15 yearfile2
+```
+
+#### Question 6: append
+
+```bash
+cal > thismonth
+date >> thismonth
+```
+
+#### Question 7: copying
+
+```bash
+cp yearfile yearfile2
+cp yearfile yearfile3
+```
+
+#### Question 8: moving
+
+`mv yearfile3 thisyear`
+
+#### Question 9: deleting
+
+`rm yearfile`
+
+#### Question 10: big concat
+
+```bash
+cat thismonth > bigfile
+cat yearfile2 >> bigfile
+cat thisyear >> bigfile
+```
+
+----
+
+### Intro 2
+
+#### Question 2: Create a directory structure
+
+```bash
+mkdir work
+mkdir letters
+mkdir scripts
+mkdir ./work/progs
+mkdir ./work/tutorial
+mkdir ./work/misc
+```
+
+#### Question 3: cp
+
+```bash
+cp /etc/group ./work/misc/
+cp /etc/vimrc ./work/misc/
+```
+
+#### Question 4: Relative move
+
+```bash
+cd ./work/misc/
+mv ./vimrc ../progs/
+```
+
+#### Question 5: rename
+
+`cp ../../bigfile ../tutorial/bigfile2`
+
+#### Question 6: cp
+
+```bash
+cd ..
+cp /home/demo/work/tutorial/bigfile2 /home/demo/scripts/
+```
+
+#### Question 7: tilde
+
+```bash
+cat /etc/passwd | grep sql
+mysql:x:27:27:MariaDB Server:/var/lib/mysql:/sbin/nologin
+```
+
+#### Question 8: case and space
+
+```bash
+cd /home/demo
+mkdir Gordon
+mkdir gordon
+mkdir "My Documents"
+```
+
+----
+
+### Wildcards
+
+#### Question 2: Wild copy
+
+```bash
+cd /home/demo
+cp *file* ./work/
+ls ./work/
+bigfile  misc  progs  tutorial  yearfile2
+```
+
+#### Question 3: Duplicate thismonth
+
+```bash
+cp thismonth letters/let1.doc
+cd letters/
+cp let1.doc let2.doc
+cp let1.doc let3.doc
+```
+
+#### Question 4: Copy and rename
+
+```bash
+cp let?.doc /home/demo/work/misc/
+mv /home/demo/work/misc/let1.doc /home/demo/work/misc/rpt1.doc
+mv /home/demo/work/misc/let2.doc /home/demo/work/misc/rpt2.doc
+mv /home/demo/work/misc/let3.doc /home/demo/work/misc/rpt3.doc
+```
+
+#### Question 5: Square Brackets
+
+```bash
+mv /home/demo/work/misc/*[23]* /home/demo/scripts/
+ls /home/demo/scripts/
+bigfile2  rpt2.doc  rpt3.doc
+```
+
+#### Question 6: rm
+
+```bash
+rm /home/demo/scripts/r* -i
+rm: remove regular file ‘/home/demo/scripts/rpt2.doc’? yes
+rm: remove regular file ‘/home/demo/scripts/rpt3.doc’? yes
+```
+
+#### Question 7: Hard link
+
+```bash
+ln /home/demo/bigfile biglink
+ls -l
+
+total 8
+-rw-r--r--. 2 demo tutorial 4082 Nov 27 14:18 biglink # The number 2 means this is a hard link.
+-rw-r--r--. 1 demo tutorial 1982 Nov 27 14:33 vimrc
+```
+
+#### Question 8: Soft link
+
+```bash
+ln -s ../../thismonth mylink
+ls -l
+
+total 8
+-rw-r--r--. 2 demo tutorial 4082 Nov 27 14:18 biglink
+lrwxrwxrwx. 1 demo tutorial   15 Nov 27 15:15 mylink -> ../../thismonth # Notice the "l" in the permissions.
+-rw-r--r--. 1 demo tutorial 1982 Nov 27 14:33 vimrc
+```
+
+#### Question 9: Soft link - Absolute
+
+```bash
+ln -s /home/demo/thismonth mylink2
+ls -l
+
+total 8
+-rw-r--r--. 2 demo tutorial 4082 Nov 27 14:18 biglink
+lrwxrwxrwx. 1 demo tutorial   15 Nov 27 15:15 mylink -> ../../thismonth
+lrwxrwxrwx. 1 demo tutorial   20 Nov 27 15:26 mylink2 -> /home/demo/thismonth
+-rw-r--r--. 1 demo tutorial 1982 Nov 27 14:33 vimrc
+```
