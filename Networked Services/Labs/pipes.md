@@ -137,3 +137,30 @@ drwxr-xr-x.  2 root root        6 Jun 11  2014 terminfo
 
 ## Question 11: find root files
 
+```bash
+[demo@host-5-177 ~]$ find /var -user root > s8
+```
+
+## Question 12: find .conf files
+
+```bash
+[demo@host-5-177 ~]$ find /etc -name "*\.conf" > s9
+```
+
+## Question 13: find new files
+
+```bash
+[demo@host-5-177 ~]$ find /home/demo -newer /home/demo/s1 > /var/tmp/t1
+```
+
+## Question 14: list large files
+
+```bash
+[demo@host-5-177 ~]$ find /etc -size +2048
+```
+
+## Question 15: small xsl files
+
+```bash
+[demo@host-5-177 ~]$ find /usr/include/ -type f -name "s*" -not -size +12k -exec cp {} /home/demo/smallc/ \;
+```
