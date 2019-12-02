@@ -17,6 +17,9 @@
   - [Objects](#objects)
     - [Object orientation](#object-orientation)
     - [Objects in Java](#objects-in-java)
+  - [Integrated Development Environments](#integrated-development-environments)
+    - [Eclipse](#eclipse)
+      - [Projects and workspaces](#projects-and-workspaces)
 
 ----
 
@@ -70,3 +73,21 @@ In an object oriented system we build objects and bring them together to build a
 ### Objects in Java
 
 All Java software is made up of Classes. A class is source code that defines an object. The class is a collection of variables and code. All java code is contained within a class. Each class in a java system should have it's own source file (.JAVA). It is possible to have more than one class in a .JAVA file but only in very specific circumstances.
+
+----
+
+## Integrated Development Environments
+
+- Typical features of an IDE include
+- Code editors
+- Organisation of work into projects
+- Automated compilation
+- Add-ins for automating GUI building and testing
+
+### Eclipse
+
+Eclipse is an open source IDE based around Java development. Plugins can be added to extend it to support most other languages. 
+
+#### Projects and workspaces
+
+All Java code with eclipse
