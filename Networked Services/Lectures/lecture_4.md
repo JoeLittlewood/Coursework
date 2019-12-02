@@ -21,6 +21,15 @@
   - [SELinux ports](#selinux-ports)
   - [Transitions](#transitions)
   - [Booleans](#booleans)
+  - [SELinux usage](#selinux-usage)
+  - [Automatic Labelling](#automatic-labelling)
+    - [Warning](#warning)
+    - [Automatic-ish labelling](#automatic-ish-labelling)
+    - [Auto RE-typing](#auto-re-typing)
+    - [Manual Changes](#manual-changes)
+    - [Permanent manual changes](#permanent-manual-changes)
+  - [Using booleans](#using-booleans)
+  - [Setting booleans](#setting-booleans)
 
 ----
 
@@ -261,3 +270,162 @@ $ sesearch --allow -s httpd_t -b httpd_enable_homedirs
 allow httpd_t user_home_dir_t : lnk_file { read getattr } ;
 …
 ```
+
+## SELinux usage
+
+- The theory of SELinux is tricky…
+- However, as a system administrator, day to day SELinux is generally much more high level and mechanical.
+- To help, essential SELinux offers
+  - An automatic labelling service
+  - Commands to perform manual type changes
+  - Control over Boolean activation of additional rules
+  - A straight forward diagnostic tool with suggested changes
+  - A simple tool to extend SELinux to new problems
+
+## Automatic Labelling
+
+When a file is created it needs a type immediately. The average user needs SELinux support without needing any knowledge. It is possible to create a type transition based on a filename.
+
+```bash
+$ filetrans_pattern(staff_t, user_home_dir_t, httpd_user_content_t, dir, "public_html")
+```
+
+### Warning
+
+Inheriting the parent type only happens when a file is created. Similarly, file transistion patterns also only happen at creation time. If a file is renamed (e.g. using mv) the current type stays as it is.
+
+```bash
+$ mkdir public_html
+$ ls -Z
+… unconfined_u:object_r:httpd_user_content_t:s0 public_html
+$ rmdir public_html
+$ mkdir public_error
+$ ls -Z
+… unconfined_u:object_r:user_home_t:s0 public_error
+$ mv public_error public_html
+$ ls -Z
+… unconfined_u:object_r:user_home_t:s0 public_html
+```
+
+### Automatic-ish labelling
+
+A database of default types is held.
+
+- At relabelling time the full path name is used to look up the default type.
+- Database holds rules as regular expressions.
+
+You can simply list all the rules.
+
+```bash
+$ semanage fcontext –l | grep passwd
+/etc/passwd[-\+]? regular file system_u:object_r:passwd_file_t:s0
+```
+
+You can get the default labelling for a specific file:
+
+```bash
+$ matchpathcon /etc/passwd
+/etc/passwd system_u:object_r:passwd_file_t:s0
+```
+
+### Auto RE-typing
+
+So if you move the file and you know you got the wrong type, What do you do?
+For basic things, you can always reset a file to it's default type with `restorecon`.
+
+```bash
+$ matchpathcon /root/test
+/root/test system_u:object_r:admin_home_t:s0
+$ ls -Z /root/test
+-rw-r--r--. root root unconfined_u:object_r:user_tmp_t:s0 /root/test
+$ restorecon –v /root/test
+restorecon reset /root/test context unconfined_u:object_r:user_tmp_t:s0-
+>unconfined_u:object_r:admin_home_t:s0
+$ ls -Z /root/test
+-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 /root/test
+```
+
+Sometimes you might create directories and files, then realise it has to
+be moved…
+
+- Simply mv them as normal to the new location
+- Then restorecon with -r (for recursive), and give the pathname to the top directory.
+- Use care… remember you get the defaults
+- If a user deliberately changed a type and you relabel the whole of /home, you will not be popular.
+- You can use –n if you are concerned, which just tells you what would change without actually changing anything.
+
+```bash
+$ restorecon –rnv /home
+```
+
+### Manual Changes
+
+Users who know what they are doing may with to change labels
+manually. This is done using chcon.
+
+- Note this changes only the specific file type, not the default type
+- If after manually changing a file you do restorecon, the file changes back to the default…
+
+```bash
+$ ls -Z test
+-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 test
+$ chcon -t bin_t test
+$ ls -Z test
+-rw-r--r--. root root unconfined_u:object_r:bin_t:s0 test
+```
+
+### Permanent manual changes
+
+You can reprogram the restorecon type for things if you wish. So if you always want /root/test to be bin_t, you can do: 
+
+```bash
+$ semanage fcontext -a -t bin_t "/root/test"
+```
+
+Do remember that the database is a list of regular expressions, so a default for a file "test.dat" would need to be "test\.dat". You can always use regualr expressions to do complex matching:
+
+```bash
+$ semanage fcontext -a -t bin_t "/root/(.*/)?test\.dat"
+```
+
+## Using booleans
+
+As you remember, booleans allow rules to be switched on and off in groups.
+
+- Each group of rules linked to a Boolean effectively allow or block a feature you may be interested in.
+- If you can find a Boolean to allow what you want to do, this is much easier than writing your own SELinux rules.
+- getsebool allows you to read current Boolean states.
+- setsebool allows you to set current states.
+
+List all booleans and their states:
+
+```bash
+$ getsebool -a
+…
+httpd_enable_homedirs --> on
+…
+```
+
+## Setting booleans
+
+Get the value of a named boolean:
+
+```bash
+getsebool httpd_enable_homedirs
+httpd_enable_homedirs --> off
+```
+
+Set the value of a named Boolean (remembered till next reboot)
+
+```bash
+setsebool httpd_enable_homedirs 1
+getsebool httpd_enable_homedirs
+httpd_enable_homedirs --> on
+```
+
+Set the value of a named Boolean permanently
+
+```bash
+setsebool –P httpd_enable_homedirs 1
+```
+
