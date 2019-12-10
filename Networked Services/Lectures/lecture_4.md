@@ -204,8 +204,7 @@ $ ls –Z /var/log/httpd/error_log
 For httpd_t access httpd_log_t, it needs a rule to allow this: 
 
 ```bash
-$ sesearch --allow --source httpd_t –-target
-httpd_log_t --class file
+$ sesearch --allow --source httpd_t –-target httpd_log_t --class file
 
 allow httpd_t httpd_log_t : file { lock append open …} ;
 ```
