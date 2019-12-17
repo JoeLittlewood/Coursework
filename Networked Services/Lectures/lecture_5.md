@@ -382,3 +382,7 @@ iptables –A INPUT –p icmp --icmp-type echo-request -m limit --limit 10/minut
 iptables –A INPUT –p icmp --icmp-type echo-request –j DROP
 ```
 
+
+
+iptables -A INPUT -p tcp -s 10.0.0.0/255.255.255.
+

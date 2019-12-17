@@ -174,3 +174,166 @@ email to me@grussell.org.
 6. It uses its local delivery agent MDA (procmail) to put this email into the user’s mailbox.
 7. The email is stored in /var/spool/mail/me.
 8. Next time “me” logs into grussell.org, the email will be waiting for him.
+
+----
+
+## Linux email management
+
+## Sendmail
+
+Sendmail is the oldest and most common MTA in use today. It has many features which are now redundant (like using UUCP to forward email to the destinations using !). it is huge and prone to "hack attack". However, it works well, is well understood, universally discussed, and is still popular.
+
+## Aliases
+
+Aliases link the recipient envelope address to a local user or action. In sendmail, this is /etc/aliases. The file has 1 alias per line, with the alias name, then a :, then the action or user.
+
+## Examples
+
+```bash
+postmaster : root
+me : gor
+olduser : /dev/null
+automail : | /home/gordon/bin/autoregister.pl
+devel : gor, me@grussell.org.uk, a.cumming
+```
+
+- Aliases for users, programs (with |) to files (starts with /) or multiple users (separated with ,).
+
+## Compiling alias changes
+
+- Sendmail does not use /etc/aliases directly.
+- Instead it uses a binary hashed version of the file.
+- This is aliases.db or aliases.dbm.
+- When you change /etc/aliases you must run newaliases to build the hashed file.
+
+## .forward
+
+Only root can make changes to /etc/aliases. Individual users can have simple aliases using .forward in there home directory. Every line in this line is treated as an alias for the user.
+
+## Recursive loops
+
+```bash
+> cat /home/gordon/.forward
+gordon
+andrew
+```
+
+This appears to suggest delivery as normal to gordon, but also a copy of the email to andrew. However, for each name to the whole alias process is redone, so that aliases for andrew will also be processed. Unfortunately "gordon" will trigger access to his .forward file, find "gordon" again, and again, and again. This would break!
+
+To tell sendmail not to keep looking things up when they are found in .forward, put a \ character in front of the name. In this example:
+
+\gordon
+andrew
+
+This means "no more aliases on gordon".
+
+## Sendmail configuration
+
+Sendmail conf files are in /etc/mail. There is a mix of .cf and .mc files. .cf is quickly parsed by sendmail, but for mortals it is hard to understand (but flexible). .mc are MACRO level commands which can be used to build .cf files. Stick to .mc for all sensible cases! Run "make" in this directory to convert from .mc to .cf.
+
+## Basic structure of sendmail.mc
+
+- OSTYPE()
+- define() - 2 parameters: variable name and value. define('PROCMAIL_MAILER_PATH','/usr/bin/procmail')
+- FEATURE()
+- MAILER() – for example
+  - MAILER(smtp)
+  - MAILER(procmail)
+- dnl – a convenience – like a shell # comment.
+
+## What the options are
+
+Sendmail config is complex. My sendmail book is >1000 pages long. However, the basics are straight-forward. Most things you want are either FEATURES, DEFINES or have their own function name. One looks up the effect they want in the documentation, and follows the instructions. One really keen people would try to learn sendmail completely!
+
+## Key issues: Masquerade
+
+There are different types of masquerading in sendmail. Masquerading is where the identity of a machine is disguised for some reason. For instance, your email server is called "mail.grussell.org". In a normal setup all your email would appear to come from mail.grussell.org and not just grussell.org. 
+
+```bash
+MASQUERADE_AS('grussell.org')
+```
+
+Now all outgoing emails are rewritten so that the from address appears as grussell.org. It is vital that grussell.org is an A record and not a CNAME.
+
+Relaying
+
+Relaying is the process of asking one mail server to take your email for delivery somewhere else. It can be used by spammers to mass mail junk, but leave the blame on the mail server used. it was once switched on by default, which lead to many mail hosts becomming blacklisted. /etc/mail/relay-domains contains a list of domains which this server WILL relay.
+
+## Virtual Hosts - receiving
+
+- FEATURE(virtualusertable) supports the /etc/mail/virtusertable file.
+- Sent emails which match the first column are delivered to that specified in the second column.
+
+```bash
+me@grussell.org gordon
+me@grussell.org.uk gordon
+jim@grussell.org error:Sorry he has left
+@grussell.org gradmin
+```
+
+## Virtual Hosts - Sending
+
+- FEATURE(genericstable) and /etc/mail/genericstable does the virtual host mapping for outgoing email.
+
+```bash
+gordon me@grussell.org
+andrew andrew@grussell.org.uk
+dbuser gordon@db.grussell.org
+```
+
+## Access
+
+- FEATURE(access_db) and /etc/mail/access allows hosts and domains to be controlled on a per-user basis…
+
+```bash
+ycos.com DISCARD
+grussell.org.uk RELAY
+gordon@sqlzoo.net RELAY
+sqlzoo.net ERROR:5.0.0:550 No way
+```
+
+## Possible responses
+
+- OK – local recipients only
+- RELAY – forward
+- REJECT – no way!
+- DISCARD – no way quietly
+- ERROR – Send an error back to the sender (RFC 1893 compliant codes).
+- There are a number of “black hole” email lists.
+- These are lists populated by suspected spammers. Such lists include:
+  - http://www.spamhaus.org/
+- So to drop people in the sbl list do: FEATURE(`dnsbl', `sbl.spamhaus.org', `"550 Mail from " $`'&{client_addr} " refused - see http://www.spamhaus.org/SBL/"')dnl
+- See http://www.email-policy.com/Spam-black-lists.htm
+
+## Spamhatus
+
+Spamhatus actually maintains 3 lists:
+
+- SBL - List of spammers and the like
+- XBL - Machines which seem to be exploited in some way. For instance, have open proxies or perhaps a worm or virus.
+- PBL - A list of machines which should not really be sending email. For instance, the dynamic ips of customers in an ISP, where they all should be using the ISPs SMTP server for sending email.
+
+List are only as good as the data used to build them. However, good lists can generally be trusted, so long as you fully understand the implications of using them.
+
+## Fighting spam
+
+There are a few research areas where investigators are trying to fight spam. One technology being used nbow is called SPF. When an email is recieved suggesting it is from "linuxzoo.net", the MTA does a DNS lookup on lunuxzoo.net, looking for a TXT record. If it finds one starting with v=spf1, then some additional checks are performed before the email is processed.
+
+## SPF for linuxzoo
+
+The TXT record supporting SPF in linuxzoo is:
+
+`v=spf1 ip4:146.176.166.1 ip4:146.176.166.15 a ~all`
+
+This indicates that email can only be send by 146.176.166.1, 146.176.166.15, or from an IP which matches the A record for linuxzoo.net. If any of those things are true, the mail is processed normally. If it is false, the MTA carries out the "~" action.
+
+## Actions
+
+- Really it should have “-all”.
+  - This indicates that a failed test results in the email being rejected
+- “~all” is a soft fail.
+  - This is really for debugging.
+  - It indicates that it is probably junk, but I am not brave enough to guarantee it.
+  - One day I will change it to “-all”.
+  - Until then, it means that if the SPF rules are broken, then delete the email if you are really really being tough.
+  - In reality it probably means “take no action”…
